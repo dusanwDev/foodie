@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "restaurant-app"
+    }
+  },
+  "defaultProject": "restaurant-app",
+  "cli": {
+    "analytics": false
+  }
 }

@@ -1,0 +1,36 @@
+<div class="dashboard">
+  <div class="nav">
+    <div class="img-restaurant-container">
+      <img
+        src="https://prod-wolt-venue-images-cdn.wolt.com/5d30dcbdbac78b444f8e2848/fa176d82131ea28516c460ce6e5f8bcc-edits/9b96041bd2e2ebfcf85b5ade767db8f1"
+        alt=""
+      />
+    </div>
+    <a routerLink="/restaurant-dashboard"><i class="fas fa-home"></i> Home</a>
+    <a routerLink="orders"><i class="fas fa-shopping-cart"></i> Orders</a>
+    <a routerLink="menu"><i class="fas fa-clipboard-list"></i> Menu</a>
+    <a routerLink="settings"><i class="fas fa-cog"></i> Settings</a>
+  </div>
+  <div class="main">
+    <div class="tab">
+      <h1>restaurant Name</h1>
+      <div class="basic-stats">
+        <div class="food-delivered">
+          <i class="fas fa-shopping-cart"></i>
+          <div class="food-delivered-inner">
+            <p>Food Delivered</p>
+            <p>300$</p>
+          </div>
+        </div>
+        <div class="your-balance">
+          <i class="fas fa-dollar-sign"></i>
+          <div class="your-balance-inner">
+            <p>Your Balance</p>
+            <p>300$</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <router-outlet></router-outlet>
+  </div>
+</div>

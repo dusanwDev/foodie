@@ -1,0 +1,83 @@
+.dashboard {
+  display: flex;
+  padding: 0 0.5em;
+  .nav {
+    width: 15%;
+    a {
+      text-decoration: none;
+      display: block;
+      color: #403f38;
+      padding: 0.5em 0em 0.5em 0.6em;
+      margin: 0.6em 0;
+
+      i {
+        background-color: #f5f8f9;
+        padding: 0.6em;
+        border-radius: 8px;
+        font-size: 1.1rem;
+        width: 40.91px;
+        text-align: center;
+      }
+      &:hover {
+        background-color: #93aeaa;
+        border-radius: 10px;
+        color: white;
+        transition: all 0.2s;
+        i {
+          background-color: #93aeaa;
+        }
+      }
+    }
+    .img-restaurant-container {
+      width: 150px;
+      height: 150px;
+      margin-bottom: 1rem;
+      img {
+        border-radius: 85px;
+
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+  .main {
+    width: 85%;
+    padding: 1em;
+    .tab {
+      padding-bottom: 1.5rem;
+      border-bottom: 2px solid rgb(230, 230, 230);
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .basic-stats {
+        display: flex;
+        .food-delivered,
+        .your-balance {
+          display: flex;
+          align-items: center;
+          .food-delivered-inner,
+          .your-balance-inner {
+            margin-left: 0.6em;
+          }
+        }
+        .food-delivered {
+          margin-right: 1.5rem;
+          i {
+            padding: 1em;
+            border-radius: 15px;
+            background-color: #4fa8e9;
+          }
+        }
+        .your-balance {
+          i {
+            padding: 1em 1.2em;
+            border-radius: 15px;
+            background-color: #30beab;
+          }
+        }
+      }
+    }
+  }
+}

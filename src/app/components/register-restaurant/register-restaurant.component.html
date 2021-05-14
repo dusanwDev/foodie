@@ -1,0 +1,72 @@
+<div class="register-restaurant">
+  <header>
+    <h1>Register Restaurant</h1>
+  </header>
+  <div class="form-wrapper">
+    <form [formGroup]="registerRestaurant" (ngSubmit)="submit()">
+      <div class="form-control">
+        <label for="">Restaurant Name</label
+        ><input type="text" formControlName="restaurantName" />
+        <span
+          *ngIf="
+            !registerRestaurant.get('restaurantName').valid &&
+            registerRestaurant.get('restaurantName').touched
+          "
+        >
+          <span
+            *ngIf="registerRestaurant.get('restaurantName').errors['required']"
+            >This field is required</span
+          >
+        </span>
+      </div>
+      <div class="form-control">
+        <label for="">Email</label
+        ><input type="email" formControlName="restaurantEmail" />
+        <span
+          *ngIf="
+            !registerRestaurant.get('restaurantEmail').valid &&
+            registerRestaurant.get('restaurantEmail').touched
+          "
+        >
+          <span
+            *ngIf="registerRestaurant.get('restaurantEmail').errors['required']"
+            >This field is required</span
+          >
+          <span
+            *ngIf="registerRestaurant.get('restaurantEmail').errors['email']"
+            >Please enter valid email</span
+          >
+        </span>
+      </div>
+      <div class="form-control">
+        <label for="">Password</label
+        ><input type="password" formControlName="restaurantPassword" />
+        <span
+          *ngIf="
+            !registerRestaurant.get('restaurantPassword').valid &&
+            registerRestaurant.get('restaurantPassword').touched
+          "
+        >
+          <span
+            *ngIf="
+              registerRestaurant.get('restaurantPassword').errors['required']
+            "
+            >This field is required</span
+          >
+          <!-- <span
+            *ngIf="
+              registerRestaurant.get('restaurantPassword').errors[
+                'passwordError'
+              ]
+            "
+            >Minimum eight characters, at least one letter and one number</span
+          > -->
+        </span>
+      </div>
+      <button type="submit" [disabled]="!registerRestaurant.valid">
+        Submit
+      </button>
+      <span *ngIf="errorMessage">{{ errorMessage }}</span>
+    </form>
+  </div>
+</div>
