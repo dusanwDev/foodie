@@ -3,18 +3,18 @@
 </header>
 
 <div class="form-wrapper">
-  <form action="">
+  <form [formGroup]="settingsForm" (ngSubmit)="submit()">
     <div class="form-control">
       <label for="">Restaurant Name</label>
-      <input type="text" />
+      <input type="text" formControlName="restaurantName" />
     </div>
     <div class="form-control">
       <label for="">Restaurant Adres</label>
-      <input type="text" />
+      <input type="text" formControlName="restaurantAddres" />
     </div>
     <div class="form-control-img">
       <label for=""><p>Add Image</p></label>
-      <input type="file" />
+      <input type="file" formControlName="restaurantImage" />
     </div>
     <button type="submit">Submit</button>
   </form>

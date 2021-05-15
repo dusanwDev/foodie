@@ -1,3 +1,3 @@
 export class Restaurant {
-  constructor(public restaurantName) {}
+  constructor(public restaurantName: string, public restaurantId: string) {}
 }

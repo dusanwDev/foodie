@@ -35,7 +35,7 @@ export class AuthService {
     private router: Router
   ) {}
 
-  login(email: string, password: string) {
+  login(email: string, password: string, registerType: authType) {
     return this.http
       .post<AuthResponse>(
         'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCyJA1fT5zaSdDJXn107YnTGLmQnWeW27E',
@@ -54,7 +54,7 @@ export class AuthService {
             data.idToken,
             data.localId,
             data.refreshToken,
-            'loginUser'
+            registerType
           )
         )
       );
@@ -133,16 +133,16 @@ export class AuthService {
       refreshToken,
       email
     );
+
     localStorage.setItem('user', JSON.stringify(user));
     console.log('LOGIN', name);
     switch (authType) {
       case 'registerRestaurant':
-        this.afs
-          .collection<Restaurant>(Utility.firestoreName)
-          .doc(user.userId)
-          .set({
-            restaurantName: name,
-          });
+        this.afs.collection(Utility.firestoreName).doc(user.userId).set({
+          restaurantName: name,
+          restaurantId: user.userId,
+        });
+        this.router.navigate(['/restaurant-dashboard', user.userId]);
         break;
       case 'registerUser':
         this.afs
@@ -151,9 +151,11 @@ export class AuthService {
           .set({
             customerName: name,
             customerLastName: lastName,
+            customerId: user.userId,
           });
         break;
       case 'loginRestaurant':
+        this.router.navigate(['/restaurant-dashboard', user.userId]);
         break;
       case 'loginUser':
         break;

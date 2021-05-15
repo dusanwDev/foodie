@@ -18,7 +18,7 @@
           <td>Category Name</td>
           <td>Ordered Name</td>
           <td class="edit">
-            <button><i class="fas fa-edit"></i></button>
+            <button (click)="edit()"><i class="fas fa-edit"></i></button>
           </td>
           <td class="remove">
             <button><i class="fas fa-times"></i></button>
@@ -39,29 +39,48 @@
       </tbody>
     </table>
   </div>
-  <form action="">
+  <form [formGroup]="addDishForm" (ngSubmit)="submit()">
     <div class="form-inner">
       <div class="form-control">
-        <label for="">Add To category</label>
-        <select name="" id="">
-          <option value="">Category Name</option>
-          <option value="">Category Name</option>
-          <option value="">Category Name</option>
+        <label for="">Add To Existing category</label>
+        <select
+          name=""
+          (ngModelChange)="onExistingCategory($event)"
+          formControlName="existingCategory"
+        >
+          <option value="No category">No category</option>
+
+          <option value="Category Name">Category Name</option>
+          <option value="Category Name">Category Name</option>
+          <option value="Category Name">Category Name</option>
         </select>
       </div>
       <div class="form-control">
         <label for="">New category</label>
-        <input type="text" />
+        <input
+          type="text"
+          (input)="onCategoryInput()"
+          formControlName="newCategory"
+          class="newCategory"
+        />
       </div>
       <div class="form-control">
         <label for="">Dish Name</label>
-        <input type="text" />
+        <input type="text" formControlName="dishName" />
       </div>
       <div class="form-control">
         <label for="">Toppings</label>
-        <input type="text" />
+        <input type="text" formControlName="toppings" />
       </div>
-      <button>Add</button>
+      <div class="form-control">
+        <label for="">Price</label>
+        <input type="text" formControlName="price" />
+      </div>
+      <div class="form-control">
+        <label for="">About</label>
+        <textarea name="" id="" cols="30" rows="10"></textarea>
+      </div>
+      <button type="submit">Submit</button>
     </div>
   </form>
 </div>

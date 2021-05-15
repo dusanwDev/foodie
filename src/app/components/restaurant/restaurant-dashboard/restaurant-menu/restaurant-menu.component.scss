@@ -8,6 +8,7 @@
         margin: 1em 0em;
         label {
           display: block;
+          margin-bottom: 0.4em;
         }
         input {
           width: 100%;
@@ -16,6 +17,9 @@
           background-color: rgb(221, 221, 221);
           border: none;
           border-radius: 4px;
+        }
+        textarea {
+          background-color: rgb(221, 221, 221);
         }
       }
       button {
@@ -32,7 +36,9 @@
   }
   .menu-table {
     width: 70%;
-
+    header {
+      margin-bottom: 1rem;
+    }
     table {
       border-collapse: collapse;
       tr {
@@ -55,10 +61,12 @@
                 color: red;
                 font-size: 1.4rem;
                 padding: 0.3em 0.6em;
+                pointer-events: none;
               }
               .fa-edit {
                 font-size: 1.4rem;
                 padding: 0.3em 0.6em;
+                pointer-events: none;
               }
             }
           }

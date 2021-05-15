@@ -1,1 +1,18 @@
-<p>register-user works!</p>
+<form [formGroup]="registerUserForm" (ngSubmit)="submit()">
+  <div class="form-control">
+    <label for="">First Name</label>
+    <input type="text" formControlName="firstName" />
+  </div>
+  <div class="form-control">
+    <label for="">Last Name</label>
+    <input type="text" formControlName="lastName" />
+  </div>
+  <div class="form-control">
+    <label for="">Email</label> <input type="email" formControlName="email" />
+  </div>
+  <div class="form-control">
+    <label for="">Password</label>
+    <input type="password" formControlName="password" />
+  </div>
+  <button type="submit">Submit</button>
+</form>

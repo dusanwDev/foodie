@@ -9,6 +9,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class LoginRestaurantComponent implements OnInit {
   logInRestaurant: FormGroup;
+  erorMessage: string;
   constructor(private authService: AuthService) {}
   ngOnInit(): void {
     this.logInRestaurant = new FormGroup({
@@ -20,8 +21,12 @@ export class LoginRestaurantComponent implements OnInit {
     this.authService
       .login(
         this.logInRestaurant.get('email').value,
-        this.logInRestaurant.get('password').value
+        this.logInRestaurant.get('password').value,
+        'loginRestaurant'
       )
-      .subscribe((data) => console.log(data));
+      .subscribe(
+        (data) => console.log(data),
+        (err) => (this.erorMessage = err)
+      );
   }
 }

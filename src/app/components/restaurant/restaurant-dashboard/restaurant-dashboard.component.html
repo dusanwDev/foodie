@@ -6,14 +6,16 @@
         alt=""
       />
     </div>
-    <a routerLink="/restaurant-dashboard"><i class="fas fa-home"></i> Home</a>
+    <a *ngIf="restaurant" [routerLink]="['restaurant', restaurant.restaurantId]"
+      ><i class="fas fa-home"></i> Home</a
+    >
     <a routerLink="orders"><i class="fas fa-shopping-cart"></i> Orders</a>
     <a routerLink="menu"><i class="fas fa-clipboard-list"></i> Menu</a>
     <a routerLink="settings"><i class="fas fa-cog"></i> Settings</a>
   </div>
   <div class="main">
     <div class="tab">
-      <h1>restaurant Name</h1>
+      <h1>{{ restaurant.restaurantName }}</h1>
       <div class="basic-stats">
         <div class="food-delivered">
           <i class="fas fa-shopping-cart"></i>

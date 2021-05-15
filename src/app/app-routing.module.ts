@@ -2,11 +2,14 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { FeedComponent } from './components/feed/feed.component';
 import { LoginRestaurantComponent } from './components/login-restaurant/login-restaurant.component';
+import { LoginUserComponent } from './components/login-user/login-user.component';
 import { RegisterRestaurantComponent } from './components/register-restaurant/register-restaurant.component';
+import { RegisterUserComponent } from './components/register-user/register-user.component';
 import { RestaurantDashboardComponent } from './components/restaurant/restaurant-dashboard/restaurant-dashboard.component';
 import { RestaurantMenuComponent } from './components/restaurant/restaurant-dashboard/restaurant-menu/restaurant-menu.component';
 import { RestaurantOrdersComponent } from './components/restaurant/restaurant-dashboard/restaurant-orders/restaurant-orders.component';
 import { RestaurantSettingsComponent } from './components/restaurant/restaurant-dashboard/restaurant-settings/restaurant-settings.component';
+import { RestaurantGuard } from './components/restaurant/restaurant-guard.guard';
 import { RestaurantComponent } from './components/restaurant/restaurant.component';
 import { FavoriteRestaurantsComponent } from './components/user-profile/favorite-restaurants/favorite-restaurants.component';
 import { ProfileComponent } from './components/user-profile/profile/profile.component';
@@ -16,12 +19,13 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 const routes: Routes = [
   { path: 'feed', component: FeedComponent },
   {
-    path: 'restaurant',
+    path: 'restaurant:restaurantId',
     component: RestaurantComponent,
   },
   {
-    path: 'restaurant-dashboard',
+    path: 'restaurant-dashboard/:restaurantIdDashboard',
     component: RestaurantDashboardComponent,
+    canActivate: [RestaurantGuard],
     children: [
       { path: 'menu', component: RestaurantMenuComponent },
       { path: 'orders', component: RestaurantOrdersComponent },
@@ -45,6 +49,14 @@ const routes: Routes = [
   {
     path: 'restaurant-login',
     component: LoginRestaurantComponent,
+  },
+  {
+    path: 'user-register',
+    component: RegisterUserComponent,
+  },
+  {
+    path: 'user-login',
+    component: LoginUserComponent,
   },
 ];
 

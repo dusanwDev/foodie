@@ -27,6 +27,15 @@
           background-color: #93aeaa;
         }
       }
+      &:focus {
+        background-color: #93aeaa;
+        border-radius: 10px;
+        color: white;
+        transition: all 0.2s;
+        i {
+          background-color: #93aeaa;
+        }
+      }
     }
     .img-restaurant-container {
       width: 150px;
