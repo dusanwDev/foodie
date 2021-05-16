@@ -8,14 +8,75 @@
       <label for="">Restaurant Name</label>
       <input type="text" formControlName="restaurantName" />
     </div>
+    <span
+      *ngIf="
+        !settingsForm.get('restaurantName').valid &&
+        settingsForm.get('restaurantName').touched
+      "
+    >
+      <span *ngIf="settingsForm.get('restaurantName').errors['required']"
+        >This field is required</span
+      >
+    </span>
     <div class="form-control">
       <label for="">Restaurant Adres</label>
       <input type="text" formControlName="restaurantAddres" />
     </div>
+    <span
+      *ngIf="
+        !settingsForm.get('restaurantAddres').valid &&
+        settingsForm.get('restaurantAddres').touched
+      "
+    >
+      <span *ngIf="settingsForm.get('restaurantAddres').errors['required']"
+        >This field is required</span
+      >
+    </span>
+    <div class="form-control">
+      <label for="">workTime</label
+      ><input type="text" formControlName="workTime" />
+    </div>
+    <span
+      *ngIf="
+        !settingsForm.get('workTime').valid &&
+        settingsForm.get('workTime').touched
+      "
+    >
+      <span *ngIf="settingsForm.get('workTime').errors['required']"
+        >This field is required</span
+      >
+    </span>
+
+    <div class="form-control">
+      <label for="">phone</label><input type="text" formControlName="phone" />
+    </div>
+    <span
+      *ngIf="
+        !settingsForm.get('phone').valid && settingsForm.get('phone').touched
+      "
+    >
+      <span *ngIf="settingsForm.get('phone').errors['required']"
+        >This field is required</span
+      >
+    </span>
     <div class="form-control-img">
       <label for=""><p>Add Image</p></label>
-      <input type="file" formControlName="restaurantImage" />
+      <input
+        type="file"
+        (change)="onFileSelectedListener($event)"
+        formControlName="restaurantImage"
+      />
     </div>
-    <button type="submit">Submit</button>
+    <span
+      *ngIf="
+        !settingsForm.get('restaurantImage').valid &&
+        settingsForm.get('restaurantImage').touched
+      "
+    >
+      <span *ngIf="settingsForm.get('restaurantImage').errors['required']"
+        >This field is required</span
+      >
+    </span>
+    <button type="submit" [disabled]="!settingsForm.valid">Submit</button>
   </form>
 </div>

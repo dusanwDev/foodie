@@ -32,7 +32,7 @@
 .main-header {
   position: relative;
   height: 90vh;
-  background-image: url("https://prod-wolt-venue-images-cdn.wolt.com/5d30dcbdbac78b444f8e2848/fa176d82131ea28516c460ce6e5f8bcc-edits/9b96041bd2e2ebfcf85b5ade767db8f1");
+  // background-image: url("https://prod-wolt-venue-images-cdn.wolt.com/5d30dcbdbac78b444f8e2848/fa176d82131ea28516c460ce6e5f8bcc-edits/9b96041bd2e2ebfcf85b5ade767db8f1");
   background-size: cover;
   background-position: center;
 
@@ -340,7 +340,8 @@ main {
           color: #717171;
           cursor: pointer;
           position: relative;
-
+          font-size: 1.2rem;
+          font-weight: bolder;
           line-height: initial;
           margin: 0.2rem 0;
           background-color: transparent;
@@ -479,9 +480,9 @@ main {
               display: flex;
               justify-content: space-between;
               align-items: center;
-              .topping-price {
-                font-size: 0.875rem;
-              }
+              // .topping-price {
+              //   font-size: 0.875rem;
+              // }
               .form-controll-inner {
                 display: flex;
                 justify-content: space-between;
@@ -491,6 +492,7 @@ main {
                 }
                 p {
                   margin-left: 0.6em;
+                  font-size: 1.2rem;
                 }
               }
             }

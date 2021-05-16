@@ -1,12 +1,11 @@
-<div class="dashboard">
+<div class="dashboard" *ngIf="restaurant">
   <div class="nav">
     <div class="img-restaurant-container">
-      <img
-        src="https://prod-wolt-venue-images-cdn.wolt.com/5d30dcbdbac78b444f8e2848/fa176d82131ea28516c460ce6e5f8bcc-edits/9b96041bd2e2ebfcf85b5ade767db8f1"
-        alt=""
-      />
+      <img [src]="restaurant.restaurantImage" alt="" />
     </div>
-    <a *ngIf="restaurant" [routerLink]="['restaurant', restaurant.restaurantId]"
+    <a
+      *ngIf="restaurant"
+      [routerLink]="['/restaurant', restaurant.restaurantId]"
       ><i class="fas fa-home"></i> Home</a
     >
     <a routerLink="orders"><i class="fas fa-shopping-cart"></i> Orders</a>
@@ -21,7 +20,7 @@
           <i class="fas fa-shopping-cart"></i>
           <div class="food-delivered-inner">
             <p>Food Delivered</p>
-            <p>300$</p>
+            <p></p>
           </div>
         </div>
         <div class="your-balance">

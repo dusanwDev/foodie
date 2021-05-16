@@ -6,6 +6,10 @@
     .form-inner {
       .form-control {
         margin: 1em 0em;
+        span {
+          color: red;
+          font-weight: bold;
+        }
         label {
           display: block;
           margin-bottom: 0.4em;
@@ -18,8 +22,21 @@
           border: none;
           border-radius: 4px;
         }
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+
+        /* Firefox */
+        input[type="number"] {
+          -moz-appearance: textfield;
+        }
         textarea {
           background-color: rgb(221, 221, 221);
+          resize: none;
+          font-family: "Roboto", "sans-serif";
+          padding: 0.4em;
         }
       }
       button {
@@ -31,6 +48,7 @@
         color: white;
         border-radius: 8px;
         width: 100%;
+        cursor: pointer;
       }
     }
   }

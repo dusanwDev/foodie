@@ -3,6 +3,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { ActivatedRoute } from '@angular/router';
 import { Restaurant } from 'src/app/models/Restaurant.model';
 import { Utility } from 'src/app/models/Utility.model';
+import { RestaurantService } from '../restaurant.service';
 
 @Component({
   selector: 'app-restaurant-dashboard',
@@ -12,7 +13,8 @@ import { Utility } from 'src/app/models/Utility.model';
 export class RestaurantDashboardComponent implements OnInit {
   constructor(
     private afs: AngularFirestore,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private restaurantService: RestaurantService
   ) {}
   restaurant: Restaurant;
   ngOnInit(): void {
@@ -25,6 +27,7 @@ export class RestaurantDashboardComponent implements OnInit {
           console.log('From Params', data['restaurantIdDashboard']);
           this.restaurant = restaurantData;
           console.log('restaurant', this.restaurant);
+          this.restaurantService.restaurantBehSubject.next(this.restaurant);
         });
     });
   }

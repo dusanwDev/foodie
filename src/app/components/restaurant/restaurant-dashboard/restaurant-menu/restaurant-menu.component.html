@@ -5,35 +5,28 @@
     <table>
       <thead>
         <tr>
+          <th>CategoryID</th>
           <th>Category</th>
           <th>Dish</th>
           <th>Toppings</th>
+          <th>Price</th>
           <th>Ordered</th>
         </tr>
       </thead>
-      <tbody>
-        <tr>
-          <td>Category Name</td>
-          <td>Toppings Name</td>
-          <td>Category Name</td>
-          <td>Ordered Name</td>
+      <tbody *ngIf="restaurant">
+        <tr *ngFor="let dish of restaurant.dishes; let i = index">
+          <td>categoryId</td>
+          <td *ngIf="!dish.categoryName">{{ dish.existingCategory }}</td>
+          <td>{{ dish.categoryName }}</td>
+          <td>{{ dish.dishName }}</td>
+          <td>{{ dish.toppings }}</td>
+          <td>{{ dish.price }}</td>
+          <td>{{ dish.ordered }}</td>
           <td class="edit">
-            <button (click)="edit()"><i class="fas fa-edit"></i></button>
+            <button (click)="edit(dish)"><i class="fas fa-edit"></i></button>
           </td>
           <td class="remove">
-            <button><i class="fas fa-times"></i></button>
-          </td>
-        </tr>
-        <tr>
-          <td>Category Name</td>
-          <td>Toppings Name</td>
-          <td>Category Name</td>
-          <td>Ordered Name</td>
-          <td class="edit">
-            <button><i class="fas fa-edit"></i></button>
-          </td>
-          <td class="remove">
-            <button><i class="fas fa-times"></i></button>
+            <button (click)="remove(i)"><i class="fas fa-times"></i></button>
           </td>
         </tr>
       </tbody>
@@ -48,11 +41,13 @@
           (ngModelChange)="onExistingCategory($event)"
           formControlName="existingCategory"
         >
+          <option
+            *ngFor="let category of restaurant.dishes"
+            [value]="category.categoryName"
+          >
+            {{ category.categoryName }}
+          </option>
           <option value="No category">No category</option>
-
-          <option value="Category Name">Category Name</option>
-          <option value="Category Name">Category Name</option>
-          <option value="Category Name">Category Name</option>
         </select>
       </div>
       <div class="form-control">
@@ -63,24 +58,83 @@
           formControlName="newCategory"
           class="newCategory"
         />
+        <span *ngIf="!submit">Category already exists</span>
+        <span
+          *ngIf="
+            !addDishForm.get('newCategory').valid &&
+            addDishForm.get('newCategory').touched
+          "
+        >
+          <span *ngIf="addDishForm.get('newCategory').errors['required']"
+            >This field is required</span
+          >
+        </span>
       </div>
       <div class="form-control">
         <label for="">Dish Name</label>
-        <input type="text" formControlName="dishName" />
+        <input type="text" class="dishName" formControlName="dishName" />
+        <span
+          *ngIf="
+            !addDishForm.get('dishName').valid &&
+            addDishForm.get('dishName').touched
+          "
+        >
+          <span *ngIf="addDishForm.get('dishName').errors['required']"
+            >This field is required</span
+          >
+        </span>
       </div>
       <div class="form-control">
         <label for="">Toppings</label>
         <input type="text" formControlName="toppings" />
+        <span
+          *ngIf="
+            !addDishForm.get('toppings').valid &&
+            addDishForm.get('toppings').touched
+          "
+        >
+          <span *ngIf="addDishForm.get('toppings').errors['required']"
+            >This field is required</span
+          >
+          <span *ngIf="addDishForm.get('toppings').errors['pattern']"
+            >No spaces please use commas instead</span
+          >
+        </span>
       </div>
       <div class="form-control">
         <label for="">Price</label>
-        <input type="text" formControlName="price" />
+        <input type="number" formControlName="price" />
+        <span
+          *ngIf="
+            !addDishForm.get('price').valid && addDishForm.get('price').touched
+          "
+        >
+          <span *ngIf="addDishForm.get('price').errors['required']"
+            >This field is required</span
+          >
+        </span>
+      </div>
+      <div class="form-control">
+        <label for="">Dish Image</label>
+        <input
+          formControlName="image"
+          style="color: white"
+          type="file"
+          accept="image/x-png,image/gif,image/jpeg"
+          (change)="onFileSelectedListener($event)"
+        />
       </div>
       <div class="form-control">
         <label for="">About</label>
-        <textarea name="" id="" cols="30" rows="10"></textarea>
+        <textarea
+          name=""
+          id=""
+          cols="30"
+          rows="10"
+          formControlName="about"
+        ></textarea>
       </div>
-      <button type="submit">Submit</button>
+      <button [disabled]="!addDishForm.valid" type="submit">Submit</button>
     </div>
   </form>
 </div>

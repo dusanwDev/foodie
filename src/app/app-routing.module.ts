@@ -19,7 +19,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 const routes: Routes = [
   { path: 'feed', component: FeedComponent },
   {
-    path: 'restaurant:restaurantId',
+    path: 'restaurant/:restaurantId',
     component: RestaurantComponent,
   },
   {

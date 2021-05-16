@@ -1,4 +1,8 @@
-<header class="main-header">
+<header
+  class="main-header"
+  *ngIf="restaurant"
+  [ngStyle]="{ 'background-image': 'url(' + restaurant.restaurantImage + ')' }"
+>
   <div class="opacity">
     <div class="main-header-inner">
       <div class="header-upper">
@@ -33,7 +37,7 @@
         </div>
       </div>
       <div class="restaurant-name">
-        <h1>KFC-Studentski trg</h1>
+        <h1>{{ restaurant.restaurantName }}</h1>
         <p>Its Finger licking good</p>
       </div>
     </div>
@@ -56,7 +60,7 @@
     </div>
   </div>
 </header>
-<div class="raiting-responsive">
+<div class="raiting-responsive" *ngIf="restaurant">
   <div class="raiting-number">
     <div class="raiting-number-inner">
       <i class="fas fa-laugh-beam"></i>
@@ -67,7 +71,7 @@
     </div>
   </div>
   <div class="open-info-responsive">
-    <p><i class="far fa-clock"></i>09.00-23.00</p>
+    <p><i class="far fa-clock"></i>{{ restaurant.workTime }}</p>
     <button>More Info</button>
   </div>
   <div class="delivery-time-responsive">
@@ -81,84 +85,22 @@
     <i class="fas fa-search"></i>
   </div>
   <div class="categories">
-    <a href="">Djilas</a><a href="">Djilas</a><a href="">Djilas</a
-    ><a href="">Djilas</a><a href="">Djilas</a><a href="">Djilas</a
-    ><a href="">Djilas</a><a href="">Djilas</a><a href="">Djilas</a
-    ><a href="">Djilas</a><a href="">Djilas</a><a href="">Djilas</a
-    ><a href="">Djilas</a><a href="">Djilas</a><a href="">Djilas</a
-    ><a href="">Djilas</a><a href="">Djilas</a><a href="">Djilas</a
-    ><a href="">Djilas</a><a href="">Djilas</a><a href="">Djilas</a
-    ><a href="">Djilas</a><a href="">Djilas</a><a href="">Djilas</a
-    ><a href="">Djilas</a>
+    <a href="" *ngFor="let category of restaurant.dishes">{{
+      category.categoryName
+    }}</a>
   </div>
 </div>
-<main>
+<main *ngIf="restaurant">
   <section class="categories-sidebar">
     <ul>
-      <li>
+      <li *ngFor="let restaurantData of restaurant.dishes">
         <a href="">
-          <span>OSTANI KOD KUĆE</span>
-        </a>
-      </li>
-      <li>
-        <a href="">
-          <span>NOVI PROIZVODI</span>
-        </a>
-      </li>
-      <li>
-        <a href="">
-          <span>KOFICE</span>
-        </a>
-      </li>
-      <li>
-        <a href="">
-          <span>BOXES</span>
-        </a>
-      </li>
-      <li>
-        <a href="">
-          <span>MENI</span>
-        </a>
-      </li>
-      <li>
-        <a href="">
-          <span>DEČJI OBROK</span>
-        </a>
-      </li>
-      <li>
-        <a href="">
-          <span>SENDVIČI</span>
-        </a>
-      </li>
-      <li>
-        <a href="">
-          <span>KOMADI PILETINE</span>
-        </a>
-      </li>
-      <li>
-        <a href="">
-          <span>SALATE</span>
-        </a>
-      </li>
-      <li>
-        <a href="">
-          <span>PRILOZI</span>
-        </a>
-      </li>
-      <li>
-        <a href="">
-          <span>PIĆA</span>
-        </a>
-      </li>
-      <li>
-        <a href="">
-          <span>DEZERTI</span>
+          {{ restaurantData.categoryName }}
         </a>
       </li>
     </ul>
   </section>
   <section class="menu">
-
     <header>
       <h1>Cat Name</h1>
       <select name="" id="">
@@ -166,21 +108,20 @@
         <option value="">Fastest to serve</option>
       </select>
     </header>
-    <div class="menu-item">
+    <div class="menu-item" *ngFor="let dish of restaurant.dishes">
       <div class="menu-item-container">
         <div class="menu-item-img-container">
-          <img src="./restaurant-banner.jpg" alt="" />
+          <img [src]="dish.image" alt="Food Image" />
         </div>
         <div class="menu-item-info">
-          <h2>Ostani kod kuće</h2>
+          <h2>{{ dish.dishName }}</h2>
           <div class="ingridients">
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat et
-              placeat, cum quos nobis voluptatem!
+              {{ dish.about }}
             </p>
           </div>
           <div class="price-and-order-wrapper">
-            <p class="price">850.00 RSD</p>
+            <p class="price">{{ dish.price }}$</p>
             <p class="raiting-item"><i class="fas fa-star"></i> 4.5/10</p>
           </div>
         </div>
@@ -196,26 +137,15 @@
             <p class="choose-up-to">Choose up to 4 Additiional items</p>
           </div>
           <div class="toppings-dropdown">
-            <div class="form-control">
+            <ng-content
+              *ngFor="let dish of restaurant.dishes; let i = index"
+            ></ng-content>
+            <div class="form-control" *ngFor="let topping of dish.toppings">
               <div class="form-controll-inner">
                 <input type="checkbox" />
-                <p>Prilog 1</p>
+                <p>{{ topping }}</p>
               </div>
-              <p class="topping-price">+ RSD 190.00</p>
-            </div>
-            <div class="form-control">
-              <div class="form-controll-inner">
-                <input type="checkbox" />
-                <p>Prilog 1</p>
-              </div>
-              <p class="topping-price">+ RSD 190.00</p>
-            </div>
-            <div class="form-control">
-              <div class="form-controll-inner">
-                <input type="checkbox" />
-                <p>Prilog 1</p>
-              </div>
-              <p class="topping-price">+ RSD 190.00</p>
+              <!-- <p class="topping-price">+ RSD 190.00</p> -->
             </div>
           </div>
         </div>
@@ -226,8 +156,8 @@
     <h2>Venue information</h2>
     <h3>Address</h3>
     <div class="addres-info">
-      <p class="street">Vase Čarapića 24</p>
-      <p class="postal-number">11000 Belgrade</p>
+      <p class="street">{{ restaurant.restaurantAddres }}</p>
+      <!-- <p class="postal-number">11000 Belgrade</p> -->
       <a
         class="seemap"
         target="_blank"
@@ -240,11 +170,11 @@
       <h3>Opening times</h3>
       <div>
         <div class="restaruant-or-delivery-btns">
-          <button>Restaurant</button><button>Delivery</button>
+          <h3>Delivery</h3>
         </div>
 
         <div class="opening-time-date">
-          <p>Monday-Friday 09.00 - 23.00</p>
+          <p style="color: red">{{ restaurant.workTime }}</p>
         </div>
         <div class="alergy-info">
           <p>
@@ -253,7 +183,7 @@
             information upon request.
           </p>
           <div class="phone">
-            <a href="">+381648730002</a>
+            <a href="JavaScript:void(0)">{{ restaurant.phone }}</a>
           </div>
         </div>
       </div>
