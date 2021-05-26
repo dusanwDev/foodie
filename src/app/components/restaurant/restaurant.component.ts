@@ -1,4 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnInit,
+  Query,
+  QueryList,
+  ViewChild,
+  ViewChildren,
+} from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { ActivatedRoute } from '@angular/router';
 import { Restaurant } from 'src/app/models/Restaurant.model';
@@ -12,12 +20,13 @@ import { RestaurantService } from './restaurant.service';
 })
 export class RestaurantComponent implements OnInit {
   restaurant: Restaurant;
+  displayRestaurantFeaturesBool: boolean;
+  categories: string[];
   constructor(
     private restaurantService: RestaurantService,
     private activatedRoute: ActivatedRoute,
     private angularFIrestore: AngularFirestore
   ) {}
-
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((dataId) => {
       this.angularFIrestore
@@ -26,8 +35,62 @@ export class RestaurantComponent implements OnInit {
         .valueChanges()
         .subscribe((data) => {
           this.restaurant = data;
-          console.log('RES', this.restaurant);
+          this.displayRestaurantFeatures();
+          //removing duplicates
+          let arr = [];
+          this.restaurant.dishes.forEach((dish) => {
+            arr.push(dish.categoryName);
+          });
+          this.categories = [...new Set(arr)];
         });
     });
+  }
+  revealOrder(orderItem) {
+    if ((orderItem.style.height = '' || orderItem.style.height == '0px')) {
+      orderItem.style.height = 'auto';
+    } else {
+      orderItem.style.height = '0px';
+    }
+  }
+  displayRestaurantFeatures() {
+    const obj: {
+      email: string;
+      expDate: string;
+      localId: string;
+      refreshToken: string;
+      tokenId: string;
+    } = JSON.parse(localStorage.getItem('user'));
+    this.restaurant;
+    if (this.restaurant.restaurantId === obj.localId) {
+      this.displayRestaurantFeaturesBool = false;
+    } else {
+      this.displayRestaurantFeaturesBool = true;
+    }
+  }
+  sortFoodBy(event) {
+    switch (event) {
+      case 'raiting':
+        this.restaurant.dishes = this.restaurant.dishes.sort((a, b) => {
+          return b.raiting - a.raiting;
+        });
+        break;
+      // case 'fastest':this.restaurant.dishes.sort((a,b)=>{
+
+      // })
+      //   break;
+      case 'lowestprice':
+        this.restaurant.dishes = this.restaurant.dishes.sort((a, b) => {
+          return a.price - b.price;
+        });
+        break;
+      case 'highestprice':
+        this.restaurant.dishes = this.restaurant.dishes.sort((a, b) => {
+          return b.price - a.price;
+        });
+        break;
+
+      default:
+        break;
+    }
   }
 }

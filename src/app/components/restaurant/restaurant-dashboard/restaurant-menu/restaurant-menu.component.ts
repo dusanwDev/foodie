@@ -17,6 +17,7 @@ export class RestaurantMenuComponent implements OnInit {
   restaurant: Restaurant;
   editMode = false;
   dishId: string;
+  userInput: string;
   constructor(
     private restaurantService: RestaurantService,
     private afs: AngularFirestore,
@@ -38,13 +39,13 @@ export class RestaurantMenuComponent implements OnInit {
         Validators.required,
         Validators.pattern('^[a-z A-Z]+$'),
       ]),
-      existingCategory: new FormControl(
-        { value: null, disabled: false },
-        Validators.required
-      ),
+      // existingCategory: new FormControl(
+      //   { value: null, disabled: false },
+      //   Validators.required
+      // ),
       price: new FormControl(null, Validators.required),
       about: new FormControl(null, Validators.required),
-      image: new FormControl(null),
+      image: new FormControl(null, Validators.required),
     });
   }
   submit() {
@@ -64,95 +65,85 @@ export class RestaurantMenuComponent implements OnInit {
         ];
         this.restaurant.dishes.pop();
       }
-      let submit = true;
-      this.restaurant.dishes.filter((dish, index) => {
-        if (dish.categoryName === this.addDishForm.get('newCategory').value) {
-          submit = false;
-        }
-      });
-      if (submit) {
-        let img;
-        this.afsStorage.upload(this.restaurant.restaurantId, this.selectedFile);
-        this.afsStorage.storage
-          .ref()
-          .child(this.restaurant.restaurantId)
-          .getDownloadURL()
-          .then((data) => {
-            img = data;
-
-            this.restaurant.dishes.push({
-              about: this.addDishForm.get('about').value,
-              categoryName: this.addDishForm.get('newCategory').value,
-              dishName: this.addDishForm.get('dishName').value,
-              price: this.addDishForm.get('price').value,
-              toppings: this.addDishForm.get('toppings').value.split(' '),
-              existingCategory: this.addDishForm.get('existingCategory').value,
-              dishId: this.addDishForm.get('dishName').value + '1',
-              image: img,
-            });
-            this.afs
-              .collection<Restaurant>(Utility.firestoreName)
-              .doc(this.restaurant.restaurantId)
-              .update({
-                dishes: this.restaurant.dishes,
-              });
-            this.addDishForm.reset();
-          });
-      }
-    } else {
-      // if (typeof this.restaurant.dishes === 'undefined') {
-      //   this.restaurant.dishes = [
-      //     {
-      //       about: '',
-      //       categoryName: '',
-      //       dishName: '',
-      //       price: 0,
-      //       toppings: [''],
-      //     },
-      //   ];
-      //   this.restaurant.dishes.pop();
-      // }
-      this.restaurant.dishes.filter((dish, index) => {
-        if (dish.dishId === this.dishId) {
-          this.restaurant.dishes.splice(index, 1);
-
+      this.afsStorage.storage
+        .ref()
+        .child(this.dishId)
+        .getDownloadURL()
+        .then((data) => {
           this.restaurant.dishes.push({
-            about: this.addDishForm.get('about').value,
-            categoryName: this.addDishForm.get('existingCategory').value,
+            about: this.addDishForm
+              .get('about')
+              .value.split(' ')
+              .map((word, index) => {
+                if (index < 12) {
+                  return word;
+                }
+              })
+              .join(' '),
+            categoryName: this.addDishForm.get('newCategory').value,
             dishName: this.addDishForm.get('dishName').value,
             price: this.addDishForm.get('price').value,
             toppings: this.addDishForm.get('toppings').value.split(' '),
-            existingCategory: this.addDishForm.get('existingCategory').value,
-            dishId: dish.dishId,
-            image: this.addDishForm.get('image').value,
+            dishId: this.dishId,
+            image: data,
           });
-          return this.restaurant.dishes;
-        } else {
-          return this.restaurant.dishes;
-        }
-      });
-      this.afs
-        .collection<Restaurant>(Utility.firestoreName)
-        .doc(this.restaurant.restaurantId)
-        .update({
-          dishes: this.restaurant.dishes,
+          this.afs
+            .collection<Restaurant>(Utility.firestoreName)
+            .doc(this.restaurant.restaurantId)
+            .update({
+              dishes: this.restaurant.dishes,
+            });
+          this.addDishForm.reset();
+        });
+    } else {
+      console.log(this.addDishForm.get('toppings').value);
+      this.afsStorage.storage
+        .ref()
+        .child(this.dishIdEdit)
+        .getDownloadURL()
+        .then((data) => {
+          this.restaurant.dishes.filter((dish, index) => {
+            if (dish.dishId === this.dishIdEdit) {
+              console.log('IMG PATH UPDAE', data);
+              this.restaurant.dishes.splice(index, 1);
+              this.restaurant.dishes.push({
+                about: this.addDishForm.get('about').value,
+                categoryName: this.addDishForm.get('newCategory').value,
+                dishName: this.addDishForm.get('dishName').value,
+                price: this.addDishForm.get('price').value,
+                toppings: this.addDishForm.get('toppings').value.split(' '),
+
+                dishId: this.dishIdEdit,
+                image: data,
+              });
+              this.editMode = false;
+              return this.restaurant.dishes;
+            } else {
+              return this.restaurant.dishes;
+            }
+          });
+          this.afs
+            .collection<Restaurant>(Utility.firestoreName)
+            .doc(this.restaurant.restaurantId)
+            .update({
+              dishes: this.restaurant.dishes,
+            });
+          this.addDishForm.reset();
         });
     }
-    document.querySelector('input').disabled = false;
-    document.querySelector('select').disabled = false;
-    document.querySelector('input').style.backgroundColor =
-      'rgb(221, 221, 221)';
   }
+  dishIdEdit: string;
   edit(dishes) {
     this.addDishForm.get('dishName').setValue(dishes.dishName);
     this.addDishForm.get('toppings').setValue(dishes.toppings);
-    this.addDishForm
-      .get('existingCategory')
-      .setValue(dishes.existingCategory ?? '');
+    // this.addDishForm
+    //   .get('existingCategory')
+    //   .setValue(dishes.existingCategory ?? '');
     this.addDishForm.get('price').setValue(dishes.price);
     this.addDishForm.get('about').setValue(dishes.about);
+    this.addDishForm.get('newCategory').setValue(dishes.categoryName);
     this.editMode = true;
-    this.dishId = dishes.dishId;
+    this.dishIdEdit = dishes.dishId;
     // document.querySelector<HTMLInputElement>('.dishName').disabled=true;
   }
   remove(index) {
@@ -168,35 +159,39 @@ export class RestaurantMenuComponent implements OnInit {
   onFileSelectedListener(event) {
     this.selectedFile = <File>event.target.files[0];
     if (this.selectedFile.type === 'image/jpeg' || 'image/png') {
+      if (this.dishIdEdit) {
+        this.afsStorage.upload(this.dishIdEdit, this.selectedFile);
+      } else {
+        this.dishId = Math.floor(Math.random() * 10000 + 1).toString();
+        this.afsStorage.upload(this.dishId, this.selectedFile);
+      }
     } else {
       alert('FILE IS NOT A IMAGE');
     }
   }
-  onExistingCategory(event) {
-    if (event === 'No category') {
-      document.querySelector('input').disabled = false;
-      this.addDishForm.get('newCategory').setValidators(Validators.required);
-      this.addDishForm.get('newCategory').updateValueAndValidity();
-      document.querySelector('input').style.backgroundColor =
-        'rgb(221, 221, 221)';
-    } else {
-      document.querySelector('input').disabled = true;
-      document.querySelector('input').style.backgroundColor = 'white';
-      this.addDishForm.get('newCategory').clearValidators();
-      this.addDishForm.get('newCategory').updateValueAndValidity();
-    }
-  }
-  onCategoryInput() {
-    if (this.addDishForm.get('newCategory').value === '') {
-      document.querySelector('select').disabled = false;
-      this.addDishForm
-        .get('existingCategory')
-        .setValidators(Validators.required);
-      this.addDishForm.get('existingCategory').updateValueAndValidity();
-    } else {
-      this.addDishForm.get('existingCategory').clearValidators();
-      this.addDishForm.get('existingCategory').updateValueAndValidity();
-      document.querySelector('select').disabled = true;
-    }
+  filtered: {
+    categoryName: string;
+    dishName: string;
+    toppings: [string];
+    price: number;
+    about: string;
+    ordered?: number;
+    dishId: string;
+    image?: string;
+    raiting?: number;
+  }[] = [];
+  search() {
+    console.log(this.userInput);
+    this.restaurant.dishes.filter((dish) => {
+      if (
+        dish.categoryName === this.userInput ||
+        dish.dishName === this.userInput
+      ) {
+        this.filtered.push(dish);
+        console.log(this.filtered);
+      } else if (this.userInput === '') {
+        this.filtered = [];
+      }
+    });
   }
 }

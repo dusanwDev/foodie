@@ -10,7 +10,7 @@
           <h1>Wolt</h1>
         </div>
         <div class="search-restaurant">
-          <input type="text" />
+          <input type="text" *ngIf="displayRestaurantFeaturesBool" />
         </div>
         <div class="login">
           <a href="">Log In</a><a href="" class="sign-up">Sign up</a>
@@ -29,7 +29,9 @@
         </div>
         <div class="open-info">
           <button>
-            <p>Open today <strong>09.00-23.00</strong></p>
+            <p>
+              Open today <strong>{{ restaurant.workTime }}</strong>
+            </p>
           </button>
         </div>
         <div class="bought-items">
@@ -49,11 +51,13 @@
         <span class="raiting-number-style"><h2>9.2</h2></span>
         <p>out of 10</p>
       </div>
-      <button><i class="fas fa-heart"></i> Favorite</button>
+      <button *ngIf="displayRestaurantFeaturesBool">
+        <i class="fas fa-heart"></i> Favorite
+      </button>
     </div>
     <div class="right">
       <div class="input-field">
-        <input type="number" />
+        <input type="number" *ngIf="displayRestaurantFeaturesBool" />
         <p>/ 10</p>
         <i class="fas fa-star"></i>
       </div>
@@ -66,7 +70,7 @@
       <i class="fas fa-laugh-beam"></i>
       <p>9.2</p>
     </div>
-    <div class="favorite">
+    <div class="favorite" *ngIf="displayRestaurantFeaturesBool">
       <button><i class="fas fa-heart"></i></button>
     </div>
   </div>
@@ -85,17 +89,15 @@
     <i class="fas fa-search"></i>
   </div>
   <div class="categories">
-    <a href="" *ngFor="let category of restaurant.dishes">{{
-      category.categoryName
-    }}</a>
+    <a href="" *ngFor="let category of categories">{{ category }}</a>
   </div>
 </div>
 <main *ngIf="restaurant">
   <section class="categories-sidebar">
     <ul>
-      <li *ngFor="let restaurantData of restaurant.dishes">
+      <li *ngFor="let category of categories">
         <a href="">
-          {{ restaurantData.categoryName }}
+          {{ category }}
         </a>
       </li>
     </ul>
@@ -103,13 +105,19 @@
   <section class="menu">
     <header>
       <h1>Cat Name</h1>
-      <select name="" id="">
-        <option value="">Top Rated</option>
-        <option value="">Fastest to serve</option>
+      <select name="" id="" #selectList (change)="sortFoodBy(selectList.value)">
+        <option value="raiting">Raiting</option>
+        <option value="fastest">Fastest to serve</option>
+        <option value="lowestprice">Lowest Price</option>
+        <option value="highestprice">Highest Price</option>
       </select>
     </header>
     <div class="menu-item" *ngFor="let dish of restaurant.dishes">
-      <div class="menu-item-container">
+      <div
+        class="menu-item-container"
+        #menuItem
+        (click)="revealOrder(orderItem)"
+      >
         <div class="menu-item-img-container">
           <img [src]="dish.image" alt="Food Image" />
         </div>
@@ -126,21 +134,26 @@
           </div>
         </div>
       </div>
-      <div class="order">
-        <div class="order-count">
+      <div class="order" #orderItem>
+        <div class="order-count" *ngIf="displayRestaurantFeaturesBool">
           <p>Count: 0</p>
           <button>Add to Order</button>
         </div>
         <div class="toppings">
+          <ng-content
+            *ngFor="let dish of restaurant.dishes; let i = index"
+          ></ng-content>
           <div class="toppings-inner">
             <p>Toppings</p>
-            <p class="choose-up-to">Choose up to 4 Additiional items</p>
+            <p class="choose-up-to">
+              Choose up to {{ dish.toppings.length }} Additiional items
+            </p>
           </div>
           <div class="toppings-dropdown">
-            <ng-content
-              *ngFor="let dish of restaurant.dishes; let i = index"
-            ></ng-content>
-            <div class="form-control" *ngFor="let topping of dish.toppings">
+            <div
+              class="form-control"
+              *ngFor="let topping of dish.toppings; let length = index"
+            >
               <div class="form-controll-inner">
                 <input type="checkbox" />
                 <p>{{ topping }}</p>

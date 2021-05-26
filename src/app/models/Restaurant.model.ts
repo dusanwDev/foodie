@@ -14,10 +14,10 @@ export class Restaurant {
         toppings: [string];
         price: number;
         about: string;
-        existingCategory?: string;
         ordered?: number;
         dishId: string;
-        image: string;
+        image?: string;
+        raiting?: number;
       }
     ]
   ) {}

@@ -90,3 +90,40 @@
     }
   }
 }
+
+@media screen and(max-width:1111px) {
+  .dashboard {
+    .nav {
+      .img-restaurant-container {
+        width: 100px;
+        height: 100px;
+        margin-right: 0;
+      }
+    }
+  }
+}
+@media screen and(max-width:900px) {
+  .dashboard {
+    .nav {
+      display: none;
+    }
+    .main {
+      width: 100%;
+    }
+  }
+}
+@media screen and(max-width:900px) {
+  .dashboard {
+    .nav {
+      display: none;
+    }
+    .main {
+      padding: 0.3em;
+      .tab {
+        .basic-stats {
+          display: none;
+        }
+      }
+    }
+  }
+}

@@ -24,9 +24,7 @@ export class RestaurantDashboardComponent implements OnInit {
         .doc(data['restaurantIdDashboard'])
         .valueChanges()
         .subscribe((restaurantData) => {
-          console.log('From Params', data['restaurantIdDashboard']);
           this.restaurant = restaurantData;
-          console.log('restaurant', this.restaurant);
           this.restaurantService.restaurantBehSubject.next(this.restaurant);
         });
     });

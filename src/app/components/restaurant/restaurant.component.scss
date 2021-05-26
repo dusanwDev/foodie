@@ -375,17 +375,21 @@ main {
       }
     }
     .menu-item {
-      &:hover {
-        box-shadow: 5px 2px 4px 1px rgb(182, 182, 182);
-        transition: all 0.3s;
-      }
+      // height: 140px;
+      cursor: pointer;
+      overflow: hidden;
+
+      transition: all 0.8s;
+      // &:hover {
+      //   box-shadow: 5px 2px 4px 1px rgb(182, 182, 182);
+      //   transition: all 0.3s;
+      // }
       .ingridients {
         margin: 0.5em 0;
       }
       margin-top: 1rem;
       .menu-item-container {
         display: flex;
-
         .menu-item-img-container {
           width: 250px;
           height: 120.5px;
@@ -435,6 +439,7 @@ main {
       }
       .order {
         margin-top: 1rem;
+        height: 0px;
         .order-count {
           display: flex;
           justify-content: space-between;
