@@ -50,14 +50,7 @@ export class RestaurantComponent implements OnInit {
         });
     });
   }
-  revealOrder(orderItem) {
-    console.log(orderItem.style.height);
-    if ((orderItem.style.height = '' || orderItem.style.height == '0px')) {
-      orderItem.style.height = 'auto';
-    } else {
-      orderItem.style.height = '0px';
-    }
-  }
+
   displayRestaurantFeatures() {
     const obj: {
       email: string;

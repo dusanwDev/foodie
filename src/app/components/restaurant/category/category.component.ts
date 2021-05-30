@@ -56,4 +56,12 @@ export class CategoryComponent implements OnInit {
         break;
     }
   }
+  revealOrder(orderItem) {
+    console.log(orderItem.style.height);
+    if ((orderItem.style.height = '' || orderItem.style.height == '0px')) {
+      orderItem.style.height = 'auto';
+    } else {
+      orderItem.style.height = '0px';
+    }
+  }
 }

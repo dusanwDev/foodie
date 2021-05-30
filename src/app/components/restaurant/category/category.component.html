@@ -1,6 +1,9 @@
-<ng-container *ngIf="restaurant">
+<ng-container>
   <header>
-    <h1>{{ cateogryName }}</h1>
+    <h1 *ngIf="dishes.length > 0; else all">{{ dishes[0].categoryName }}</h1>
+    <ng-template #all>
+      <h1>All</h1>
+    </ng-template>
     <select name="" id="" #selectList (change)="sortFoodBy(selectList.value)">
       <option value="raiting">Raiting</option>
       <option value="fastest">Fastest to serve</option>
@@ -8,7 +11,7 @@
       <option value="highestprice">Highest Price</option>
     </select>
   </header>
-  <div class="menu-item" *ngFor="let dish of restaurant.dishes">
+  <div class="menu-item" *ngFor="let dish of dishes">
     <div class="menu-item-container" #menuItem (click)="revealOrder(orderItem)">
       <div class="menu-item-img-container">
         <img [src]="dish.image" alt="Food Image" />
