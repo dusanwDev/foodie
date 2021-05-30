@@ -102,81 +102,25 @@
     <i class="fas fa-search"></i>
   </div>
   <div class="categories">
-    <a href="" *ngFor="let category of categories">{{ category }}</a>
+    <a
+      [routerLink]="['category-name', category]"
+      *ngFor="let category of categories"
+      >{{ category }}</a
+    >
   </div>
 </div>
 <main *ngIf="restaurant">
   <section class="categories-sidebar">
     <ul>
       <li *ngFor="let category of categories">
-        <a href="">
+        <a [routerLink]="['category-name', category]">
           {{ category }}
         </a>
       </li>
     </ul>
   </section>
   <section class="menu">
-    <header>
-      <h1>Cat Name</h1>
-      <select name="" id="" #selectList (change)="sortFoodBy(selectList.value)">
-        <option value="raiting">Raiting</option>
-        <option value="fastest">Fastest to serve</option>
-        <option value="lowestprice">Lowest Price</option>
-        <option value="highestprice">Highest Price</option>
-      </select>
-    </header>
-    <div class="menu-item" *ngFor="let dish of restaurant.dishes">
-      <div
-        class="menu-item-container"
-        #menuItem
-        (click)="revealOrder(orderItem)"
-      >
-        <div class="menu-item-img-container">
-          <img [src]="dish.image" alt="Food Image" />
-        </div>
-        <div class="menu-item-info">
-          <h2>{{ dish.dishName }}</h2>
-          <div class="ingridients">
-            <p>
-              {{ dish.about }}
-            </p>
-          </div>
-          <div class="price-and-order-wrapper">
-            <p class="price">{{ dish.price }}$</p>
-            <p class="raiting-item"><i class="fas fa-star"></i> 4.5/10</p>
-          </div>
-        </div>
-      </div>
-      <div class="order" #orderItem>
-        <div class="order-count" *ngIf="displayRestaurantFeaturesBool">
-          <p>Count: 0</p>
-          <button>Add to Order</button>
-        </div>
-        <div class="toppings">
-          <ng-content
-            *ngFor="let dish of restaurant.dishes; let i = index"
-          ></ng-content>
-          <div class="toppings-inner">
-            <p>Toppings</p>
-            <p class="choose-up-to">
-              Choose up to {{ dish.toppings.length }} Additiional items
-            </p>
-          </div>
-          <div class="toppings-dropdown">
-            <div
-              class="form-control"
-              *ngFor="let topping of dish.toppings; let length = index"
-            >
-              <div class="form-controll-inner">
-                <input type="checkbox" />
-                <p>{{ topping }}</p>
-              </div>
-              <!-- <p class="topping-price">+ RSD 190.00</p> -->
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <router-outlet></router-outlet>
   </section>
   <section class="venue-info">
     <h2>Venue information</h2>

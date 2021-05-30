@@ -39,9 +39,9 @@ export class RestaurantComponent implements OnInit {
         .valueChanges()
         .subscribe((data) => {
           this.restaurant = data;
-
+          this.restaurantService.restaurantBehSubject.next(this.restaurant);
           this.displayRestaurantFeatures();
-          //removing duplicates
+          //removing category  duplicates
           let arr = [];
           this.restaurant.dishes.forEach((dish) => {
             arr.push(dish.categoryName);
@@ -73,32 +73,7 @@ export class RestaurantComponent implements OnInit {
       this.displayRestaurantFeaturesBool = true;
     }
   }
-  sortFoodBy(event) {
-    switch (event) {
-      case 'raiting':
-        this.restaurant.dishes = this.restaurant.dishes.sort((a, b) => {
-          return b.raiting - a.raiting;
-        });
-        break;
-      // case 'fastest':this.restaurant.dishes.sort((a,b)=>{
 
-      // })
-      //   break;
-      case 'lowestprice':
-        this.restaurant.dishes = this.restaurant.dishes.sort((a, b) => {
-          return a.price - b.price;
-        });
-        break;
-      case 'highestprice':
-        this.restaurant.dishes = this.restaurant.dishes.sort((a, b) => {
-          return b.price - a.price;
-        });
-        break;
-
-      default:
-        break;
-    }
-  }
   displayToDashboardLink(): boolean {
     const user: {
       localId: string;

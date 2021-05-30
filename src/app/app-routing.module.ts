@@ -5,6 +5,7 @@ import { LoginRestaurantComponent } from './components/login-restaurant/login-re
 import { LoginUserComponent } from './components/login-user/login-user.component';
 import { RegisterRestaurantComponent } from './components/register-restaurant/register-restaurant.component';
 import { RegisterUserComponent } from './components/register-user/register-user.component';
+import { CategoryComponent } from './components/restaurant/category/category.component';
 import { RestaurantDashboardComponent } from './components/restaurant/restaurant-dashboard/restaurant-dashboard.component';
 import { RestaurantMenuComponent } from './components/restaurant/restaurant-dashboard/restaurant-menu/restaurant-menu.component';
 import { RestaurantOrdersComponent } from './components/restaurant/restaurant-dashboard/restaurant-orders/restaurant-orders.component';
@@ -20,6 +21,14 @@ const routes: Routes = [
   { path: 'feed', component: FeedComponent },
   {
     path: 'restaurant/:restaurantId',
+    redirectTo: 'restaurant/:restaurantId/category-name/all',
+    pathMatch: 'full',
+  },
+  {
+    path: 'restaurant/:restaurantId',
+    children: [
+      { path: 'category-name/:categoryName', component: CategoryComponent },
+    ],
     component: RestaurantComponent,
   },
   {

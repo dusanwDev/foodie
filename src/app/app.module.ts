@@ -25,6 +25,7 @@ import { environment } from 'src/environments/environment';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FilterMenuPipe } from './components/restaurant/restaurant-dashboard/restaurant-menu/filter-menu.pipe';
+import { CategoryComponent } from './components/restaurant/category/category.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { FilterMenuPipe } from './components/restaurant/restaurant-dashboard/res
     RegisterRestaurantComponent,
     RegisterUserComponent,
     FilterMenuPipe,
+    CategoryComponent,
   ],
   imports: [
     BrowserModule,
