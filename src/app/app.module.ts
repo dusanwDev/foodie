@@ -24,6 +24,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FilterMenuPipe } from './components/restaurant/restaurant-dashboard/restaurant-menu/filter-menu.pipe';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     LoginRestaurantComponent,
     RegisterRestaurantComponent,
     RegisterUserComponent,
+    FilterMenuPipe,
   ],
   imports: [
     BrowserModule,

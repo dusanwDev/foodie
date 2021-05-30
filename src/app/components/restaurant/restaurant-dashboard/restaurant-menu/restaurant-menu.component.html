@@ -2,15 +2,9 @@
   <div class="menu-table">
     <header><h2>Menu</h2></header>
     <div class="search-input">
-      <input
-        type="text"
-        name=""
-        id=""
-        [(ngModel)]="userInput"
-        (input)="search()"
-      />
+      <input type="text" name="" id="" [(ngModel)]="userInput" />
     </div>
-    <table *ngIf="filtered.length === 0">
+    <table>
       <thead>
         <tr>
           <th>CategoryID</th>
@@ -22,7 +16,12 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let dish of restaurant.dishes; let i = index">
+        <tr
+          *ngFor="
+            let dish of restaurant.dishes | filterMenu: userInput;
+            let i = index
+          "
+        >
           <td>categoryId</td>
           <td *ngIf="!dish.categoryName">{{ dish.existingCategory }}</td>
           <td>{{ dish.categoryName }}</td>
@@ -39,7 +38,7 @@
         </tr>
       </tbody>
     </table>
-    <table *ngIf="filtered.length > 0">
+    <!-- <table *ngIf="filtered.length > 0">
       <thead>
         <tr>
           <th>CategoryID</th>
@@ -66,7 +65,7 @@
           </td>
         </tr>
       </tbody>
-    </table>
+    </table> -->
   </div>
   <form [formGroup]="addDishForm" (ngSubmit)="submit()">
     <div class="form-inner">
