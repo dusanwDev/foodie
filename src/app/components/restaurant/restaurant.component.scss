@@ -43,6 +43,10 @@
       div {
         width: 33.3%;
       }
+      .to-Dashboard {
+        color: white;
+        text-decoration: none;
+      }
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -229,9 +233,24 @@
     .raiting-number-inner {
       display: flex;
       align-items: center;
-      i {
-        color: orange;
-        margin-right: 0.3em;
+      width: 100%;
+      justify-content: space-between;
+      .raiting-left {
+        display: flex;
+        align-items: center;
+        i {
+          color: orange;
+          margin-right: 0.3em;
+        }
+      }
+      .raiting-right {
+        display: flex;
+        align-items: center;
+        input {
+          width: 50px;
+          height: 25px;
+          margin-right: 0.8em;
+        }
       }
     }
     .favorite {
@@ -439,7 +458,7 @@ main {
       }
       .order {
         margin-top: 1rem;
-        height: 0px;
+        height: 0;
         .order-count {
           display: flex;
           justify-content: space-between;

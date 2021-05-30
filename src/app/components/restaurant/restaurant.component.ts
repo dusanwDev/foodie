@@ -4,6 +4,7 @@ import {
   OnInit,
   Query,
   QueryList,
+  Renderer2,
   ViewChild,
   ViewChildren,
 } from '@angular/core';
@@ -11,6 +12,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { ActivatedRoute } from '@angular/router';
 import { Restaurant } from 'src/app/models/Restaurant.model';
 import { Utility } from 'src/app/models/Utility.model';
+import { AuthService } from 'src/app/services/auth.service';
 import { RestaurantService } from './restaurant.service';
 
 @Component({
@@ -25,7 +27,9 @@ export class RestaurantComponent implements OnInit {
   constructor(
     private restaurantService: RestaurantService,
     private activatedRoute: ActivatedRoute,
-    private angularFIrestore: AngularFirestore
+    private angularFIrestore: AngularFirestore,
+    private authService: AuthService,
+    private renderer2: Renderer2
   ) {}
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((dataId) => {
@@ -35,6 +39,7 @@ export class RestaurantComponent implements OnInit {
         .valueChanges()
         .subscribe((data) => {
           this.restaurant = data;
+
           this.displayRestaurantFeatures();
           //removing duplicates
           let arr = [];
@@ -46,6 +51,7 @@ export class RestaurantComponent implements OnInit {
     });
   }
   revealOrder(orderItem) {
+    console.log(orderItem.style.height);
     if ((orderItem.style.height = '' || orderItem.style.height == '0px')) {
       orderItem.style.height = 'auto';
     } else {
@@ -91,6 +97,20 @@ export class RestaurantComponent implements OnInit {
 
       default:
         break;
+    }
+  }
+  displayToDashboardLink(): boolean {
+    const user: {
+      localId: string;
+      idToken: string;
+      expDate: Date;
+      refreshToken: string;
+      email: string;
+    } = JSON.parse(localStorage.getItem('user'));
+    if (this.restaurant.restaurantId === user.localId) {
+      return false;
+    } else {
+      return true;
     }
   }
 }

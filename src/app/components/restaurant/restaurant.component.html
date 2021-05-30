@@ -12,9 +12,16 @@
         <div class="search-restaurant">
           <input type="text" *ngIf="displayRestaurantFeaturesBool" />
         </div>
-        <div class="login">
+        <div class="login" *ngIf="displayToDashboardLink(); else toDashboard">
           <a href="">Log In</a><a href="" class="sign-up">Sign up</a>
         </div>
+        <ng-template #toDashboard>
+          <a
+            class="to-Dashboard"
+            [routerLink]="['/restaurant-dashboard', restaurant.restaurantId]"
+            >To dashboard</a
+          >
+        </ng-template>
         <div class="user-btns">
           <button class=""><i class="fas fa-user"></i></button>
           <button class=""><i class="fas fa-hamburger"></i></button>
@@ -67,8 +74,14 @@
 <div class="raiting-responsive" *ngIf="restaurant">
   <div class="raiting-number">
     <div class="raiting-number-inner">
-      <i class="fas fa-laugh-beam"></i>
-      <p>9.2</p>
+      <div class="raiting-left">
+        <i class="fas fa-laugh-beam"></i>
+        <p>9.2</p>
+      </div>
+      <div class="raiting-right">
+        <input type="number" />
+        <p>/10</p>
+      </div>
     </div>
     <div class="favorite" *ngIf="displayRestaurantFeaturesBool">
       <button><i class="fas fa-heart"></i></button>
