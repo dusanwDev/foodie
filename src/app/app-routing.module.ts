@@ -33,6 +33,11 @@ const routes: Routes = [
   },
   {
     path: 'restaurant-dashboard/:restaurantIdDashboard',
+    redirectTo: 'restaurant-dashboard/:restaurantIdDashboard/menu',
+    pathMatch: 'full',
+  },
+  {
+    path: 'restaurant-dashboard/:restaurantIdDashboard',
     component: RestaurantDashboardComponent,
     canActivate: [RestaurantGuard],
     children: [

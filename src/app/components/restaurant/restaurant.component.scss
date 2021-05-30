@@ -367,6 +367,9 @@ main {
           border: none;
           outline: none;
           text-decoration: none;
+          &:focus {
+            color: #74e6d4;
+          }
         }
       }
     }
