@@ -10,6 +10,10 @@ header {
   form {
     width: 50%;
     margin: 0 auto;
+    span {
+      color: red;
+      font-weight: bold;
+    }
     .form-control {
       margin: 1em 0em;
       label {
@@ -23,6 +27,13 @@ header {
         border: none;
         border-radius: 4px;
         width: 100%;
+        outline: none;
+        &.ng-invalid.ng-touched {
+          border: 2px solid red;
+        }
+        &.ng-valid.ng-touched {
+          border: 2px solid green;
+        }
       }
     }
     .form-control-img {
@@ -59,6 +70,10 @@ header {
       border-radius: 7px;
       width: 100%;
       cursor: pointer;
+      &[disabled] {
+        background-color: rgb(201, 255, 201);
+        pointer-events: none;
+      }
     }
   }
 }
