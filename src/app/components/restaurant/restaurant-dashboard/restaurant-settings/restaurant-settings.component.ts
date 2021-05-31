@@ -29,7 +29,7 @@ export class RestaurantSettingsComponent implements OnInit {
       restaurantImage: new FormControl(null, Validators.required),
       workTime: new FormControl(null, Validators.required),
       phone: new FormControl(null, Validators.required),
-      restaurantBannerImage: new FormControl(null, Validators.required),
+      shortAbout:new FormControl(null, Validators.required),
     });
     this.restaurantService.restaurantBehSubject.subscribe((data) => {
       this.restaurantId = data.restaurantId;
@@ -49,8 +49,15 @@ export class RestaurantSettingsComponent implements OnInit {
             restaurantAddres: this.settingsForm.get('restaurantAddres').value,
             restaurantImage: data,
             workTime: this.settingsForm.get('workTime').value,
-            phone: this.settingsForm.get('phone').value,
-          });
+            phone: this.settingsForm.get('phone').value,shortAbout:this.settingsForm.get("shortAbout").value.split(' ')
+            .map((word, index) => {
+              if (index < 8) {
+                return word;
+              }
+            })
+            .join(' '),
+          }).then(()=>{this.settingsForm.reset()});
+
       });
   }
   onFileSelectedListener(event) {

@@ -34,6 +34,16 @@ header {
         &.ng-valid.ng-touched {
           border: 2px solid green;
         }
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+        }
+      }
+      textarea {
+        resize: none;
+        font-family: "Roboto", "sans-serif";
+        padding: 0.4em;
+        background-color: #dddddd;
       }
     }
     .form-control-img {

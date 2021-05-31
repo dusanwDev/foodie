@@ -33,7 +33,7 @@
       >
     </span>
     <div class="form-control">
-      <label for="">workTime</label
+      <label for="">Working time. <strong>We suggest you write it like this: 08:00 - 21:00</strong> </label
       ><input type="text" formControlName="workTime" />
     </div>
     <span
@@ -48,7 +48,7 @@
     </span>
 
     <div class="form-control">
-      <label for="">phone</label><input type="text" formControlName="phone" />
+      <label for="">Phone</label><input type="number" formControlName="phone" />
     </div>
     <span
       *ngIf="
@@ -59,6 +59,20 @@
         >This field is required</span
       >
     </span>
+    <div class="form-control">
+      <label for="">Short about</label>
+      <textarea name="" id="" cols="30" rows="10" formControlName=shortAbout></textarea>
+      <span
+      *ngIf="
+        !settingsForm.get('shortAbout').valid &&
+        settingsForm.get('shortAbout').touched
+      "
+    >
+      <span *ngIf="settingsForm.get('shortAbout').errors['required']"
+        >This field is required</span
+      >
+    </span>
+    </div>
     <div class="form-control-img">
       <label for=""><p>Add Image</p></label>
       <input

@@ -31,6 +31,7 @@ header {
   margin-top: 1rem;
   .menu-item-container {
     display: flex;
+
     .menu-item-img-container {
       width: 250px;
       height: 120.5px;
@@ -43,8 +44,11 @@ header {
     .menu-item-info {
       padding: 0.3em 0;
       margin-left: 0.8em;
+      width: 60%;
+
       .price-and-order-wrapper {
         display: flex;
+        justify-content: space-between;
         align-items: center;
         .price {
           color: #0088c2;

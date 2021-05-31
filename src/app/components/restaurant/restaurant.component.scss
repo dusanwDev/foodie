@@ -118,6 +118,9 @@
     }
     .bought-items {
       text-align: end;
+      strong {
+        margin-left: 0.9em;
+      }
     }
   }
   @include responsiveheaderLower();
@@ -520,9 +523,10 @@ main {
       .menu-item {
         .menu-item-container {
           flex-direction: column;
-          .menu-item-img-container {
-            width: 100%;
-          }
+
+          // .menu-item-img-container {
+          //   width: 100%;
+          // }
         }
         .order {
           .order-count {
