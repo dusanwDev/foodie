@@ -21,9 +21,11 @@
 
       .logo {
         color: white;
+        cursor: pointer;
       }
       .search-restaurant {
         text-align: center;
+        position: relative;
         input {
           border: 1px solid white;
           background-color: transparent;
@@ -32,6 +34,46 @@
           outline: none;
           padding: 0.3em 0.6em;
           color: white;
+        }
+        ul {
+          position: absolute;
+          top: 2em;
+          left: 0;
+          right: 0;
+          width: 60%;
+          z-index: 99999999999999999;
+          background-color: white;
+          margin: 1em auto;
+          li {
+            list-style: none;
+            a {
+              display: inline-block;
+              display: flex;
+              text-decoration: none;
+              border-bottom: 2px solid rgb(219, 219, 219);
+              padding: 0.5em 0.5em;
+              color: black;
+              width: 100%;
+
+              .restaurantInfo {
+                padding: 0.3em 0;
+                text-align: left;
+                h2 {
+                  margin-bottom: 0.2em;
+                }
+              }
+              .drowpdown-img {
+                width: 70px;
+                height: 70px;
+                margin-right: 1rem;
+                img {
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                }
+              }
+            }
+          }
         }
       }
       .login {
@@ -333,7 +375,7 @@ main {
           outline: none;
           text-decoration: none;
           &:focus {
-            color: #74e6d4;
+            color: #00a58c;
           }
         }
       }
@@ -416,6 +458,16 @@ main {
 @media screen and (min-width: 1440px) {
   main {
     width: 70%;
+  }
+  .main-header {
+    .opacity {
+      .main-header-inner {
+        width: 70%;
+        .bought-items {
+          margin-right: 0.4em;
+        }
+      }
+    }
   }
 }
 @media screen and (min-width: 1440px) {

@@ -7,10 +7,21 @@
     <div class="main-header-inner">
       <div class="header-upper">
         <div class="logo">
-          <h1>Wolt</h1>
+          <h1 routerLink="/feed">Wolt</h1>
         </div>
         <div class="search-restaurant">
-          <input type="text" *ngIf="displayRestaurantFeaturesBool" />
+          <input type="text" *ngIf="displayRestaurantFeaturesBool" [(ngModel)]="userInput"/>
+          <ul >
+            <ng-container *ngFor="let restaurant of allRestaurants | restaurantFeedPipe:userInput; let i = index">
+            <li *ngIf= "i <= 6">
+              <a [routerLink]="['/restaurant',restaurant.restaurantId]"><div class="drowpdown-img"><img [src]=restaurant.restaurantImage alt=""></div><div class="restaurantInfo">
+                <h2>{{restaurant.restaurantName}}</h2>
+                <p>{{restaurant.restaurantAddres}}, {{restaurant.restaurantCity}}</p>
+              </div></a>
+            </li>
+          <a routerLink="showMore" *ngIf="i>6">Show {{i}} more</a>
+          </ng-container> 
+          </ul>
         </div>
         <div class="login" *ngIf="displayToDashboardLink(); else toDashboard">
           <a href="">Log In</a><a href="" class="sign-up">Sign up</a>

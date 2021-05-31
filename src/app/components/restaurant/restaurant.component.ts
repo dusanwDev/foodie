@@ -10,6 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Restaurant } from 'src/app/models/Restaurant.model';
 import { Utility } from 'src/app/models/Utility.model';
 import { AuthService } from 'src/app/services/auth.service';
+import { FeedService } from '../feed/feed.service';
 import { RestaurantService } from './restaurant.service';
 
 @Component({
@@ -21,12 +22,13 @@ export class RestaurantComponent implements OnInit {
   restaurant: Restaurant;
   displayRestaurantFeaturesBool: boolean;
   categories: string[];
+  allRestaurants:Restaurant[]
+  userInput:string;
   constructor(
     private restaurantService: RestaurantService,
     private activatedRoute: ActivatedRoute,
     private angularFIrestore: AngularFirestore,
-    private authService: AuthService,
-    private renderer2: Renderer2
+private feedService:FeedService
   ) {}
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((dataId) => {
@@ -46,6 +48,9 @@ export class RestaurantComponent implements OnInit {
           this.categories = [...new Set(arr)];
         });
     });
+    this.feedService.getRestaurants().subscribe(restaurants=>{
+this.allRestaurants= restaurants;
+    })
   }
 
   displayRestaurantFeatures() {
