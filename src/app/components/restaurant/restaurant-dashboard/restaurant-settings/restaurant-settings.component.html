@@ -35,8 +35,7 @@
     <div class="form-control">
       <label for="">Working time. <strong>We suggest you write it like this: 08:00 - 21:00</strong> </label
       ><input type="text" formControlName="workTime" />
-    </div>
-    <span
+      <span
       *ngIf="
         !settingsForm.get('workTime').valid &&
         settingsForm.get('workTime').touched
@@ -46,11 +45,12 @@
         >This field is required</span
       >
     </span>
+    </div>
+
 
     <div class="form-control">
       <label for="">Phone</label><input type="number" formControlName="phone" />
-    </div>
-    <span
+      <span
       *ngIf="
         !settingsForm.get('phone').valid && settingsForm.get('phone').touched
       "
@@ -59,6 +59,8 @@
         >This field is required</span
       >
     </span>
+    </div>
+ 
     <div class="form-control">
       <label for="">Short about</label>
       <textarea name="" id="" cols="30" rows="10" formControlName=shortAbout></textarea>
@@ -80,8 +82,7 @@
         (change)="onFileSelectedListener($event)"
         formControlName="restaurantImage"
       />
-    </div>
-    <span
+      <span
       *ngIf="
         !settingsForm.get('restaurantImage').valid &&
         settingsForm.get('restaurantImage').touched
@@ -91,6 +92,8 @@
         >This field is required</span
       >
     </span>
+    </div>
+
     <button type="submit" [disabled]="!settingsForm.valid">Submit</button>
   </form>
 </div>

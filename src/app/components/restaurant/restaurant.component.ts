@@ -1,12 +1,9 @@
 import {
   Component,
-  ElementRef,
   OnInit,
-  Query,
-  QueryList,
+ 
   Renderer2,
-  ViewChild,
-  ViewChildren,
+
 } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { ActivatedRoute } from '@angular/router';

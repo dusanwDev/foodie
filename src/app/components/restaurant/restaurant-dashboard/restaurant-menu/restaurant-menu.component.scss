@@ -1,3 +1,5 @@
+@import "../../../../shared-styles/shared";
+
 .menu-component {
   display: flex;
   margin-top: 2rem;
@@ -18,24 +20,20 @@
           margin-bottom: 0.4em;
         }
         input {
-          width: 100%;
-          font-size: 1.2rem;
-          padding: 0.3em;
-          background-color: rgb(221, 221, 221);
-          border: none;
-          outline: none;
-          border-radius: 4px;
-          &.ng-invalid.ng-touched {
-            border: 2px solid red;
-          }
-          &.ng-valid.ng-touched {
-            border: 2px solid green;
-          }
-        }
-        input::-webkit-outer-spin-button,
-        input::-webkit-inner-spin-button {
-          -webkit-appearance: none;
-          margin: 0;
+          // width: 100%;
+          // font-size: 1.2rem;
+          // padding: 0.3em;
+          // background-color: rgb(221, 221, 221);
+          // border: none;
+          // outline: none;
+          // border-radius: 4px;
+          // &.ng-invalid.ng-touched {
+          //   border: 2px solid red;
+          // }
+          // &.ng-valid.ng-touched {
+          //   border: 2px solid green;
+          // }
+          @include input();
         }
 
         /* Firefox */

@@ -1,0 +1,58 @@
+//All components
+@mixin flex($justify-content, $align-items, $flex-direction) {
+  display: flex;
+  justify-content: $justify-content;
+  align-items: $align-items;
+  flex-direction: $flex-direction;
+}
+// restaurant.component.scss----------------------------------------------------------------------------------------------------------------------
+@mixin input {
+  font-size: 1.2rem;
+  padding: 0.3em;
+  background-color: #dddddd;
+  border: none;
+  border-radius: 4px;
+  width: 100%;
+  outline: none;
+  &.ng-invalid.ng-touched {
+    border: 2px solid red;
+  }
+  &.ng-valid.ng-touched {
+    border: 2px solid green;
+  }
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
+}
+@mixin responsiveUpperHeader {
+  @media screen and (max-width: 1024px) {
+    .user-btns {
+      display: block;
+    }
+
+    .login {
+      display: none;
+    }
+  }
+  @media screen and (max-width: 500px) {
+    .search-restaurant {
+      display: none;
+    }
+  }
+}
+@mixin responsiveheaderLower {
+  @media screen and (max-width: 1024px) {
+    .header-lower {
+      display: none;
+    }
+  }
+}
+@mixin raitingResponsive {
+  @media screen and (max-width: 1024px) {
+    .raiting {
+      display: none;
+    }
+  }
+}
+// ----------------------------------------------------------------------------------------------------------------------

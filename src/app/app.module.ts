@@ -26,6 +26,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FilterMenuPipe } from './components/restaurant/restaurant-dashboard/restaurant-menu/filter-menu.pipe';
 import { CategoryComponent } from './components/restaurant/category/category.component';
+import { InputComponent } from './components/shared/input/input.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { CategoryComponent } from './components/restaurant/category/category.com
     RegisterUserComponent,
     FilterMenuPipe,
     CategoryComponent,
+    InputComponent
   ],
   imports: [
     BrowserModule,
