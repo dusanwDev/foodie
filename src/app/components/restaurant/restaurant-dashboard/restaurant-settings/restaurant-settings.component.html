@@ -21,8 +21,7 @@
     <div class="form-control">
       <label for="">Restaurant Adres</label>
       <input type="text" formControlName="restaurantAddres" />
-    </div>
-    <span
+      <span
       *ngIf="
         !settingsForm.get('restaurantAddres').valid &&
         settingsForm.get('restaurantAddres').touched
@@ -32,6 +31,22 @@
         >This field is required</span
       >
     </span>
+    </div>
+    <div class="form-control">
+      <label for="">Restaurant City</label>
+      <input type="text" formControlName="restaurantCity" />
+      <span
+      *ngIf="
+        !settingsForm.get('restaurantCity').valid &&
+        settingsForm.get('restaurantCity').touched
+      "
+    >
+      <span *ngIf="settingsForm.get('restaurantCity').errors['required']"
+        >This field is required</span
+      >
+    </span>
+    </div>
+ 
     <div class="form-control">
       <label for="">Working time. <strong>We suggest you write it like this: 08:00 - 21:00</strong> </label
       ><input type="text" formControlName="workTime" />

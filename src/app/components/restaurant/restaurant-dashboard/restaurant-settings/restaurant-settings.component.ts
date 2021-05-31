@@ -26,6 +26,7 @@ export class RestaurantSettingsComponent implements OnInit {
     this.settingsForm = new FormGroup({
       restaurantName: new FormControl(null, Validators.required),
       restaurantAddres: new FormControl(null, Validators.required),
+      restaurantCity:new FormControl(null, Validators.required),
       restaurantImage: new FormControl(null, Validators.required),
       workTime: new FormControl(null, Validators.required),
       phone: new FormControl(null, Validators.required),
@@ -56,6 +57,7 @@ export class RestaurantSettingsComponent implements OnInit {
               }
             })
             .join(' '),
+            restaurantCity:this.settingsForm.get('restaurantCity').value
           }).then(()=>{this.settingsForm.reset()});
 
       });

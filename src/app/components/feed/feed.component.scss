@@ -15,7 +15,8 @@ main {
       margin-top: 0.8rem;
       width: 100%;
       box-shadow: 5px 5px 15px 8px rgb(235, 235, 235);
-
+      z-index: 99999999999999999;
+      background-color: white;
       li {
         list-style: none;
         a {
@@ -25,6 +26,7 @@ main {
           border-bottom: 2px solid rgb(219, 219, 219);
           padding: 0.5em 0.5em;
           color: black;
+          width: 100%;
           h2 {
             margin-bottom: 0.2em;
           }

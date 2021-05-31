@@ -1,6 +1,7 @@
 export class Restaurant {
   constructor(
     public restaurantName: string,
+    public restaurantCity:string,
     public shortAbout:string,
     public restaurantId: string,
     public profit: number,
