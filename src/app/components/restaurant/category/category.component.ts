@@ -13,19 +13,26 @@ export class CategoryComponent implements OnInit {
     private restaurantService: RestaurantService,
     private activatedRoute: ActivatedRoute
   ) {}
-  restaurant: Restaurant;
   dishes = [];
   cateogryName: string;
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((data) => {
-      this.cateogryName = data['categoryName'];
+      this.cateogryName = data['categoryName'].charAt(0).toUpperCase() +  data['categoryName'].slice(1);;
       this.restaurantService.restaurantBehSubject.subscribe((restaurant) => {
-        this.restaurant = restaurant;
-        this.dishes = data['categoryName']
-          ? this.restaurant.dishes.filter(
-              (dish) => dish.categoryName === data['categoryName']
-            )
-          : this.restaurant.dishes;
+        console.log(restaurant.dishes);
+        console.log(data['categoryName'])
+
+        this.dishes =restaurant.dishes.filter(
+                (dish) =>  dish.categoryName === data['categoryName']
+              )
+              if(this.dishes.length===0){
+                this.dishes =restaurant.dishes
+              }
+        // this.dishes = data['categoryName'] ? restaurant.dishes.filter(
+        //       (dish) =>  dish.categoryName === data['categoryName']
+        //     )
+        //   : restaurant.dishes;
+          console.log(this.dishes)
       });
     });
   }

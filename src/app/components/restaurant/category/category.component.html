@@ -1,9 +1,10 @@
 <ng-container>
   <header>
-    <h1 *ngIf="dishes.length > 0; else all">{{ dishes[0].categoryName }}</h1>
+    <!-- <h1 *ngIf="dishes.length > 0; else all">{{ dishes[0].categoryName }}</h1>
     <ng-template #all>
       <h1>All</h1>
-    </ng-template>
+    </ng-template> -->
+    <h1>{{cateogryName}}</h1>
     <select name="" id="" #selectList (change)="sortFoodBy(selectList.value)">
       <option value="raiting">Raiting</option>
       <option value="fastest">Fastest to serve</option>
@@ -14,7 +15,7 @@
   <div class="menu-item" *ngFor="let dish of dishes">
     <div class="menu-item-container" #menuItem (click)="revealOrder(orderItem)">
       <div class="menu-item-img-container">
-        <img [src]="dish.image" alt="Food Image" />
+        <img [src]="dish.image" alt="Food Image" loading="lazy" />
       </div>
       <div class="menu-item-info">
         <h2>{{ dish.dishName }}</h2>
@@ -36,7 +37,7 @@
       </div>
       <div class="toppings">
         <ng-content
-          *ngFor="let dish of restaurant.dishes; let i = index"
+          *ngFor="let dish of dishes; let i = index"
         ></ng-content>
         <div class="toppings-inner">
           <p>Toppings</p>

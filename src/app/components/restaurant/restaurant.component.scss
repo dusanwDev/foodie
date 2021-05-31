@@ -449,6 +449,18 @@ main {
     font-size: 1.3rem;
   }
 }
+@media screen and (min-width: 1440px) {
+  .main-header {
+    height: 60vh;
+    .raiting {
+      width: 70%;
+      margin: 0 auto;
+    }
+  }
+  main {
+    width: 70%;
+  }
+}
 @media screen and (min-width: 1024px) {
   .raiting-responsive {
     display: none;

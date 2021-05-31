@@ -20,7 +20,6 @@ export class FilterMenuPipe implements PipeTransform {
     ],
     value: string
   ) {
-    // If there's a value passed (male or female) it will filter the list otherwise it will return the original unfiltered list.
     let reg = new RegExp(`^${value}`, 'gi');
     return value
       ? dishes.filter((item) => {

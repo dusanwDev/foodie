@@ -102,6 +102,7 @@
     <i class="fas fa-search"></i>
   </div>
   <div class="categories">
+    <a  [routerLink]="['category-name', 'all']">All</a>
     <a
       [routerLink]="['category-name', category]"
       *ngFor="let category of categories"
@@ -112,6 +113,9 @@
 <main *ngIf="restaurant">
   <section class="categories-sidebar">
     <ul>
+      <li >
+        <a  [routerLink]="['category-name', 'all']">All</a>
+      </li>
       <li *ngFor="let category of categories">
         <a [routerLink]="['category-name', category]">
           {{ category }}
