@@ -10,7 +10,7 @@ import { FeedService } from './feed.service';
 export class FeedComponent implements OnInit {
 allRestaurants:Restaurant[]
   constructor(private feedService:FeedService) { }
-userInput:string;
+  userInput:string;
   ngOnInit(): void {
     this.feedService.getRestaurants().subscribe(restaurants=>{
       this.allRestaurants = restaurants;

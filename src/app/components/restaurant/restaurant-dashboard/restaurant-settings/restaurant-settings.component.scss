@@ -18,6 +18,20 @@ header {
     }
     .form-control {
       margin: 1em 0em;
+      &.workingTIme {
+        display: flex;
+        justify-content: space-between;
+        div {
+          width: 200px;
+        }
+        select {
+          width: 100%;
+          background-color: #dddddd;
+          border: none;
+          outline: none;
+          padding: 0.3em;
+        }
+      }
       label {
         display: block;
         margin-bottom: 0.5rem;

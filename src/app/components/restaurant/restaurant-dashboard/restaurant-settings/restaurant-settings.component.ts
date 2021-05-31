@@ -28,7 +28,10 @@ export class RestaurantSettingsComponent implements OnInit {
       restaurantAddres: new FormControl(null, Validators.required),
       restaurantCity:new FormControl(null, Validators.required),
       restaurantImage: new FormControl(null, Validators.required),
-      workTime: new FormControl(null, Validators.required),
+      workTimeFrom: new FormControl(null, Validators.required),
+workTimeTo: new FormControl(null, Validators.required),
+workTimeDaysFrom: new FormControl(null, Validators.required),
+workTimeDaysTo: new FormControl(null, Validators.required),
       phone: new FormControl(null, Validators.required),
       shortAbout:new FormControl(null, Validators.required),
     });
@@ -49,7 +52,10 @@ export class RestaurantSettingsComponent implements OnInit {
             restaurantName: this.settingsForm.get('restaurantName').value,
             restaurantAddres: this.settingsForm.get('restaurantAddres').value,
             restaurantImage: data,
-            workTime: this.settingsForm.get('workTime').value,
+            workTimeFrom: this.settingsForm.get('workTimeFrom').value,
+            workTimeTo: this.settingsForm.get('workTimeTo').value,
+            workTimeDaysFrom:this.settingsForm.get("workTimeDaysFrom").value,
+            workTimeDaysTo:this.settingsForm.get("workTimeDaysTo").value,
             phone: this.settingsForm.get('phone').value,shortAbout:this.settingsForm.get("shortAbout").value.split(' ')
             .map((word, index) => {
               if (index < 8) {
