@@ -64,6 +64,11 @@
   }
 }
 
+@media screen and (min-width: 1440px) {
+  .restaurant-card {
+    width: 400px;
+  }
+}
 @media screen and (max-width: 926px) {
   .restaurant-card {
     // width: 100%;

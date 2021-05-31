@@ -46,7 +46,7 @@ import { InputComponent } from './components/shared/input/input.component';
     LoginRestaurantComponent,
     RegisterRestaurantComponent,
     RegisterUserComponent,
-    FilterMenuPipe,
+    FilterMenuPipe, 
     CategoryComponent,
     InputComponent
   ],
