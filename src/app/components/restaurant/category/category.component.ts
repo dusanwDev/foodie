@@ -29,7 +29,7 @@ export class CategoryComponent implements OnInit {
                 this.dishes =restaurant.dishes
               }
         // this.dishes = data['categoryName'] ? restaurant.dishes.filter(
-        //       (dish) =>  dish.categoryName === data['categoryName']
+        //       (dish) =>  {if(dish.categoryName === data['categoryName']){return true}else{return false}}
         //     )
         //   : restaurant.dishes;
           console.log(this.dishes)
