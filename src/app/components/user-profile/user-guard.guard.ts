@@ -15,7 +15,7 @@ import { Utility } from 'src/app/models/Utility.model';
 @Injectable({
   providedIn: 'root',
 })
-export class UserGuardGuard implements CanActivate {
+export class UserGuard implements CanActivate {
   constructor(private afs: AngularFirestore, private router: Router) {}
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -27,7 +27,7 @@ export class UserGuardGuard implements CanActivate {
     | UrlTree {
     return this.afs
       .collection<Customer>(Utility.firestoreName)
-      .doc(route.params['restaurantId'])
+      .doc(route.params['userid'])
       .valueChanges()
       .pipe(
         map((data) => {

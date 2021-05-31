@@ -10,10 +10,9 @@
 
   .ordered {
     border-bottom: 3px solid rgb(216, 216, 216);
-    padding-bottom: 0.5em;
     width: 80%;
     margin: 0 auto;
-    padding: 1em;
+    padding: 1em 0;
     .ingridients {
       margin: 0.5em 0;
     }
@@ -53,6 +52,26 @@
             color: #0088c2;
             font-size: 1.1rem;
             font-weight: bolder;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .ordered-wrapper {
+    .ordered {
+      .ordered-container {
+        flex-direction: column;
+        .ordered-img-container {
+          width: 100%;
+          height: 100px;
+        }
+        .ordered-info {
+          margin-left: 0;
+          h2 {
+            margin: 0.2em 0;
           }
         }
       }

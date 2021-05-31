@@ -1,36 +1,6 @@
-@mixin responsiveHeader {
-  @media screen and (max-width: 800px) {
-    .opacity {
-      padding: 0.5em 1em;
-      .header-lower {
-        left: 0.5em;
+@import "../../shared-styles/shared";
 
-        h1 {
-          margin-left: 0.3em;
-        }
-        nav {
-          ul {
-            overflow-x: scroll;
-            li {
-              padding: 0.5em;
-            }
-          }
-        }
-      }
-    }
-  }
-  //   @media screen and (max-width: 300px) {
-  //     .opacity {
-  //       .header-lower {
-  //         h1 {
-  //           margin-left: 0em;
-  //         }
-  //       }
-  //     }
-  //   }
-}
-
-header {
+.user-profile-header {
   color: white;
   position: relative;
   background-image: url(https://images.pexels.com/photos/3758133/pexels-photo-3758133.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
@@ -45,6 +15,25 @@ header {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      @include flex(space-between, center, row);
+      .right-header {
+        button {
+          margin-left: 0.5em;
+          color: white;
+          font-size: 1.7rem;
+          background-color: transparent;
+          border: none;
+          outline: none;
+          cursor: pointer;
+        }
+        a {
+          text-decoration: none;
+          display: inline-block;
+          margin-left: 0.5em;
+          color: white;
+          font-size: 1.7rem;
+        }
+      }
     }
 
     background-color: rgba(0, 0, 0, 0.8);
@@ -77,6 +66,7 @@ header {
           //   li:nth-child(even) {
           //     margin: 0 0.5em;
           //   }
+
           li {
             padding: 1em;
           }
@@ -85,4 +75,52 @@ header {
     }
   }
   @include responsiveHeader();
+}
+.menu {
+  width: 0;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: black;
+  color: white;
+  z-index: 9999999999;
+  transition: all 0.4s;
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5em 0.5em;
+    button {
+      font-size: 1.6rem;
+      background-color: transparent;
+      border: none;
+      outline: none;
+      color: white;
+    }
+  }
+  ul {
+    min-width: 300px;
+    li {
+      list-style: none;
+      a {
+        color: white;
+        text-decoration: none;
+        margin: 0.3em 0;
+        padding: 0 0.5em;
+        display: inline-block;
+        font-size: 1.2rem;
+      }
+      button {
+        color: white;
+        margin: 0.3em 0;
+        padding: 0 0.5em;
+        display: inline-block;
+        font-size: 1.2rem;
+        background-color: transparent;
+        border: none;
+        outline: none;
+      }
+    }
+  }
 }

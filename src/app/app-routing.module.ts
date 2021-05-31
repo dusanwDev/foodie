@@ -14,6 +14,7 @@ import { RestaurantGuard } from './components/restaurant/restaurant-guard.guard'
 import { RestaurantComponent } from './components/restaurant/restaurant.component';
 import { FavoriteRestaurantsComponent } from './components/user-profile/favorite-restaurants/favorite-restaurants.component';
 import { ProfileComponent } from './components/user-profile/profile/profile.component';
+import { UserGuard } from './components/user-profile/user-guard.guard';
 import { UserOrdersComponent } from './components/user-profile/user-orders/user-orders.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
@@ -46,9 +47,11 @@ const routes: Routes = [
       { path: 'settings', component: RestaurantSettingsComponent },
     ],
   },
+  {path:"user-profile/:userid",redirectTo:"user-profile/:userid/profile",pathMatch:"full"},
   {
-    path: 'user-profile',
+    path: 'user-profile/:userid',
     component: UserProfileComponent,
+    canActivate:[UserGuard],
     children: [
       { path: 'profile', component: ProfileComponent },
       { path: 'favorite-rastaurants', component: FavoriteRestaurantsComponent },

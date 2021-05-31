@@ -56,3 +56,49 @@
   }
 }
 // ----------------------------------------------------------------------------------------------------------------------
+
+//user-profile.component.scss---------------------------------------------------------------------------------------------------------
+@mixin responsiveHeader {
+  @media screen and (max-width: 800px) {
+    .opacity {
+      padding: 0.5em 1em;
+      .header-lower {
+        left: 0.5em;
+
+        h1 {
+          margin-left: 0.3em;
+        }
+        nav {
+          overflow-x: scroll;
+          &::-webkit-scrollbar {
+            display: none;
+          }
+          /* Hide scrollbar for IE, Edge and Firefox */
+          & {
+            -ms-overflow-style: none; /* IE and Edge */
+            scrollbar-width: none; /* Firefox */
+          }
+          ul {
+            min-width: 400px;
+
+            li {
+              padding: 0.5em;
+            }
+          }
+          margin-top: 0.5em;
+          margin-bottom: 0.5em;
+          margin-left: 0.3em;
+        }
+      }
+    }
+  }
+  //   @media screen and (max-width: 300px) {
+  //     .opacity {
+  //       .header-lower {
+  //         h1 {
+  //           margin-left: 0em;
+  //         }
+  //       }
+  //     }
+  //   }
+}

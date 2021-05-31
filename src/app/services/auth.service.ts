@@ -153,11 +153,14 @@ export class AuthService {
             customerLastName: lastName,
             customerId: user.userId,
           });
+          this.router.navigate(['/user-profile', user.userId]);
+
         break;
       case 'loginRestaurant':
         this.router.navigate(['/restaurant-dashboard', user.userId]);
         break;
       case 'loginUser':
+        this.router.navigate(['/user-profile', user.userId]);
         break;
       default:
     }
