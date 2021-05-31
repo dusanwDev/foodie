@@ -161,6 +161,7 @@ export class AuthService {
         break;
       case 'loginUser':
         this.router.navigate(['/user-profile', user.userId]);
+        this.router.navigate(['/feed']);
         break;
       default:
     }

@@ -5,7 +5,7 @@
       <input type="text" placeholder="Search your restaurant" [(ngModel)]="userInput"/>
       <i class="fas fa-search"></i>
 <ul >
-  <li *ngFor="let restaurant of allRestaurants ">
+  <li *ngFor="let restaurant of allRestaurants | restaurantFeedPipe:userInput">
     <a href=""><div class="drowpdown-img"><img [src]=restaurant.restaurantImage alt=""></div><div class="restaurantInfo">
       <h2>{{restaurant.restaurantName}}</h2>
       <p>{{restaurant.restaurantAddres}}</p>

@@ -27,6 +27,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FilterMenuPipe } from './components/restaurant/restaurant-dashboard/restaurant-menu/filter-menu.pipe';
 import { CategoryComponent } from './components/restaurant/category/category.component';
 import { InputComponent } from './components/shared/input/input.component';
+import { RestaurantFeedPipe } from './components/feed/restaurant-feed.pipe';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { InputComponent } from './components/shared/input/input.component';
     RegisterUserComponent,
     FilterMenuPipe, 
     CategoryComponent,
-    InputComponent
+    InputComponent,
+    RestaurantFeedPipe
   ],
   imports: [
     BrowserModule,
