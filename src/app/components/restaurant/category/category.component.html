@@ -32,8 +32,8 @@
     </div>
     <div class="order" #orderItem>
       <div class="order-count" *ngIf="displayRestaurantFeaturesBool">
-        <p>Count: 0</p>
-        <button>Add to Order</button>
+        <p>Count: {{dishCount()}}</p>
+        <button (click)=addToOrder(dish)>Add to Order</button>
       </div>
       <div class="toppings">
         <ng-content

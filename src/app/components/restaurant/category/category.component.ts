@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Restaurant } from 'src/app/models/Restaurant.model';
+import { UserService } from '../../user-profile/user.service';
 import { RestaurantService } from '../restaurant.service';
 
 @Component({
@@ -11,28 +12,25 @@ import { RestaurantService } from '../restaurant.service';
 export class CategoryComponent implements OnInit {
   constructor(
     private restaurantService: RestaurantService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,private userService:UserService
   ) {}
   dishes = [];
   cateogryName: string;
+  restaurantId:string;
+  displayRestaurantFeaturesBool:boolean;
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((data) => {
       this.cateogryName = data['categoryName'].charAt(0).toUpperCase() +  data['categoryName'].slice(1);;
       this.restaurantService.restaurantBehSubject.subscribe((restaurant) => {
-        console.log(restaurant.dishes);
-        console.log(data['categoryName'])
+        this.restaurantId = restaurant.restaurantId;
+        this.displayRestaurantFeatures();
 
         this.dishes =restaurant.dishes.filter(
                 (dish) =>  dish.categoryName === data['categoryName']
-              )
+              ) 
               if(this.dishes.length===0){
                 this.dishes =restaurant.dishes
               }
-        // this.dishes = data['categoryName'] ? restaurant.dishes.filter(
-        //       (dish) =>  {if(dish.categoryName === data['categoryName']){return true}else{return false}}
-        //     )
-        //   : restaurant.dishes;
-          console.log(this.dishes)
       });
     });
   }
@@ -69,5 +67,29 @@ export class CategoryComponent implements OnInit {
     } else {
       orderItem.style.height = '0px';
     }
+  }
+  displayRestaurantFeatures() {
+    const obj: {
+      email: string;
+      expDate: string;
+      localId: string;
+      refreshToken: string;
+      tokenId: string;
+    } = JSON.parse(localStorage.getItem('user'));
+    console.log(obj)
+    if (this.restaurantId === obj.localId) {
+      this.displayRestaurantFeaturesBool = false;
+    } else {
+      this.displayRestaurantFeaturesBool = true;
+    }
+    console.log(this.displayRestaurantFeaturesBool);
+  }
+  addToOrder(dish){
+    console.log("CLIC",dish)
+    this.userService.addToCart(dish);
+    this.dishCount(dish);
+  }
+  dishCount(dish){
+   return this.userService.dishCount(dish);
   }
 }

@@ -11,6 +11,7 @@ import { Restaurant } from 'src/app/models/Restaurant.model';
 import { Utility } from 'src/app/models/Utility.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { FeedService } from '../feed/feed.service';
+import { UserService } from '../user-profile/user.service';
 import { RestaurantService } from './restaurant.service';
 
 @Component({
@@ -28,7 +29,7 @@ export class RestaurantComponent implements OnInit {
     private restaurantService: RestaurantService,
     private activatedRoute: ActivatedRoute,
     private angularFIrestore: AngularFirestore,
-private feedService:FeedService
+private feedService:FeedService,private userService:UserService
   ) {}
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((dataId) => {
@@ -82,5 +83,8 @@ this.allRestaurants= restaurants;
     } else {
       return true;
     }
+  }
+  addToFavorite(){
+    this.userService.addToFavorite(this.restaurant)
   }
 }

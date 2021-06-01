@@ -151,7 +151,7 @@ export class AuthService {
           .set({
             customerName: name,
             customerLastName: lastName,
-            customerId: user.userId,
+            customerId: user.userId
           });
           this.router.navigate(['/user-profile', user.userId]);
 
