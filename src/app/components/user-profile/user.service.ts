@@ -55,18 +55,20 @@ addToCart(dish){
 dishCount(dish){
   let count = 0;
   console.log(dish)
+  let arr = []
   if(typeof dish === "undefined"){
     count = 0;
-    return count;
+    return arr
   }else{
     this.dishes.forEach(dishFilter=>{
     
       if(dishFilter.dishId===dish.dishId){
         count++
+        arr.push(count)
       }
     })
     console.log(count)
-    return count;
+    return arr;
   }
   
 }

@@ -32,7 +32,7 @@
     </div>
     <div class="order" #orderItem>
       <div class="order-count" *ngIf="displayRestaurantFeaturesBool">
-        <p>Count: {{dishCount()}}</p>
+        <p >Count: {{ dishCount()}}</p>
         <button (click)=addToOrder(dish)>Add to Order</button>
       </div>
       <div class="toppings">

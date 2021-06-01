@@ -87,9 +87,10 @@ export class CategoryComponent implements OnInit {
   addToOrder(dish){
     console.log("CLIC",dish)
     this.userService.addToCart(dish);
-    this.dishCount(dish);
-  }
-  dishCount(dish){
-   return this.userService.dishCount(dish);
+   }
+  dishCount(dish?){
+   return typeof dish==="undefined" ? 0: this.userService.dishCount(dish).length;
   }
 }
+
+
