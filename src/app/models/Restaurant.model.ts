@@ -9,10 +9,10 @@ export class Restaurant {
     public workTime: string,
     public phone: string,
     public restaurantImage: string,
-   public  workTimeFrom:string,
-public workTimeTo:string,
-public workTimeDaysFrom:string,
-public workTimeDaysTo:string,
+    public  workTimeFrom:string,
+    public workTimeTo:string,
+    public workTimeDaysFrom:string,
+    public workTimeDaysTo:string,
     public dishes: [
       {
         categoryName: string;
