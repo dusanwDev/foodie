@@ -209,7 +209,15 @@
         width: 180px;
         height: 30px;
         @include flex(flex-end, center, row);
-
+        select {
+          font-size: 1.2rem;
+          border-top: 0px;
+          border-left: 0px;
+          border-right: 0px;
+          border-bottom: 1px solid grey;
+          outline: none;
+          width: 100px;
+        }
         i {
           color: rgb(255, 255, 0);
           font-size: 1.7rem;

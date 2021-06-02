@@ -1,8 +1,10 @@
 import {
   Component,
+  ElementRef,
   OnInit,
  
   Renderer2,
+  ViewChild,
 
 } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
@@ -25,6 +27,7 @@ export class RestaurantComponent implements OnInit {
   categories: string[];
   allRestaurants:Restaurant[]
   userInput:string;
+  @ViewChild("raiting") raiting : ElementRef
   constructor(
     private restaurantService: RestaurantService,
     private activatedRoute: ActivatedRoute,
@@ -87,4 +90,9 @@ this.allRestaurants= restaurants;
   addToFavorite(){
     this.userService.addToFavorite(this.restaurant)
   }
+  mySelectHandler(event){
+    //dodaj u bazu i proveri koji su restorani rejtovani
+this.raiting.nativeElement.disabled=true  
+
+}
 }
