@@ -4,19 +4,19 @@
     <div class="search">
       <input type="text" placeholder="Search your restaurant" [(ngModel)]="userInput"/>
       <i class="fas fa-search"></i>
-<ul >
-  <ng-container *ngFor="let restaurant of allRestaurants | restaurantFeedPipe:userInput; let i = index">
-  <li *ngIf= "i <= 6">
-    <a [routerLink]="['/restaurant',restaurant.restaurantId]"><div class="drowpdown-img"><img [src]=restaurant.restaurantImage alt=""></div><div class="restaurantInfo">
-      <h2>{{restaurant.restaurantName}}</h2>
-      <p>{{restaurant.restaurantAddres}}, {{restaurant.restaurantCity}}</p>
-    </div></a>
-  </li>
-<a routerLink="showMore" *ngIf="i>6">Show {{i}} more</a>
-</ng-container> 
-</ul>
-    </div>
 
+    </div>
+    <ul >
+      <ng-container *ngFor="let restaurant of allRestaurants | restaurantFeedPipe:userInput; let i = index">
+      <li *ngIf= "i <= 6">
+        <a [routerLink]="['/restaurant',restaurant.restaurantId]"><div class="drowpdown-img"><img [src]=restaurant.restaurantImage alt=""></div><div class="restaurantInfo">
+          <h2>{{restaurant.restaurantName}}</h2>
+          <p>{{restaurant.restaurantAddres}}, {{restaurant.restaurantCity}}</p>
+        </div></a>
+      </li>
+    <a routerLink="showMore" *ngIf="i>6">Show {{i}} more</a>
+    </ng-container> 
+    </ul>
     <div class="select">
       <select name="" id="">
         <option value=""></option>

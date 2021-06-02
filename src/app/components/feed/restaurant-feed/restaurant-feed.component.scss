@@ -1,7 +1,7 @@
 .restaurant-card {
   display: inline-block;
   text-decoration: none;
-  width: 33.33%;
+  width: 400px;
   // width: 404px;
   margin-top: 1em;
 
@@ -26,6 +26,9 @@
       border-radius: 8px;
       color: #001aff;
       padding: 0.5em;
+      p:first-child {
+        display: none;
+      }
       p:last-child {
         text-align: center;
       }
@@ -74,12 +77,22 @@
     // width: 100%;
     .header {
       // flex-direction: column;
+      flex-direction: column;
+      align-items: flex-start;
       padding: 0.6em;
       .header-right {
         .delivery-time {
-          display: none;
+          p:first-child {
+            display: inline;
+          }
+          display: flex;
+          margin-top: 0.5em;
+          background-color: transparent;
+          padding: 0;
+
           p {
-            font-size: 0.8rem;
+            margin: 0 0.2em;
+            font-weight: bolder;
           }
         }
       }
@@ -94,9 +107,8 @@
       padding: 0.6em;
       .header-right {
         .delivery-time {
-          display: none;
           p {
-            font-size: 0.8rem;
+            font-weight: bolder;
           }
         }
       }
