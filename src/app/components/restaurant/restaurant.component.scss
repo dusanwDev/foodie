@@ -1,7 +1,7 @@
 @import "../../shared-styles/shared";
 .main-header {
   position: relative;
-  height: 90vh;
+  height: 60vh;
   // background-image: url("https://prod-wolt-venue-images-cdn.wolt.com/5d30dcbdbac78b444f8e2848/fa176d82131ea28516c460ce6e5f8bcc-edits/9b96041bd2e2ebfcf85b5ade767db8f1");
   background-size: cover;
   background-position: center;
@@ -219,7 +219,7 @@
           width: 100px;
         }
         i {
-          color: rgb(255, 255, 0);
+          color: rgb(255, 230, 0);
           font-size: 1.7rem;
           margin-left: 0.3em;
         }
@@ -264,10 +264,14 @@
       .raiting-right {
         @include flex(inherit, center, row);
 
-        input {
-          width: 50px;
-          height: 25px;
-          margin-right: 0.8em;
+        select {
+          font-size: 1.2rem;
+          border-top: 0px;
+          border-left: 0px;
+          border-right: 0px;
+          border-bottom: 1px solid grey;
+          outline: none;
+          width: 100px;
         }
       }
     }
@@ -437,6 +441,9 @@ main {
       }
       .opening-time-date {
         margin: 0.5em 0;
+        p {
+          font-weight: bolder;
+        }
       }
       .alergy-info {
         p {

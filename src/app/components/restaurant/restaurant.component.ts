@@ -91,7 +91,7 @@ this.allRestaurants= restaurants;
     this.userService.addToFavorite(this.restaurant)
   }
   mySelectHandler(event){
-    //dodaj u bazu i proveri koji su restorani rejtovani
+    //dodaj u bazu ocenjene i proveri koji su restorani ocenjeni
 this.raiting.nativeElement.disabled=true  
 
 }

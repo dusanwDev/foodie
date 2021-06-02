@@ -48,7 +48,7 @@
         <div class="open-info">
           <button>
             <p>
-              Open today <strong>{{ restaurant.workTime }}</strong>
+              Open today <strong>{{ restaurant.workTimeFrom }} - {{ restaurant.workTimeTo }}</strong>
             </p>
           </button>
         </div>
@@ -96,8 +96,14 @@
         <p>9.2</p>
       </div>
       <div class="raiting-right">
-        <input type="number" />
-        <p>/10</p>
+        <select name="" id=""  #raiting ngModel (ngModelChange)="mySelectHandler($event)">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+        <p>/ 5</p>
       </div>
     </div>
     <div class="favorite" *ngIf="displayRestaurantFeaturesBool">
@@ -105,7 +111,7 @@
     </div>
   </div>
   <div class="open-info-responsive">
-    <p><i class="far fa-clock"></i>{{ restaurant.workTime }}</p>
+    <p><i class="far fa-clock"></i>{{ restaurant.workTimeFrom }} - {{ restaurant.workTimeTo }}</p>
     <button>More Info</button>
   </div>
   <div class="delivery-time-responsive">
@@ -158,7 +164,7 @@
         </div>
 
         <div class="opening-time-date">
-          <p style="color: red">{{ restaurant.workTime }}</p>
+          <p style="color: red">{{ restaurant.workTimeFrom }} - {{ restaurant.workTimeTo }}</p>
         </div>
         <div class="alergy-info">
           <p>
