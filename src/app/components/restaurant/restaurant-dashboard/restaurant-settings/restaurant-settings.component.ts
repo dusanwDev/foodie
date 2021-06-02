@@ -34,6 +34,7 @@ workTimeDaysFrom: new FormControl(null, Validators.required),
 workTimeDaysTo: new FormControl(null, Validators.required),
       phone: new FormControl(null, Validators.required),
       shortAbout:new FormControl(null, Validators.required),
+      deliveryPrice:new FormControl(null,Validators.required)
     });
     this.restaurantService.restaurantBehSubject.subscribe((data) => {
       this.restaurantId = data.restaurantId;
@@ -63,7 +64,7 @@ workTimeDaysTo: new FormControl(null, Validators.required),
               }
             })
             .join(' '),
-            restaurantCity:this.settingsForm.get('restaurantCity').value
+            restaurantCity:this.settingsForm.get('restaurantCity').value,deliveryPrice:this.settingsForm.get("deliveryPrice").value
           }).then(()=>{this.settingsForm.reset()});
 
       });

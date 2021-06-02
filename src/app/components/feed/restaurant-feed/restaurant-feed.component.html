@@ -1,24 +1,24 @@
-<a href="" class="restaurant-card">
+<a [routerLink]="['/restaurant',restaurant.restaurantId]" class="restaurant-card" *ngFor="let restaurant of  restaurants ">
   <div class="restaurant-img">
     <img
-      src="https://images.pexels.com/photos/3758133/pexels-photo-3758133.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+      [src]=restaurant.restaurantImage
       alt=""
     />
   </div>
   <div class="header">
     <div class="header-left">
-      <h3>Burgeer & Co</h3>
-      <p>Lorem ipsum dolor sit amet.</p>
+      <h3>{{restaurant.restaurantName}}</h3>
+      <p>{{restaurant.shortAbout}}</p>
     </div>
     <div class="header-right">
       <div class="delivery-time">
-        <p>25 - 30</p>
+        <p>delivery-time - delivery-time</p>
         <p>min</p>
       </div>
     </div>
   </div>
   <div class="price">
     <p><i class="fas fa-biking"></i>RSD139</p>
-    <p><i class="fas fa-smile"></i> 9.4</p>
+    <p><i class="fas fa-smile"></i> {{restaurant.raiting}}</p>
   </div>
 </a>

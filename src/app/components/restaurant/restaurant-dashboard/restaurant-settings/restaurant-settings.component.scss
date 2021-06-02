@@ -30,6 +30,12 @@ header {
           border: none;
           outline: none;
           padding: 0.3em;
+          &.ng-invalid.ng-touched {
+            border: 2px solid red;
+          }
+          &.ng-valid.ng-touched {
+            border: 2px solid green;
+          }
         }
       }
       label {
@@ -83,6 +89,21 @@ header {
       &[disabled] {
         background-color: rgb(201, 255, 201);
         pointer-events: none;
+      }
+    }
+  }
+}
+@media screen and (max-width: 1024px) {
+  .form-wrapper {
+    form {
+      .form-control {
+        &.workingTIme {
+          flex-direction: column;
+          div {
+            width: 100%;
+            margin: 0.3em 0;
+          }
+        }
       }
     }
   }

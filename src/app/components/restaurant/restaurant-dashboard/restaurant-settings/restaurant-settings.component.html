@@ -136,11 +136,11 @@
           </select>
           <span
           *ngIf="
-            !settingsForm.get('workTimeFrom').valid &&
-            settingsForm.get('workTimeFrom').touched
+            !settingsForm.get('workTimeDaysFrom').valid &&
+            settingsForm.get('workTimeDaysFrom').touched
           "
         >
-          <span *ngIf="settingsForm.get('workTimeFrom').errors['required']"
+          <span *ngIf="settingsForm.get('workTimeDaysFrom').errors['required']"
             >This field is required</span
           >
         </span>
@@ -158,11 +158,11 @@
           </select>
           <span
           *ngIf="
-            !settingsForm.get('workTimeTo').valid &&
-            settingsForm.get('workTimeTo').touched
+            !settingsForm.get('workTimeDaysTo').valid &&
+            settingsForm.get('workTimeDaysTo').touched
           "
         >
-          <span *ngIf="settingsForm.get('workTimeTo').errors['required']"
+          <span *ngIf="settingsForm.get('workTimeDaysTo').errors['required']"
             >This field is required</span
           >
         </span>
@@ -178,6 +178,19 @@
       "
     >
       <span *ngIf="settingsForm.get('phone').errors['required']"
+        >This field is required</span
+      >
+    </span>
+    </div>
+
+    <div class="form-control">
+      <label for="">Delivery Price</label><input type="number" formControlName="deliveryPrice" />
+      <span
+      *ngIf="
+        !settingsForm.get('deliveryPrice').valid && settingsForm.get('deliveryPrice').touched
+      "
+    >
+      <span *ngIf="settingsForm.get('deliveryPrice').errors['required']"
         >This field is required</span
       >
     </span>
