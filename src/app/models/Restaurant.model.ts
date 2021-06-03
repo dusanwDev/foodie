@@ -13,7 +13,7 @@ export class Restaurant {
     public workTimeTo:string,
     public workTimeDaysFrom:string,
     public workTimeDaysTo:string,
-    public restaurantRaiting:number,
+    public restaurantRaiting:number[],
   public deliveryPrice:number,
     public dishes: [
       {

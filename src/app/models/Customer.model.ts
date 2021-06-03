@@ -6,6 +6,7 @@ export class Customer {
     public customerLastName: string,
     public customerId: string,
     public favoriteRestaurants?:Restaurant[],
+    public ratedRestaurants?:{restaurantId:string,raiting:string}[],
     public addedToCart?:{
       categoryName: string;
       dishName: string;

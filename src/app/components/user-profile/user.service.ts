@@ -74,16 +74,27 @@ dishCount(dish){
   }
   
 }
-ratedRestaurants(restaurant : Restaurant){
-if(typeof this.customer.favoriteRestaurants === "undefined"){
-  this.customer.favoriteRestaurants = []
-}
-this.customer.favoriteRestaurants = this.customer.favoriteRestaurants.filter((v,i,a)=>a.findIndex(t=>(JSON.stringify(t.restaurantId) === JSON.stringify(v.restaurantId)))===i)
+ratedRestaurants(rate,restaurant : Restaurant){
+  if(typeof this.customer.ratedRestaurants === "undefined"){
+  this.customer.ratedRestaurants =[]
+  }
+  this.customer.ratedRestaurants = this.customer.ratedRestaurants.filter((v,i,a)=>a.findIndex(t=>(JSON.stringify(t.restaurantId) === JSON.stringify(v.restaurantId)))===i)
 
-this.customer.favoriteRestaurants.push(restaurant)
+  this.customer.ratedRestaurants.push({restaurantId:restaurant.restaurantId,raiting:rate})
   this.afs.collection<Customer>(Utility.firestoreName).doc(this.localUser().localId).update({
-    favoriteRestaurants:this.customer.favoriteRestaurants
+    ratedRestaurants:this.customer.ratedRestaurants
+  }).then(()=>{
+
+    let raitingsArr:number[] = []
+    this.customer.ratedRestaurants.forEach((raiting)=>{
+      raitingsArr.push(+raiting.raiting)
+    })
+
+    this.afs.collection<Restaurant>(Utility.firestoreName).doc(restaurant.restaurantId).update({
+      restaurantRaiting:raitingsArr
+    })
+    console.log(this.customer.favoriteRestaurants)
   })
-  console.log(this.customer.favoriteRestaurants)
+  
 }
 }

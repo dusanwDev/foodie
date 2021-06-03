@@ -93,7 +93,7 @@ this.allRestaurants= restaurants;
   rate(event){
     //dodaj u bazu ocenjene i proveri koji su restorani ocenjeni
     this.raiting.nativeElement.disabled=true;
-    this.userService.ratedRestaurants(this.restaurant);
-    
+    this.userService.ratedRestaurants(event,this.restaurant);
+// this.restaurantService.raitings(event,this.restaurant)
     }
 }
