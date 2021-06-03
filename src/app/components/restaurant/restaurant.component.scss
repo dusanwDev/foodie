@@ -137,7 +137,9 @@
   .restaurant-name {
     position: absolute;
     bottom: 6em;
-
+    i {
+      display: none;
+    }
     color: white;
     h1 {
       font-size: 5rem;
@@ -536,6 +538,9 @@ main {
   }
 }
 @media screen and (max-width: 600px) {
+  .raiting-responsive {
+    font-size: 1rem;
+  }
   .main-header {
     .opacity {
       .main-header-inner {
@@ -543,6 +548,16 @@ main {
         margin: 0 auto;
         h1 {
           font-size: 3rem;
+        }
+        .restaurant-name {
+          i {
+            display: inline;
+            font-size: 1.4rem;
+          }
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          width: 90%;
         }
       }
     }

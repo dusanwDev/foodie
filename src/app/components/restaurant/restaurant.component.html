@@ -57,8 +57,13 @@
         </div>
       </div>
       <div class="restaurant-name">
+        <div class="restaurant-left">
         <h1>{{ restaurant.restaurantName }}</h1>
         <p>{{restaurant.shortAbout}}</p>
+      </div>
+      <div class="restaurant-right">
+        <i class="fas fa-heart"></i>
+      </div>      
       </div>
     </div>
   </div>
@@ -105,9 +110,6 @@
         </select>
         <p>/ 5</p>
       </div>
-    </div>
-    <div class="favorite" *ngIf="displayRestaurantFeaturesBool">
-      <button (click)="addToFavorite()" > <i class="fas fa-heart"></i></button>
     </div>
   </div>
   <div class="open-info-responsive">

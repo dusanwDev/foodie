@@ -171,11 +171,14 @@ header {
     }
     .order {
       .order-count {
+        padding: 0.8em 0.4em;
         button {
           padding: 1em 0.5em;
+          width: 50%;
         }
       }
       .toppings {
+        padding: 0 0.4em;
         .toppings-inner {
           & :nth-child(1) {
             display: none;
