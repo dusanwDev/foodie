@@ -18,11 +18,13 @@ dishes:{      categoryName: string,
   ordered?: number,
   image?: string,
   raiting?: number,}[ ]
+  customer:Customer
   constructor(private afs : AngularFirestore) { 
     this.localUser()
     this.afs.collection<Customer>(Utility.firestoreName).doc(this.localUser().localId).valueChanges().subscribe(res=>{
       this.restaurants = res.favoriteRestaurants ? res.favoriteRestaurants : [];
       this.dishes = res.addedToCart? res.addedToCart : [];
+      this.customer = res
       console.log("GET",this.restaurants)
     })
   }
@@ -71,5 +73,17 @@ dishCount(dish){
     return arr;
   }
   
+}
+ratedRestaurants(restaurant : Restaurant){
+if(typeof this.customer.favoriteRestaurants === "undefined"){
+  this.customer.favoriteRestaurants = []
+}
+this.customer.favoriteRestaurants = this.customer.favoriteRestaurants.filter((v,i,a)=>a.findIndex(t=>(JSON.stringify(t.restaurantId) === JSON.stringify(v.restaurantId)))===i)
+
+this.customer.favoriteRestaurants.push(restaurant)
+  this.afs.collection<Customer>(Utility.firestoreName).doc(this.localUser().localId).update({
+    favoriteRestaurants:this.customer.favoriteRestaurants
+  })
+  console.log(this.customer.favoriteRestaurants)
 }
 }

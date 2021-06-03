@@ -90,9 +90,10 @@ this.allRestaurants= restaurants;
   addToFavorite(){
     this.userService.addToFavorite(this.restaurant)
   }
-  mySelectHandler(event){
+  rate(event){
     //dodaj u bazu ocenjene i proveri koji su restorani ocenjeni
-this.raiting.nativeElement.disabled=true  
-
-}
+    this.raiting.nativeElement.disabled=true;
+    this.userService.ratedRestaurants(this.restaurant);
+    
+    }
 }

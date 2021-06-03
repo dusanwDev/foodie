@@ -75,7 +75,7 @@
     </div>
     <div class="right">
       <div class="input-field">
-        <select name="" id=""  #raiting ngModel (ngModelChange)="mySelectHandler($event)">
+        <select name="" id=""  #raiting ngModel (ngModelChange)="rate($event)">
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
@@ -96,7 +96,7 @@
         <p>9.2</p>
       </div>
       <div class="raiting-right">
-        <select name="" id=""  #raiting ngModel (ngModelChange)="mySelectHandler($event)">
+        <select name="" id=""  #raiting ngModel (ngModelChange)="rate($event)">
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
@@ -159,10 +159,6 @@
     <div class="opening-times">
       <h3>Opening times</h3>
       <div>
-        <div class="restaruant-or-delivery-btns">
-          <h3>Delivery</h3>
-        </div>
-
         <div class="opening-time-date">
           <p style="color: red">{{ restaurant.workTimeFrom }} - {{ restaurant.workTimeTo }}</p>
         </div>

@@ -22,8 +22,8 @@ export class Restaurant {
         toppings: [string];
         price: number;
         about: string;
-        ordered?: number;
         dishId: string;
+        ordered?: number;
         image?: string;
         raiting?: number;
       }
