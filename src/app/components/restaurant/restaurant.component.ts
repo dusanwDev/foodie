@@ -50,6 +50,11 @@ private feedService:FeedService,private userService:UserService
             arr.push(dish.categoryName);
           });
           this.categories = [...new Set(arr)];
+
+          this.restaurant.restaurantDisplayRaiting= this.restaurant.restaurantRaiting.reduce((sum,value)=>{
+            return sum + value
+          }) / this.restaurant.restaurantRaiting.length
+          console.log("SUMM",this.restaurant.restaurantDisplayRaiting)
         });
     });
     this.feedService.getRestaurants().subscribe(restaurants=>{

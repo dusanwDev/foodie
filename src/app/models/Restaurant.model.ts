@@ -14,7 +14,8 @@ export class Restaurant {
     public workTimeDaysFrom:string,
     public workTimeDaysTo:string,
     public restaurantRaiting:number[],
-  public deliveryPrice:number,
+    public restaurantDisplayRaiting:number,
+    public deliveryPrice:number,
     public dishes: [
       {
         categoryName: string;

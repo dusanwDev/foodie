@@ -66,7 +66,7 @@
     <div class="left">
       <i class="fas fa-laugh-beam"></i>
       <div class="raiting-num-inner">
-        <span class="raiting-number-style"><h2>9.2</h2></span>
+        <span class="raiting-number-style"><h2>{{restaurant.restaurantDisplayRaiting}}</h2></span>
         <p>out of 5</p>
       </div>
       <button (click)=addToFavorite() *ngIf="displayRestaurantFeaturesBool">
@@ -93,7 +93,7 @@
     <div class="raiting-number-inner">
       <div class="raiting-left">
         <i class="fas fa-laugh-beam"></i>
-        <p>9.2</p>
+        <p>{{restaurant.restaurantDisplayRaiting}}</p>
       </div>
       <div class="raiting-right">
         <select name="" id=""  #raiting ngModel (ngModelChange)="rate($event)">
