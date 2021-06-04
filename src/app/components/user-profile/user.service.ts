@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { map } from 'rxjs/operators';
+import { BehaviorSubject } from 'rxjs';
+import { map, take } from 'rxjs/operators';
 import { Customer } from 'src/app/models/Customer.model';
 import { Restaurant } from 'src/app/models/Restaurant.model';
 import { Utility } from 'src/app/models/Utility.model';
@@ -43,13 +44,14 @@ dishes:{      categoryName: string,
   }
 
   addToFavorite(restaurant:Restaurant){
- this.restaurants.push(restaurant);
- this.restaurants = this.restaurants.filter((v,i,a)=>a.findIndex(t=>(JSON.stringify(t.restaurantName) === JSON.stringify(v.restaurantName)))===i)
- this.afs.collection<Customer>(Utility.firestoreName).doc(this.localUser().localId).update({
+  this.restaurants.push(restaurant);
+  this.restaurants = this.restaurants.filter((v,i,a)=>a.findIndex(t=>(JSON.stringify(t.restaurantName) === JSON.stringify(v.restaurantName)))===i)
+  this.afs.collection<Customer>(Utility.firestoreName).doc(this.localUser().localId).update({
       favoriteRestaurants:this.restaurants
     })
   }
 addToCart(dish){
+
   this.dishes.push(dish);
   // this.dishes = this.dishes.filter((v,i,a)=>a.findIndex(t=>(JSON.stringify(t.dishId) === JSON.stringify(v.dishId)))===i)
   this.afs.collection<Customer>(Utility.firestoreName).doc(this.localUser().localId).update({
@@ -98,15 +100,21 @@ ratedRestaurants(rate,restaurant : Restaurant){
   })
   
 }
+itemsCount = new BehaviorSubject<number>(0);
 calculateTotal(){
   let total = 0;
-  return this.afs.collection<Customer>(Utility.firestoreName).doc(this.localUser().localId).valueChanges().pipe(map(customer=>
+  let count = 0;
+  return this.afs.collection<Customer>(Utility.firestoreName).doc(this.localUser().localId).valueChanges().pipe(take(1),map(customer=>
   {
       customer.addedToCart.forEach(dish=>{
         total+=dish.price
+        count++;
       })
-      return total / 2
+      this.itemsCount.next(count++);
+
+      return total ;
     })
     )
 }
+
 }

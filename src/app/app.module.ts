@@ -28,6 +28,7 @@ import { FilterMenuPipe } from './components/restaurant/restaurant-dashboard/res
 import { CategoryComponent } from './components/restaurant/category/category.component';
 import { InputComponent } from './components/shared/input/input.component';
 import { RestaurantFeedPipe } from './components/feed/restaurant-feed.pipe';
+import { UserService } from './components/user-profile/user.service';
 
 @NgModule({
   declarations: [

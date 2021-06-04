@@ -100,7 +100,7 @@ export class CategoryComponent implements OnInit {
   return typeof dish==="undefined" ? 0: this.userService.dishCount(dish).length;
   }
   calculateTotal(){
-    this.userService.calculateTotal().subscribe(total=>this.total=total);
+    this.userService.calculateTotal().subscribe(total=>this.total=total );
 
   }
 }

@@ -25,6 +25,7 @@ export class RestaurantComponent implements OnInit {
   allRestaurants:Restaurant[]
   userInput:string;
   total = 0
+  itemsBought = 0;
   @ViewChild("raiting") raiting : ElementRef
   constructor(
     private restaurantService: RestaurantService,
@@ -34,6 +35,7 @@ export class RestaurantComponent implements OnInit {
     private userService:UserService
   ) {}
   ngOnInit(): void {
+    this.boughtItems()
     this.activatedRoute.params.subscribe((dataId) => {
       this.angularFIrestore
         .collection<Restaurant>(Utility.firestoreName)
@@ -53,7 +55,7 @@ export class RestaurantComponent implements OnInit {
           this.restaurant.restaurantDisplayRaiting= this.restaurant.restaurantRaiting.reduce((sum,value)=>{
             return sum + value
           }) / this.restaurant.restaurantRaiting.length
-          console.log("SUMM",this.restaurant.restaurantDisplayRaiting)
+
         });
     });
     this.feedService.getRestaurants().subscribe(restaurants=>{
@@ -97,8 +99,9 @@ export class RestaurantComponent implements OnInit {
   rateRestaurant(event){
     this.raiting.nativeElement.disabled=true;
     this.userService.ratedRestaurants(event,this.restaurant);
-    }
-    
+  }
 
-
+  boughtItems(){
+this.userService.itemsCount.subscribe(count=>{this.itemsBought = count}) 
+ }
 }
