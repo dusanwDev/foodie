@@ -2,8 +2,6 @@ import {
   Component,
   ElementRef,
   OnInit,
- 
-  Renderer2,
   ViewChild,
 
 } from '@angular/core';
@@ -11,7 +9,6 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { ActivatedRoute } from '@angular/router';
 import { Restaurant } from 'src/app/models/Restaurant.model';
 import { Utility } from 'src/app/models/Utility.model';
-import { AuthService } from 'src/app/services/auth.service';
 import { FeedService } from '../feed/feed.service';
 import { UserService } from '../user-profile/user.service';
 import { RestaurantService } from './restaurant.service';
@@ -27,12 +24,14 @@ export class RestaurantComponent implements OnInit {
   categories: string[];
   allRestaurants:Restaurant[]
   userInput:string;
+  total = 0
   @ViewChild("raiting") raiting : ElementRef
   constructor(
     private restaurantService: RestaurantService,
     private activatedRoute: ActivatedRoute,
     private angularFIrestore: AngularFirestore,
-private feedService:FeedService,private userService:UserService
+    private feedService:FeedService,
+    private userService:UserService
   ) {}
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((dataId) => {
@@ -58,7 +57,7 @@ private feedService:FeedService,private userService:UserService
         });
     });
     this.feedService.getRestaurants().subscribe(restaurants=>{
-this.allRestaurants= restaurants;
+    this.allRestaurants= restaurants;
     })
   }
 
@@ -95,10 +94,11 @@ this.allRestaurants= restaurants;
   addToFavorite(){
     this.userService.addToFavorite(this.restaurant)
   }
-  rate(event){
-    //dodaj u bazu ocenjene i proveri koji su restorani ocenjeni
+  rateRestaurant(event){
     this.raiting.nativeElement.disabled=true;
     this.userService.ratedRestaurants(event,this.restaurant);
-// this.restaurantService.raitings(event,this.restaurant)
     }
+    
+
+
 }

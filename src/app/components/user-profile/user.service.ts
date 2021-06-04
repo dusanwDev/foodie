@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { map } from 'rxjs/operators';
 import { Customer } from 'src/app/models/Customer.model';
 import { Restaurant } from 'src/app/models/Restaurant.model';
 import { Utility } from 'src/app/models/Utility.model';
@@ -23,10 +24,11 @@ dishes:{      categoryName: string,
     this.localUser()
     this.afs.collection<Customer>(Utility.firestoreName).doc(this.localUser().localId).valueChanges().subscribe(res=>{
       this.restaurants = res.favoriteRestaurants ? res.favoriteRestaurants : [];
-      this.dishes = res.addedToCart? res.addedToCart : [];
+      this.dishes = res.addedToCart ? res.addedToCart : [];
       this.customer = res
-      console.log("GET",this.restaurants)
+      console.log("SUBS")
     })
+    console.log("TWICE")
   }
 
   private localUser(){
@@ -93,8 +95,18 @@ ratedRestaurants(rate,restaurant : Restaurant){
     this.afs.collection<Restaurant>(Utility.firestoreName).doc(restaurant.restaurantId).update({
       restaurantRaiting:raitingsArr
     })
-    console.log(this.customer.favoriteRestaurants)
   })
   
+}
+calculateTotal(){
+  let total = 0;
+  return this.afs.collection<Customer>(Utility.firestoreName).doc(this.localUser().localId).valueChanges().pipe(map(customer=>
+  {
+      customer.addedToCart.forEach(dish=>{
+        total+=dish.price
+      })
+      return total / 2
+    })
+    )
 }
 }

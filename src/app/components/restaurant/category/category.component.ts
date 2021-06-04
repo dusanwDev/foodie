@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Restaurant } from 'src/app/models/Restaurant.model';
 import { UserService } from '../../user-profile/user.service';
@@ -12,12 +12,14 @@ import { RestaurantService } from '../restaurant.service';
 export class CategoryComponent implements OnInit {
   constructor(
     private restaurantService: RestaurantService,
-    private activatedRoute: ActivatedRoute,private userService:UserService
+    private activatedRoute: ActivatedRoute,private userService:UserService,private renderer:Renderer2
   ) {}
   dishes = [];
   cateogryName: string;
   restaurantId:string;
   displayRestaurantFeaturesBool:boolean;
+  total = 0
+
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((data) => {
       this.cateogryName = data['categoryName'].charAt(0).toUpperCase() +  data['categoryName'].slice(1);;
@@ -82,14 +84,24 @@ export class CategoryComponent implements OnInit {
     } else {
       this.displayRestaurantFeaturesBool = true;
     }
-    console.log(this.displayRestaurantFeaturesBool);
   }
+  @ViewChild("addToCartAllert") addToCartAllert : ElementRef
   addToOrder(dish){
-    console.log("CLIC",dish)
     this.userService.addToCart(dish);
-   }
+    this.renderer.setStyle(this.addToCartAllert.nativeElement,"display","inline")
+
+    setTimeout(() => {
+      this.renderer.setStyle(this.addToCartAllert.nativeElement,"display","none")
+    }, 4000);
+    this.addToCartAllert.nativeElement
+    this.calculateTotal();
+  }
   dishCount(dish?){
-   return typeof dish==="undefined" ? 0: this.userService.dishCount(dish).length;
+  return typeof dish==="undefined" ? 0: this.userService.dishCount(dish).length;
+  }
+  calculateTotal(){
+    this.userService.calculateTotal().subscribe(total=>this.total=total);
+
   }
 }
 

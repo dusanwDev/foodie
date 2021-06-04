@@ -80,7 +80,7 @@
     </div>
     <div class="right">
       <div class="input-field">
-        <select name="" id=""  #raiting ngModel (ngModelChange)="rate($event)">
+        <select name="" id=""  #raiting ngModel (ngModelChange)="rateRestaurant($event)">
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
@@ -101,7 +101,7 @@
         <p>{{restaurant.restaurantDisplayRaiting}}</p>
       </div>
       <div class="raiting-right">
-        <select name="" id=""  #raiting ngModel (ngModelChange)="rate($event)">
+        <select name="" id=""  #raiting ngModel (ngModelChange)="rateRestaurant($event)">
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
@@ -178,6 +178,3 @@
     </div>
   </section>
 </main>
-<!-- <div class="sum">
-      <p>Log in in order 1.600,00RSD</p>
-    </div> -->
