@@ -148,8 +148,10 @@
   .restaurant-name {
     position: absolute;
     bottom: 6em;
-    i {
-      display: none;
+    .restaurant-right {
+      button {
+        display: none;
+      }
     }
     color: white;
     h1 {
@@ -321,7 +323,16 @@
   }
   .categories {
     overflow-x: scroll;
-    margin-top: 0.6em;
+    margin-top: 1.5rem;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* Hide scrollbar for IE, Edge and Firefox */
+    & {
+      -ms-overflow-style: none; /* IE and Edge */
+      scrollbar-width: none; /* Firefox */
+    }
     a {
       text-decoration: none;
       padding: 0 8px;
@@ -558,18 +569,31 @@ main {
       .main-header-inner {
         width: 90%;
         margin: 0 auto;
+
+        .toDashboard {
+          display: none;
+        }
         h1 {
           font-size: 3rem;
         }
         .restaurant-name {
-          i {
-            display: inline;
-            font-size: 1.4rem;
-          }
           display: flex;
           justify-content: space-between;
           align-items: center;
           width: 90%;
+          .restaurant-right {
+            button {
+              cursor: pointer;
+              border: none;
+              outline: none;
+              background-color: transparent;
+              display: inline;
+              color: white;
+              i {
+                font-size: 1.4rem;
+              }
+            }
+          }
         }
       }
     }
