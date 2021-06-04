@@ -103,3 +103,22 @@
     }
   }
 }
+@media screen and (max-width: 1000px) {
+  .ordered-wrapper {
+    flex-direction: column;
+    .food-order,
+    .detail {
+      width: 100%;
+      margin-left: 0;
+    }
+  }
+}
+@media screen and (max-width: 600px) {
+  .ordered-wrapper {
+    flex-direction: column;
+    overflow-x: hidden;
+    .food-order {
+      overflow-x: scroll;
+    }
+  }
+}
