@@ -1,19 +1,18 @@
 <div class="ordered-wrapper">
-  <div class="ordered">
+  <a [routerLink]="" class="ordered" *ngFor="let order of orders">
     <div class="ordered-container">
       <div class="ordered-img-container">
-        <img src="./restaurant-banner.jpg" alt="" />
+        <img [src]="order.image" alt="" />
       </div>
       <div class="ordered-info">
-        <h2>Ostani kod kuće</h2>
+        <h2>{{order.dishName}}</h2>
         <div class="ingridients">
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat et
-            placeat, cum quos nobis voluptatem!
+          {{order.categoryName}}
           </p>
         </div>
         <div class="price-and-order-wrapper">
-          <p class="price">850.00 RSD</p>
+          <p class="price">{{order.price}}</p>
           <div class="rate-food">
             <p>Rate</p>
             <input type="number" />
@@ -23,5 +22,5 @@
         </div>
       </div>
     </div>
-  </div>
+  </a>
 </div>

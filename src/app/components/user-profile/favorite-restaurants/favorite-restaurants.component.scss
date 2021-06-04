@@ -20,6 +20,12 @@
     justify-content: space-between;
     align-items: center;
     padding-top: 1em;
+
+    text-decoration: none;
+    color: black;
+    div {
+      width: 33.3%;
+    }
     .restaurant-left {
       display: flex;
       align-items: center;

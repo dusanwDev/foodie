@@ -2,17 +2,18 @@
   <div class="header">
     <h2>Your favorite objects</h2>
   </div>
-  <div class="favorite-restaurant">
+  <ng-container *ngFor='let restaurant of restaurants' >
+  <a class="favorite-restaurant" [routerLink]="['/restaurant',restaurant.restaurantId]">
     <div class="restaurant-left">
       <div class="restaurant-img">
-        <img src="pexels-alexy-almond-3758133.jpg" alt="" />
+        <img [src]="restaurant.restaurantImage" alt="restaurant Image" />
       </div>
       <div class="restauraunt-name">
-        <h3>Napoli</h3>
-        <p class="restaurant-addres">MEdakovic</p>
+        <h3>{{restaurant.restaurantName}}</h3>
+        <p class="restaurant-addres">{{restaurant.restaurantAddres}}</p>
         <div class="raiting">
           <i class="fas fa-star"></i>
-          <p>4.6</p>
+          <p >{{restaurant.restaurantDisplayRaiting}}</p>
         </div>
       </div>
     </div>
@@ -21,6 +22,7 @@
       <p class="delivery-time-minutes">65'</p>
       <p>Italijanska hrana</p>
     </div>
-    <a href=""> Naručite </a>
-  </div>
+    <a [routerLink]="['/restaurant',restaurant.restaurantId]"> Naručite </a>
+  </a>
+</ng-container>
 </section>

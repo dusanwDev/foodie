@@ -11,6 +11,7 @@ import { Utility } from 'src/app/models/Utility.model';
 })
 export class UserService {
 restaurants:Restaurant[] = []
+user = new BehaviorSubject<string>("")
 dishes:{      categoryName: string,
   dishName: string,
   toppings: [string],
