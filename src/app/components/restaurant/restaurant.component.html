@@ -26,9 +26,9 @@
         <div class="login" *ngIf="displayToDashboardLink(); else toDashboard">
           <a href="">Log In</a><a href="" class="sign-up">Sign up</a>
         </div>
-        <ng-template #toDashboard>
-          <a
-            class="to-Dashboard"
+        <ng-template  #toDashboard>
+          <a 
+            class="to-Dashboard" class="toDashboard"
             [routerLink]="['/restaurant-dashboard', restaurant.restaurantId]"
             >To dashboard</a
           >
@@ -48,7 +48,7 @@
         <div class="open-info">
           <button>
             <p>
-              Open today <strong>{{ restaurant.workTimeFrom }} - {{ restaurant.workTimeTo }}</strong>
+              Open today <strong>{{restaurant.workTimeDaysFrom}} {{restaurant.workTimeDaysTo}}: {{ restaurant.workTimeFrom }} - {{ restaurant.workTimeTo }}</strong>
             </p>
           </button>
         </div>

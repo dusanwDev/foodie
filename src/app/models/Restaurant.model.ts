@@ -18,12 +18,12 @@ export class Restaurant {
     public deliveryPrice:number,
     public dishes: [
       {
+        dishId: string;
         categoryName: string;
         dishName: string;
         toppings: [string];
         price: number;
         about: string;
-        dishId: string;
         ordered?: number;
         image?: string;
         raiting?: number;

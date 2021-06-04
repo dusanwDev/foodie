@@ -35,7 +35,7 @@ export class RestaurantComponent implements OnInit {
     private userService:UserService
   ) {}
   ngOnInit(): void {
-    this.boughtItems()
+    this.boughtItems();
     this.activatedRoute.params.subscribe((dataId) => {
       this.angularFIrestore
         .collection<Restaurant>(Utility.firestoreName)
@@ -45,6 +45,7 @@ export class RestaurantComponent implements OnInit {
           this.restaurant = data;
           this.restaurantService.restaurantBehSubject.next(this.restaurant);
           this.displayRestaurantFeatures();
+          this.displayToDashboardLink()
           //removing category  duplicates
           let arr = [];
           this.restaurant.dishes.forEach((dish) => {
@@ -88,9 +89,9 @@ export class RestaurantComponent implements OnInit {
       email: string;
     } = JSON.parse(localStorage.getItem('user'));
     if (this.restaurant.restaurantId === user.localId) {
-      return false;
-    } else {
       return true;
+    } else {
+      return false;
     }
   }
   addToFavorite(){
@@ -102,6 +103,6 @@ export class RestaurantComponent implements OnInit {
   }
 
   boughtItems(){
-this.userService.itemsCount.subscribe(count=>{this.itemsBought = count}) 
- }
+  this.userService.itemsCount.subscribe(count=>{this.itemsBought = count}) 
+  }
 }

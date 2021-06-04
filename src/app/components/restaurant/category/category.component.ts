@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, QueryList, Renderer2, ViewChild, ViewChildren } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Restaurant } from 'src/app/models/Restaurant.model';
 import { UserService } from '../../user-profile/user.service';
@@ -19,7 +19,9 @@ export class CategoryComponent implements OnInit {
   restaurantId:string;
   displayRestaurantFeaturesBool:boolean;
   total = 0
-
+  // @ViewChildren('topping') toppings:QueryList<ElementRef>;
+@ViewChildren('topping') toppings:QueryList<ElementRef>;
+  @ViewChild("addToCartAllert") addToCartAllert : ElementRef
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((data) => {
       this.cateogryName = data['categoryName'].charAt(0).toUpperCase() +  data['categoryName'].slice(1);;
@@ -85,9 +87,20 @@ export class CategoryComponent implements OnInit {
       this.displayRestaurantFeaturesBool = true;
     }
   }
-  @ViewChild("addToCartAllert") addToCartAllert : ElementRef
+
   addToOrder(dish){
-    this.userService.addToCart(dish);
+      // console.log(dishId,
+      //   categoryName,
+      //   dishName,
+      //   this.toppings[0].nativeElement.textContent,
+      //   price,
+      //   about,)
+      // dish.toppings.forEach((dishInner,index)=>{
+      //   dishInner[index] = this.
+      // })
+      // this.toppings.forEach(topping=>console.log(topping.nativeElement.textContent))
+      console.log("to be added")
+     this.userService.addToCart(dish);
     this.renderer.setStyle(this.addToCartAllert.nativeElement,"display","inline")
 
     setTimeout(() => {

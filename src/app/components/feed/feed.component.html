@@ -18,9 +18,11 @@
     </ng-container> 
     </ul>
     <div class="select">
-      <select name="" id="">
+      <!-- <select name="" id="">
         <option value=""></option>
-      </select>
+      </select> -->
+      <a  [routerLink]='["/user-profile",getUserId().localId]'>Your Profile</a>
+      <button><i class="fas fa-bars"></i></button>
     </div>
   </header>
   <div class="topRated-restaurants">

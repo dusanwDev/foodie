@@ -29,6 +29,7 @@ import { CategoryComponent } from './components/restaurant/category/category.com
 import { InputComponent } from './components/shared/input/input.component';
 import { RestaurantFeedPipe } from './components/feed/restaurant-feed.pipe';
 import { UserService } from './components/user-profile/user.service';
+import { FeedCategoryComponent } from './components/feed/feed-category/feed-category.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { UserService } from './components/user-profile/user.service';
     FilterMenuPipe, 
     CategoryComponent,
     InputComponent,
-    RestaurantFeedPipe
+    RestaurantFeedPipe,
+    FeedCategoryComponent
   ],
   imports: [
     BrowserModule,

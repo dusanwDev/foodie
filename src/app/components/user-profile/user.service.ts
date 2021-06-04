@@ -111,7 +111,6 @@ calculateTotal(){
         count++;
       })
       this.itemsCount.next(count++);
-
       return total ;
     })
     )
