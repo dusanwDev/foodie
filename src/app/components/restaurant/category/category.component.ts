@@ -100,7 +100,7 @@ export class CategoryComponent implements OnInit {
       // })
       // this.toppings.forEach(topping=>console.log(topping.nativeElement.textContent))
       console.log("to be added")
-     this.userService.addToCart(dish);
+    this.userService.addToCart(dish);
     this.renderer.setStyle(this.addToCartAllert.nativeElement,"display","inline")
 
     setTimeout(() => {
@@ -109,6 +109,7 @@ export class CategoryComponent implements OnInit {
     this.addToCartAllert.nativeElement
     this.calculateTotal();
   }
+  
   dishCount(dish?){
   return typeof dish==="undefined" ? 0: this.userService.dishCount(dish).length;
   }

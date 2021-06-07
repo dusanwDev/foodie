@@ -180,6 +180,11 @@ main {
           outline: none;
         }
       }
+      .search {
+        i {
+          display: none;
+        }
+      }
     }
     .topRated-restaurants {
       overflow-x: scroll;

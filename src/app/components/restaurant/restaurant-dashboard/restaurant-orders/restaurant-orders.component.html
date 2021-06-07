@@ -1,14 +1,14 @@
 <div class="ordered-wrapper">
   <div class="food-order">
     <h2>Food Order</h2>
-    <table>
+    <table class="ordered-table">
       <thead>
         <tr>
           <th>Customer</th>
           <th>Addres</th>
           <th>Menu</th>
           <th>Toppings</th>
-          <th>Status</th>
+          <th>Pending orders</th>
         </tr>
       </thead>
       <tbody>
@@ -18,12 +18,13 @@
           <td>Hamburger <span style="display: block">450$</span></td>
           <td>Toppings</td>
           <td>
-            <button class="status">status</button>
+            <!-- <button class="status">status</button>
             <button class="approve-order">
               <i class="fas fa-check"></i></button
             ><button class="dissmis-order">
               <i class="fas fa-times"></i>
-            </button>
+            </button> -->
+            <button (click)="displayDishDialog(dialog)">1</button>
           </td>
         </tr>
         <tr>
@@ -34,6 +35,16 @@
 
           <td><button class="status">status</button></td>
         </tr>
+      </tbody>
+    </table>
+    <table class="orders-table">
+      <thead>
+        <th>Order</th>
+        <th>Pending Order</th>
+      </thead>
+      <tbody>
+        <td>orderName</td>
+        <td><button (click)="displayDishDialog(dialog)">1</button></td>
       </tbody>
     </table>
   </div>
@@ -72,4 +83,41 @@
       <p>2 Items</p>
     </div>
   </div>
+</div>
+
+<div class="order-dialog" #dialog>
+  <table class="ordered-table">
+    <thead>
+      <tr>
+        <th>Customer</th>
+        <th>Addres</th>
+        <th>Menu</th>
+        <th>Toppings</th>
+        <th>Pending orders</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>John Doe</td>
+        <td>Address</td>
+        <td>Hamburger <span style="display: block">450$</span></td>
+        <td>Toppings</td>
+        <td>
+          <button class="approve-order" (click)="approveOrder()">
+            <i class="fas fa-check"></i></button
+          ><button class="dissmis-order" (click)="dismissOrder()">
+            <i class="fas fa-times"></i>
+          </button>
+          <!-- <button (click)="displayDishDialog()">1</button> -->
+        </td>
+      </tr>
+      <tr>
+        <td>John Doe</td>
+        <td>Address</td>
+        <td>Hamburger <span style="display: block">450$</span></td>
+        <td>Toppings</td>
+      </tr>
+    </tbody>
+  </table>
+  <button class="close-dialog" (click)="close(dialog)"><i class="fas fa-times"></i> </button>
 </div>
