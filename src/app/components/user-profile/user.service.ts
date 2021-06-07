@@ -12,7 +12,7 @@ import { Utility } from 'src/app/models/Utility.model';
 export class UserService {
 restaurants:Restaurant[] = []
 user = new BehaviorSubject<string>("")
-dishes:{      categoryName: string,
+dishes:{categoryName: string,
   dishName: string,
   toppings: [string],
   price: number,
@@ -22,15 +22,15 @@ dishes:{      categoryName: string,
   image?: string,
   raiting?: number,}[ ]
   customer:Customer
+  customerBehSubject = new BehaviorSubject<Customer>(null)
   constructor(private afs : AngularFirestore) { 
     this.localUser()
     this.afs.collection<Customer>(Utility.firestoreName).doc(this.localUser().localId).valueChanges().subscribe(res=>{
       this.restaurants = res.favoriteRestaurants ? res.favoriteRestaurants : [];
       this.dishes = res.addedToCart ? res.addedToCart : [];
       this.customer = res
-      console.log("SUBS")
+      this.customerBehSubject.next(this.customer)
     })
-    console.log("TWICE")
   }
 
   private localUser(){
@@ -61,7 +61,6 @@ addToCart(dish){
 }
 dishCount(dish){
   let count = 0;
-  console.log(dish)
   let arr = []
   if(typeof dish === "undefined"){
     count = 0;
@@ -74,7 +73,6 @@ dishCount(dish){
         arr.push(count)
       }
     })
-    console.log(count)
     return arr;
   }
   

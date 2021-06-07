@@ -17,7 +17,6 @@ allRestaurants:Restaurant[]
   ngOnInit(): void {
     this.feedService.getRestaurants().subscribe(restaurants=>{
       this.allRestaurants = restaurants;
-      console.log("ALL",this.allRestaurants)
     })
   this.getUserId()
   }

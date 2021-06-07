@@ -90,7 +90,6 @@ export class RestaurantComponent implements OnInit {
       refreshToken: string;
       email: string;
     } = JSON.parse(localStorage.getItem('user'));
-    console.log("IS IT TRUE",this.restaurant.restaurantId === user.localId)
     if (this.restaurant.restaurantId === user.localId) {
       this.displayToDash= true;
     } else {

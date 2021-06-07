@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, QueryList, Renderer2, ViewChild, ViewChildren } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { take } from 'rxjs/operators';
 import { Restaurant } from 'src/app/models/Restaurant.model';
 import { UserService } from '../../user-profile/user.service';
 import { RestaurantService } from '../restaurant.service';
@@ -19,8 +20,9 @@ export class CategoryComponent implements OnInit {
   restaurantId:string;
   displayRestaurantFeaturesBool:boolean;
   total = 0
+  restaurant:Restaurant
   // @ViewChildren('topping') toppings:QueryList<ElementRef>;
-@ViewChildren('topping') toppings:QueryList<ElementRef>;
+  @ViewChildren('topping') toppings:QueryList<ElementRef>;
   @ViewChild("addToCartAllert") addToCartAllert : ElementRef
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((data) => {
@@ -28,7 +30,7 @@ export class CategoryComponent implements OnInit {
       this.restaurantService.restaurantBehSubject.subscribe((restaurant) => {
         this.restaurantId = restaurant.restaurantId;
         this.displayRestaurantFeatures();
-
+        this.restaurant = restaurant
         this.dishes =restaurant.dishes.filter(
                 (dish) =>  dish.categoryName === data['categoryName']
               ) 
@@ -39,7 +41,6 @@ export class CategoryComponent implements OnInit {
     });
   }
   sortFoodBy(event) {
-    console.log(event);
     switch (event) {
       case 'raiting':
         this.dishes = this.dishes.sort((a, b) => {
@@ -68,6 +69,7 @@ export class CategoryComponent implements OnInit {
   revealOrder(orderItem) {
     if (orderItem.style.height === '' || orderItem.style.height == '0px') {
       orderItem.style.height = 'auto';
+      orderItem.scrollIntoView(true)
     } else {
       orderItem.style.height = '0px';
     }
@@ -80,7 +82,6 @@ export class CategoryComponent implements OnInit {
       refreshToken: string;
       tokenId: string;
     } = JSON.parse(localStorage.getItem('user'));
-    console.log(obj)
     if (this.restaurantId === obj.localId) {
       this.displayRestaurantFeaturesBool = false;
     } else {
@@ -99,15 +100,23 @@ export class CategoryComponent implements OnInit {
       //   dishInner[index] = this.
       // })
       // this.toppings.forEach(topping=>console.log(topping.nativeElement.textContent))
-      console.log("to be added")
     this.userService.addToCart(dish);
     this.renderer.setStyle(this.addToCartAllert.nativeElement,"display","inline")
-
+    
     setTimeout(() => {
       this.renderer.setStyle(this.addToCartAllert.nativeElement,"display","none")
     }, 4000);
     this.addToCartAllert.nativeElement
     this.calculateTotal();
+    this.userService.customerBehSubject.pipe(take(1)).subscribe(customer=>{
+      if(typeof this.restaurant.orderedQue === "undefined"){
+        this.restaurant.orderedQue = [];
+      }
+      this.restaurant.orderedQue.push({customerName:customer.customerName,customerLastname:customer.customerLastName,customerAddres:customer.customerAddres,dishName:dish.dishName,price:dish.price,})
+      this.restaurantService.addToOrderQue(this.restaurant.orderedQue,this.restaurantId);
+  
+    })
+
   }
   
   dishCount(dish?){

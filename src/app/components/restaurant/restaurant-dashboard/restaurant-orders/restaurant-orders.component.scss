@@ -4,23 +4,37 @@
     margin-top: 1rem;
     width: 65%;
     h2 {
-      margin-bottom: 1em;
+      margin: 1em 0;
     }
 
     .orders-table {
       margin-top: 1rem;
       border-collapse: collapse;
+      width: 100%;
       tbody {
+        tr {
+          border-bottom: 1px solid rgb(65, 65, 65);
+        }
         td {
           text-align: center;
-          button {
-            border: 2px solid red;
-            color: red;
+          .approve-order {
+            background-color: green;
+            color: white;
+            border-radius: 25px;
+            padding: 0.3em 0.5em;
+            font-size: 1.1rem;
+            cursor: pointer;
+            border: none;
+          }
+          .dissmis-order {
+            background-color: red;
+            color: white;
             border-radius: 25px;
             padding: 0.3em 0.6em;
             font-size: 1.1rem;
-            background: transparent;
             cursor: pointer;
+            border: none;
+            margin-left: 0.3em;
           }
         }
       }

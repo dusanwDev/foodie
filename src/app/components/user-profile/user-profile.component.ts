@@ -18,7 +18,6 @@ export class UserProfileComponent implements OnInit {
     })
   }
   displayMenu(menu){
-    console.log(menu);
     if(menu.style.width===''|| menu.style.width==='0px' || menu.style.width==='0%'){
   menu.style.width="100%";
     }

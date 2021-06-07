@@ -60,7 +60,6 @@ export class AuthService {
       );
   }
   registerRestaurant(restaurantName: string, email: string, password: string) {
-    console.log('REGISTER', restaurantName);
     return this.http
       .post<AuthResponse>(
         'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCyJA1fT5zaSdDJXn107YnTGLmQnWeW27E',
@@ -135,7 +134,6 @@ export class AuthService {
     );
 
     localStorage.setItem('user', JSON.stringify(user));
-    console.log('LOGIN', name);
     switch (authType) {
       case 'registerRestaurant':
         this.afs.collection(Utility.firestoreName).doc(user.userId).set({
@@ -148,10 +146,10 @@ export class AuthService {
         this.afs
           .collection<Customer>(Utility.firestoreName)
           .doc(user.userId)
-          .set({
+          .update({
             customerName: name,
             customerLastName: lastName,
-            customerId: user.userId
+            customerId: user.userId,
           });
           this.router.navigate(['/user-profile', user.userId]);
 

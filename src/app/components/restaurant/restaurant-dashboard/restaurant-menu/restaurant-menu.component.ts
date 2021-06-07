@@ -96,7 +96,6 @@ export class RestaurantMenuComponent implements OnInit {
           this.addDishForm.reset();
         });
     } else {
-      console.log(this.addDishForm.get('toppings').value);
       this.afsStorage.storage
         .ref()
         .child(this.dishIdEdit)
@@ -104,7 +103,6 @@ export class RestaurantMenuComponent implements OnInit {
         .then((data) => {
           this.restaurant.dishes.filter((dish, index) => {
             if (dish.dishId === this.dishIdEdit) {
-              console.log('IMG PATH UPDAE', data);
               this.restaurant.dishes.splice(index, 1);
               this.restaurant.dishes.push({
                 about: this.addDishForm.get('about').value,
@@ -181,14 +179,12 @@ export class RestaurantMenuComponent implements OnInit {
     raiting?: number;
   }[] = [];
   search() {
-    console.log(this.userInput);
     this.restaurant.dishes.filter((dish) => {
       if (
         dish.categoryName === this.userInput ||
         dish.dishName === this.userInput
       ) {
         this.filtered.push(dish);
-        console.log(this.filtered);
       } else if (this.userInput === '') {
         this.filtered = [];
       }

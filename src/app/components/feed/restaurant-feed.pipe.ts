@@ -8,7 +8,6 @@ export class RestaurantFeedPipe implements PipeTransform {
 
   transform(restaurants:Restaurant[], userInput:string) {
     let reg = new RegExp(`^${userInput}`, 'gi');
-    console.log("INPUT",userInput)
     return userInput
       ? restaurants.filter((item) => {
           return item.restaurantName.match(reg);

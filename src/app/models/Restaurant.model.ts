@@ -1,3 +1,5 @@
+import { Customer } from "./Customer.model";
+
 export class Restaurant {
   constructor(
     public restaurantName: string,
@@ -16,7 +18,7 @@ export class Restaurant {
     public restaurantRaiting:number[],
     public restaurantDisplayRaiting:number,
     public deliveryPrice:number,
-    public dishes:     {
+    public dishes:{
       dishId: string;
       categoryName: string;
       dishName: string;
@@ -26,8 +28,20 @@ export class Restaurant {
       ordered?: number;
       image?: string;
       raiting?: number;
-    }[
-  
-    ]
+    }[],
+    public orderedQue:{
+      dishName: string;
+      price: number;
+      customerName:string;
+      customerAddres:string;
+      customerLastname:string
+    }[],
+    public inOrderProcess:{
+      dishName: string;
+      price: number;
+      customerName:string;
+      customerAddres:string;
+      customerLastname:string
+    }[]  
   ) {}
 }

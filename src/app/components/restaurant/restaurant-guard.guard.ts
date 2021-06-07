@@ -25,7 +25,6 @@ export class RestaurantGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    console.log(route.params['restaurantIdDashboard']);
     return this.afs
       .collection<Restaurant>(Utility.firestoreName)
       .doc(route.params['restaurantIdDashboard'])

@@ -30,6 +30,5 @@ export class UserOrdersComponent implements OnInit {
     
   }
   rateRestaurant(rate){
-console.log("Rate",rate)
   }
 }

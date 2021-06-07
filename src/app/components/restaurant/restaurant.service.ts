@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { BehaviorSubject } from 'rxjs';
+import { Customer } from 'src/app/models/Customer.model';
 import { Restaurant } from 'src/app/models/Restaurant.model';
 import { Utility } from 'src/app/models/Utility.model';
 
@@ -14,6 +15,21 @@ export class RestaurantService {
   raitings(raiting:string,restaurant:Restaurant){
     this.afs.collection<Restaurant>(Utility.firestoreName).doc(restaurant.restaurantId).update({
 
+    })
+  }
+  addToOrderQue(orderedQue,restaurantId:string){
+  this.afs.collection<Restaurant>(Utility.firestoreName).doc(restaurantId).update({
+    orderedQue:orderedQue
+  })
+  }
+  approveOrder(inOrderProcess,restaurantId:string){
+  this.afs.collection<Restaurant>(Utility.firestoreName).doc(restaurantId).update({
+    inOrderProcess:inOrderProcess
+  })
+  }
+  removeOrder(orderQue,restaurantId:string){
+    this.afs.collection<Restaurant>(Utility.firestoreName).doc(restaurantId).update({
+      orderedQue:orderQue
     })
   }
 }

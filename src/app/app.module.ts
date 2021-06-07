@@ -30,6 +30,7 @@ import { InputComponent } from './components/shared/input/input.component';
 import { RestaurantFeedPipe } from './components/feed/restaurant-feed.pipe';
 import { UserService } from './components/user-profile/user.service';
 import { FeedCategoryComponent } from './components/feed/feed-category/feed-category.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { FeedCategoryComponent } from './components/feed/feed-category/feed-cate
     CategoryComponent,
     InputComponent,
     RestaurantFeedPipe,
-    FeedCategoryComponent
+    FeedCategoryComponent,
+    CheckoutComponent
   ],
   imports: [
     BrowserModule,

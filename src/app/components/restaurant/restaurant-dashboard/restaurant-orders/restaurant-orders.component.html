@@ -7,23 +7,28 @@
           <th>Customer</th>
           <th>Addres</th>
           <th>Menu</th>
-          <th>Toppings</th>
           <th>Pending orders</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr *ngFor="let inOrderProcess of restaurant.inOrderProcess">
+          <td>{{inOrderProcess.customerName}} {{inOrderProcess.customerLastname}}</td>
+          <td>{{inOrderProcess.customerAddres}}</td>
+          <td>{{inOrderProcess.dishName}}</td>
+          <td><button class="status">status</button></td>
+        </tr>
+      <!-- <tr>
           <td>John Doe</td>
           <td>Address</td>
           <td>Hamburger <span style="display: block">450$</span></td>
           <td>Toppings</td>
           <td>
-            <!-- <button class="status">status</button>
+            <button class="status">status</button>
             <button class="approve-order">
               <i class="fas fa-check"></i></button
             ><button class="dissmis-order">
               <i class="fas fa-times"></i>
-            </button> -->
+            </button>
             <button (click)="displayDishDialog(dialog)">1</button>
           </td>
         </tr>
@@ -34,17 +39,35 @@
           <td>Toppings</td>
 
           <td><button class="status">status</button></td>
-        </tr>
+        </tr> -->
       </tbody>
     </table>
+    <h2>Pending Orders</h2>
+
     <table class="orders-table">
       <thead>
-        <th>Order</th>
-        <th>Pending Order</th>
+        <tr>
+          <th>Customer</th>
+          <th>Addres</th>
+          <th>Menu</th>
+          <th>Aprove orders</th>
+        </tr>
       </thead>
       <tbody>
-        <td>orderName</td>
-        <td><button (click)="displayDishDialog(dialog)">1</button></td>
+        <tr *ngFor="let ordered of restaurant.orderedQue ; let i = index">
+          <td>{{ordered.customerName}} {{ordered.customerLastname}}</td>
+          <td>{{ordered.customerAddres}}</td>
+          <td>{{ordered.dishName}} <span style="display: block">450$</span></td>
+          <td>
+            <button class="approve-order" (click)="approveOrder(ordered,i)">
+              <i class="fas fa-check"></i></button
+            ><button class="dissmis-order" (click)="dismissOrder()">
+              <i class="fas fa-times"></i>
+            </button>
+            <!-- <button (click)="displayDishDialog()">1</button> -->
+          </td>
+        </tr>
+
       </tbody>
     </table>
   </div>
@@ -86,7 +109,7 @@
 </div>
 
 <div class="order-dialog" #dialog>
-  <table class="ordered-table">
+  <table >
     <thead>
       <tr>
         <th>Customer</th>
@@ -97,17 +120,17 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
+      <tr >
         <td>John Doe</td>
         <td>Address</td>
         <td>Hamburger <span style="display: block">450$</span></td>
         <td>Toppings</td>
         <td>
-          <button class="approve-order" (click)="approveOrder()">
+          <!-- <button class="approve-order" (click)="approveOrder()">
             <i class="fas fa-check"></i></button
           ><button class="dissmis-order" (click)="dismissOrder()">
             <i class="fas fa-times"></i>
-          </button>
+          </button> -->
           <!-- <button (click)="displayDishDialog()">1</button> -->
         </td>
       </tr>

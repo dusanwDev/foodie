@@ -21,7 +21,6 @@ export class FavoriteRestaurantsComponent implements OnInit {
 
       this.afs.collection<Customer>(Utility.firestoreName).doc(data).valueChanges().subscribe(userData=>{
       this.restaurants.push(...userData.favoriteRestaurants)
-      console.log(this.restaurants)
       })
     })
   }
