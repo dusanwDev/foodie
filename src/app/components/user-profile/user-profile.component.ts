@@ -23,7 +23,7 @@ export class UserProfileComponent implements OnInit {
   menu.style.width="100%";
     }
     else{
-  menu.style.width="0%"
+      menu.style.width="0%"
     }
   }
 }

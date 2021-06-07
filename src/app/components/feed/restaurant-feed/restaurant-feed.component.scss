@@ -18,7 +18,7 @@
         color: black;
       }
       p {
-        color: rgb(184, 184, 184);
+        color: rgb(75, 75, 75);
       }
     }
     .delivery-time {
@@ -110,6 +110,11 @@
           p {
             font-weight: bolder;
           }
+        }
+      }
+      .header-left {
+        p {
+          margin-top: 0.4em;
         }
       }
     }

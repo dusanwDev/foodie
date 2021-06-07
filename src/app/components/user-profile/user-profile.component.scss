@@ -16,6 +16,10 @@
       justify-content: space-between;
       align-items: center;
       @include flex(space-between, center, row);
+      a {
+        text-decoration: none;
+        color: white;
+      }
       .right-header {
         button {
           margin-left: 0.5em;
