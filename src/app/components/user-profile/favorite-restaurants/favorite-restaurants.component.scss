@@ -85,6 +85,36 @@
     .favorite-restaurant {
       flex-direction: column;
       align-items: flex-start;
+      .restaurant-left {
+        flex-direction: column;
+        width: 100%;
+        .restaurant-img {
+          width: 100%;
+          height: 150px;
+        }
+        .restauraunt-name {
+          width: 100%;
+          text-align: left;
+          margin-left: 0;
+          margin-top: 1em;
+          h3 {
+            font-size: 1.8rem;
+          }
+        }
+      }
+      .delivery-time {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        align-items: center;
+        h3 {
+          color: rgb(161, 161, 161);
+        }
+        & :nth-child(2) {
+          color: black;
+          font-weight: bolder;
+        }
+      }
     }
     a {
       width: 100%;

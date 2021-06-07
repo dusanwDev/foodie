@@ -26,7 +26,10 @@ export class RestaurantComponent implements OnInit {
   userInput:string;
   total = 0
   itemsBought = 0;
+  displayToDash = false;
   @ViewChild("raiting") raiting : ElementRef
+
+
   constructor(
     private restaurantService: RestaurantService,
     private activatedRoute: ActivatedRoute,
@@ -79,7 +82,6 @@ export class RestaurantComponent implements OnInit {
       this.displayRestaurantFeaturesBool = true;
     }
   }
-displayToDash = false;
   displayToDashboardLink() {
     const user: {
       localId: string;

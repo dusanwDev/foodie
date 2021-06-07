@@ -132,8 +132,8 @@
   <div class="categories">
     <a  [routerLink]="['category-name', 'all']">All</a>
     <a
+    *ngFor="let category of categories"
       [routerLink]="['category-name', category]"
-      *ngFor="let category of categories"
       >{{ category }}</a
     >
   </div>

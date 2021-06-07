@@ -12,12 +12,13 @@ import { UserService } from '../user.service';
 export class UserOrdersComponent implements OnInit {
 
   constructor(private afs:AngularFirestore,private userService:UserService) { }
-orders :{    dishId: string;
+  orders :{    dishId: string;
   categoryName: string;
   dishName: string;
   toppings: [string];
   price: number;
   about: string;}[] = []
+
   ngOnInit(): void {
     this.userService.user.subscribe(userid=>{
       this.afs.collection<Customer>(Utility.firestoreName).doc(userid).valueChanges().subscribe(data=>{
@@ -28,5 +29,7 @@ orders :{    dishId: string;
     })
     
   }
-
+  rateRestaurant(rate){
+console.log("Rate",rate)
+  }
 }

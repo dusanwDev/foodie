@@ -16,18 +16,18 @@ export class Restaurant {
     public restaurantRaiting:number[],
     public restaurantDisplayRaiting:number,
     public deliveryPrice:number,
-    public dishes: [
-      {
-        dishId: string;
-        categoryName: string;
-        dishName: string;
-        toppings: [string];
-        price: number;
-        about: string;
-        ordered?: number;
-        image?: string;
-        raiting?: number;
-      }
+    public dishes:     {
+      dishId: string;
+      categoryName: string;
+      dishName: string;
+      toppings: [string];
+      price: number;
+      about: string;
+      ordered?: number;
+      image?: string;
+      raiting?: number;
+    }[
+  
     ]
   ) {}
 }
