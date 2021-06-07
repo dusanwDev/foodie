@@ -4,19 +4,20 @@
   background-color: white;
   z-index: 99999999999999999;
   // margin-top: -6rem;
-  width: 90%;
+  width: 80%;
   margin: -3rem auto 0 auto;
   border-radius: 8px;
   box-shadow: 2px 2px 2px 2px rgb(216, 216, 216);
 
   .ordered {
-    display: block;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     color: black;
     text-decoration: none;
     border-bottom: 3px solid rgb(216, 216, 216);
-    width: 80%;
-    margin: 0 auto;
-    padding: 1em 0;
+    pointer-events: none;
+    padding: 1em 0.8em;
     .ingridients {
       margin: 0.5em 0;
     }
@@ -70,12 +71,28 @@
         }
       }
     }
+    .proggres {
+      h3 {
+        background-color: rgb(0, 207, 0);
+        padding: 0.5em 0.6em;
+        border-radius: 7px;
+      }
+    }
   }
 }
 
 @media screen and (max-width: 500px) {
   .ordered-wrapper {
     .ordered {
+      flex-direction: column;
+      .proggres {
+        width: 100%;
+        h3 {
+          width: 100%;
+          display: inline-block;
+          text-align: center;
+        }
+      }
       .ordered-container {
         flex-direction: column;
         .ordered-img-container {

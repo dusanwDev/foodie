@@ -113,6 +113,14 @@ calculateTotal(){
       return total ;
     })
     )
-}
+  }
 
+  updateCustomerProfile(customerData:{name:string,lastName:string,addres:string,phone:number}){
+    this.afs.collection<Customer>(Utility.firestoreName).doc(this.localUser().localId).update({
+      customerName:customerData.name,
+      customerLastName:customerData.lastName,
+      customerAddres:customerData.addres,
+      customerPhone:customerData.phone
+    })
+  }
 }

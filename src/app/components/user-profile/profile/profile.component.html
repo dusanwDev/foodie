@@ -1,30 +1,31 @@
-<div class="profile">
+<div class="profile" *ngIf="customer">
   <div class="profile-left">
     <div class="img">
       <img src="https://assets.donesi.rs/gravatar/no-avatar.png" alt="" />
     </div>
-    <h3>Dušan Nikolić</h3>
+    <h3>{{customer.customerName}} {{customer.customerLastName}}</h3>
   </div>
   <div class="profile-right">
     <h1>Your Details</h1>
-    <form action="">
+    <form [formGroup]="updateProfile" (ngSubmit)=submit()>
       <div class="form-control">
-        <label for="">Ime</label>
-        <input type="text" />
-      </div>
-      <div class="form-control">
-        <label for="">Prezime</label>
-        <input type="text" />
+        <label for="">Name</label>
+        <input type="text" formControlName="name"/>
       </div>
       <div class="form-control">
-        <label for="">Adresa</label>
-        <input type="text" />
+        <label for="">Last Name</label>
+        <input type="text" formControlName="lastname"/>
       </div>
-      <div class="form-control image-control">
-        <label for=""> Add image<i class="fas fa-image"></i></label>
-        <input type="file" />
+      <div class="form-control">
+        <label for="">Adress</label>
+        <input type="text" formControlName="addres"/>
       </div>
-      <button>Save changes</button>
+      <div class="form-control">
+        <label for="">Phone</label>
+        <input type="number" formControlName="phone"/>
+      </div>
+
+      <button type="submit" >Save changes</button>
     </form>
   </div>
 </div>

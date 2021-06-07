@@ -15,7 +15,14 @@
           <td>{{inOrderProcess.customerName}} {{inOrderProcess.customerLastname}}</td>
           <td>{{inOrderProcess.customerAddres}}</td>
           <td>{{inOrderProcess.dishName}}</td>
-          <td><button class="status">status</button></td>
+          <!-- <td><button class="status">status</button></td>  -->
+          <td>{{inOrderProcess.phone}}</td>
+          <td><select name="" class="status" id="" #selectList  (change)="preparingStage(selectList)">
+            <option value="Pending">Pending</option>
+            <option value="Preparing">Preparing</option>
+            <option  value="On your way">Delivery</option>
+            <option  value="Delivery">Delivered</option>
+          </select></td>
         </tr>
       <!-- <tr>
           <td>John Doe</td>
@@ -71,7 +78,7 @@
       </tbody>
     </table>
   </div>
-  <div class="detail">
+  <div class="detail" >
     <!-- most ordered top reated -->
     <h2>Detail order</h2>
     <header>
