@@ -23,14 +23,14 @@
           </ng-container> 
           </ul>
         </div>
-        <div class="login" *ngIf="displayToDashboardLink(); else toDashboard">
+        <div class="login" *ngIf="!displayToDash; else toDashboard">
           <a href="">Log In</a><a href="" class="sign-up">Sign up</a>
         </div>
         <ng-template  #toDashboard>
           <a 
             class="to-Dashboard" class="toDashboard"
             [routerLink]="['/restaurant-dashboard', restaurant.restaurantId]"
-            >To dashboard</a
+            >To dashboard </a
           >
         </ng-template>
         <div class="user-btns">

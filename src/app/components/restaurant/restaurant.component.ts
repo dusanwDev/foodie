@@ -79,8 +79,8 @@ export class RestaurantComponent implements OnInit {
       this.displayRestaurantFeaturesBool = true;
     }
   }
-
-  displayToDashboardLink(): boolean {
+displayToDash = false;
+  displayToDashboardLink() {
     const user: {
       localId: string;
       idToken: string;
@@ -88,10 +88,11 @@ export class RestaurantComponent implements OnInit {
       refreshToken: string;
       email: string;
     } = JSON.parse(localStorage.getItem('user'));
+    console.log("IS IT TRUE",this.restaurant.restaurantId === user.localId)
     if (this.restaurant.restaurantId === user.localId) {
-      return true;
+      this.displayToDash= true;
     } else {
-      return false;
+      this.displayToDash= false;
     }
   }
   addToFavorite(){
