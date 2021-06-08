@@ -102,7 +102,6 @@ export class CategoryComponent implements OnInit {
       // this.toppings.forEach(topping=>console.log(topping.nativeElement.textContent))
     this.userService.addToCart(dish);
     this.renderer.setStyle(this.addToCartAllert.nativeElement,"display","inline")
-    
     setTimeout(() => {
       this.renderer.setStyle(this.addToCartAllert.nativeElement,"display","none")
     }, 4000);
@@ -116,6 +115,7 @@ export class CategoryComponent implements OnInit {
       this.restaurantService.addToOrderQue(this.restaurant.orderedQue,this.restaurantId);
   
     })
+    this.userService.countOrderedDishes()
 
   }
   
