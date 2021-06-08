@@ -11,17 +11,17 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let inOrderProcess of restaurant.inOrderProcess">
+        <tr *ngFor="let inOrderProcess of restaurant.inOrderProcess;let i = index">
           <td>{{inOrderProcess.customerName}} {{inOrderProcess.customerLastname}}</td>
           <td>{{inOrderProcess.customerAddres}}</td>
           <td>{{inOrderProcess.dishName}}</td>
           <!-- <td><button class="status">status</button></td>  -->
           <td>{{inOrderProcess.phone}}</td>
-          <td><select name="" class="status" id="" #selectList  (change)="preparingStage(selectList)">
+          <td><select name="" class="status" #selectList (change)="preparingStage(selectList,inOrderProcess,i)">
             <option value="Pending">Pending</option>
             <option value="Preparing">Preparing</option>
-            <option  value="On your way">Delivery</option>
-            <option  value="Delivery">Delivered</option>
+            <option  value="Delivery">Delivery</option>
+            <option  value="Delivered">Delivered</option>
           </select></td>
         </tr>
       <!-- <tr>

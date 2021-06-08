@@ -18,6 +18,7 @@ dishes:{categoryName: string,
   price: number,
   about: string,
   dishId: string,
+  orderProgress:string,
   ordered?: number,
   image?: string,
   raiting?: number,}[ ]
@@ -99,7 +100,7 @@ ratedRestaurants(rate,restaurant : Restaurant){
   })
   
 }
-itemsCount = new BehaviorSubject<number>(0);
+// itemsCount = new BehaviorSubject<number>();
 calculateTotal(){
   let total = 0;
   let count = 0;
@@ -109,10 +110,15 @@ calculateTotal(){
         total+=dish.price
         count++;
       })
-      this.itemsCount.next(count++);
       return total ;
     })
     )
+  }
+
+  countOrderedDishes(){
+    return this.afs.collection<Customer>(Utility.firestoreName).doc(this.localUser().localId).valueChanges().pipe(take(1),map(customer=>{
+      return customer.addedToCart.length
+    }))
   }
 
   updateCustomerProfile(customerData:{name:string,lastName:string,addres:string,phone:number}){
@@ -121,6 +127,16 @@ calculateTotal(){
       customerLastName:customerData.lastName,
       customerAddres:customerData.addres,
       customerPhone:customerData.phone
+    })
+  }
+
+  updateOrderStatus(inOrderProcessDish){
+    console.log(inOrderProcessDish.dishId)
+    let foundIndex = this.dishes.findIndex(x=>x.dishId === inOrderProcessDish.dishId)
+    this.dishes[foundIndex] = inOrderProcessDish;
+    console.log("TO BE UPDATED",foundIndex)
+    this.afs.collection<Customer>(Utility.firestoreName).doc(this.localUser().localId).update({
+      addedToCart:this.dishes
     })
   }
 }

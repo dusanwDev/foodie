@@ -34,7 +34,6 @@
           >
         </ng-template>
         <div class="user-btns">
-          <button class="" [routerLink]="['/restaurant-dashboard',restaurant.restaurantId]"><i class="fas fa-user"></i></button>
           <button class=""><i class="fas fa-hamburger"></i></button>
         </div>
       </div>
@@ -53,7 +52,7 @@
           </button>
         </div>
         <div class="bought-items">
-          <p><i class="fas fa-shopping-bag"></i> <strong>{{itemsBought}} items</strong></p>
+          <button (click)="displayBoughtItems(boughtItemsDisplay)"><i class="fas fa-shopping-bag"></i> <strong>{{itemsBought}} items</strong></button>
         </div>
       </div>
       <div class="restaurant-name">
@@ -181,3 +180,7 @@
     </div>
   </section>
 </main>
+
+<aside class="bought-items-display">
+  
+</aside>

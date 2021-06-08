@@ -2,7 +2,7 @@
   <a [routerLink]="" class="ordered" *ngFor="let order of orders">
     <div class="ordered-container">
       <div class="ordered-img-container">
-        <img [src]="order.image" alt="" />
+        <img [src]="order.dishImage" alt="" />
       </div>
       <div class="ordered-info">
         <h2>{{order.dishName}}</h2>
@@ -28,8 +28,8 @@
         </div>
       </div>
     </div>
-    <div class="proggres">
-      <h3>Delivered</h3>
+    <div class="proggres" [ngClass]="{'red':order.orderProcess==='Preparing','yellow':order.orderProcess==='Delivery','green':order.orderProcess==='Delivered'}">
+      <h3>{{order.orderProcess}}</h3>
     </div>
   </a>
 </div>

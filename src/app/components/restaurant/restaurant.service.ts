@@ -10,6 +10,8 @@ import { Utility } from 'src/app/models/Utility.model';
 })
 export class RestaurantService {
   restaurantBehSubject = new BehaviorSubject<Restaurant>(null);
+orderStage = new BehaviorSubject<string>(null)
+
   constructor(private afs : AngularFirestore) {}
 
   raitings(raiting:string,restaurant:Restaurant){
@@ -18,6 +20,7 @@ export class RestaurantService {
     })
   }
   addToOrderQue(orderedQue,restaurantId:string){
+    console.log("QQ",orderedQue)
   this.afs.collection<Restaurant>(Utility.firestoreName).doc(restaurantId).update({
     orderedQue:orderedQue
   })
@@ -30,6 +33,11 @@ export class RestaurantService {
   removeOrder(orderQue,restaurantId:string){
     this.afs.collection<Restaurant>(Utility.firestoreName).doc(restaurantId).update({
       orderedQue:orderQue
+    })
+  }
+  removeFromInOrderProcess(inOrderProcess,restaurantId:string){
+    this.afs.collection<Restaurant>(Utility.firestoreName).doc(restaurantId).update({
+      inOrderProcess:inOrderProcess
     })
   }
 }

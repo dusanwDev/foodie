@@ -112,7 +112,7 @@ export class CategoryComponent implements OnInit {
       if(typeof this.restaurant.orderedQue === "undefined"){
         this.restaurant.orderedQue = [];
       }
-      this.restaurant.orderedQue.push({customerName:customer.customerName,customerLastname:customer.customerLastName,customerAddres:customer.customerAddres,dishName:dish.dishName,price:dish.price,})
+      this.restaurant.orderedQue.push({customerName:customer.customerName,customerLastname:customer.customerLastName,customerAddres:customer.customerAddres,dishName:dish.dishName,price:dish.price,dishId:dish.dishId,dishImage:dish.image})
       this.restaurantService.addToOrderQue(this.restaurant.orderedQue,this.restaurantId);
   
     })

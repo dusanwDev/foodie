@@ -72,10 +72,26 @@
       }
     }
     .proggres {
-      h3 {
-        background-color: rgb(0, 207, 0);
-        padding: 0.5em 0.6em;
-        border-radius: 7px;
+      &.red {
+        h3 {
+          background-color: red;
+          padding: 0.5em 0.6em;
+          border-radius: 7px;
+        }
+      }
+      &.yellow {
+        h3 {
+          background-color: yellow;
+          padding: 0.5em 0.6em;
+          border-radius: 7px;
+        }
+      }
+      &.green {
+        h3 {
+          background-color: green;
+          padding: 0.5em 0.6em;
+          border-radius: 7px;
+        }
       }
     }
   }

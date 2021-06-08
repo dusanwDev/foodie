@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { UserService } from 'src/app/components/user-profile/user.service';
 import { Restaurant } from 'src/app/models/Restaurant.model';
 import { RestaurantService } from '../../restaurant.service';
 
@@ -9,7 +10,7 @@ import { RestaurantService } from '../../restaurant.service';
 })
 export class RestaurantOrdersComponent implements OnInit {
 
-  constructor(private renderer:Renderer2,private restaurantService : RestaurantService) { }
+  constructor(private renderer:Renderer2,private restaurantService : RestaurantService,private userService : UserService) { }
   restaurant:Restaurant
   @ViewChild("dialog") dialog : ElementRef
   @ViewChild("selectList") pendingOrders : ElementRef
@@ -39,25 +40,31 @@ export class RestaurantOrdersComponent implements OnInit {
   close(dialog : ElementRef){
   this.renderer.setStyle(dialog,"display","none")
   }
-  preparingStage(selectListValue ){
-switch (selectListValue.value) {
+  preparingStage(selectListValue,inOrderProcessDish,index ){
+    inOrderProcessDish.orderProcess=selectListValue.value
+    console.log("INDEX",index)
+    // this.restaurantService.orderStage.next(selectListValue.value)
+     this.userService.updateOrderStatus(inOrderProcessDish)
+  switch (selectListValue.value) {
 
   case "Preparing":
     this.renderer.setStyle(this.pendingOrders.nativeElement,"backgroundColor","red")
 
     break;
-  case "On your way":
+  case "Delivery":
     this.renderer.setStyle(this.pendingOrders.nativeElement,"backgroundColor","yellow")
 
     break;
-  case "Delivery":
+  case "Delivered":
     this.renderer.setStyle(this.pendingOrders.nativeElement,"backgroundColor","green")
-
+    this.restaurant.inOrderProcess.splice(index,1)
+    this.restaurantService.removeFromInOrderProcess(this.restaurant.inOrderProcess,this.restaurant.restaurantId)
     break;
 
   default:
     break;
-}
+  }
+
   }
 
 }

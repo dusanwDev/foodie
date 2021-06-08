@@ -15,6 +15,7 @@ export class Customer {
       toppings: [string];
       price: number;
       about: string;
+      orderProgress:string,
       ordered?: number;
       dishId: string;
       image?: string;

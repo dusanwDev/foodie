@@ -34,14 +34,16 @@ export class Restaurant {
       price: number;
       customerName:string;
       customerAddres:string;
-      customerLastname:string
+      customerLastname:string;
+      dishId:number;dishImage:string
     }[],
     public inOrderProcess:{
       dishName: string;
       price: number;
       customerName:string;
       customerAddres:string;
-      customerLastname:string
+      customerLastname:string,dishId:number
+      orderProcess:string;dishImage:string
     }[]  
   ) {}
 }

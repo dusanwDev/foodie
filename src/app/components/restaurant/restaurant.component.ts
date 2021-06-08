@@ -105,6 +105,7 @@ export class RestaurantComponent implements OnInit {
   }
 
   boughtItems(){
-  this.userService.itemsCount.subscribe(count=>{this.itemsBought = count}) 
+   this.userService.countOrderedDishes().subscribe(count=>this.itemsBought = count)
+
   }
 }
