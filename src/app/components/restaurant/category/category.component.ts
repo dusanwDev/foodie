@@ -90,16 +90,6 @@ export class CategoryComponent implements OnInit {
   }
 
   addToOrder(dish){
-      // console.log(dishId,
-      //   categoryName,
-      //   dishName,
-      //   this.toppings[0].nativeElement.textContent,
-      //   price,
-      //   about,)
-      // dish.toppings.forEach((dishInner,index)=>{
-      //   dishInner[index] = this.
-      // })
-      // this.toppings.forEach(topping=>console.log(topping.nativeElement.textContent))
     this.userService.addToCart(dish);
     this.renderer.setStyle(this.addToCartAllert.nativeElement,"display","inline")
     setTimeout(() => {
@@ -111,7 +101,7 @@ export class CategoryComponent implements OnInit {
       if(typeof this.restaurant.orderedQue === "undefined"){
         this.restaurant.orderedQue = [];
       }
-      this.restaurant.orderedQue.push({customerName:customer.customerName,customerLastname:customer.customerLastName,customerAddres:customer.customerAddres,dishName:dish.dishName,price:dish.price,dishId:dish.dishId,dishImage:dish.image})
+      this.restaurant.orderedQue.push({customerName:customer.customerName,customerLastname:customer.customerLastName,customerAddres:customer.customerAddres,dishName:dish.dishName,price:dish.price,dishId:dish.dishId,dishImage:dish.image,restaurantId:this.restaurant.restaurantId})
       this.restaurantService.addToOrderQue(this.restaurant.orderedQue,this.restaurantId);
   
     })

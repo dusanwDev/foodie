@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, QueryList, Renderer2, ViewChild, ViewChildren } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Customer } from 'src/app/models/Customer.model';
 import { Utility } from 'src/app/models/Utility.model';
@@ -20,13 +20,16 @@ export class UserOrdersComponent implements OnInit {
   price: number;
   about: string;}[] = []
   @ViewChild("proggres") proggres :ElementRef 
+  @ViewChildren ("raiting") raiting : QueryList<ElementRef>
   stage = "Pending"
 
   ngOnInit(): void {
+
     this.userService.user.subscribe(userid=>{
       this.afs.collection<Customer>(Utility.firestoreName).doc(userid).valueChanges().subscribe(data=>{
         if(typeof data.addedToCart !== "undefined"){
         this.orders.push(...data.addedToCart)
+        this.orders = this.orders.filter((v,i,a)=>a.findIndex(t=>(JSON.stringify(t.dishId) === JSON.stringify(v.dishId)))===i)
       }
       })
     })
@@ -45,8 +48,18 @@ export class UserOrdersComponent implements OnInit {
       }
     
     })  
+ 
   }
-  rateRestaurant(rate){
+
+  rateRestaurant(rate,dish,index){
+  if(typeof dish.raiting=== "undefined" ){
+    dish.raiting =[]
+  }
+  console.log("INDEX",this.raiting.toArray()[index].nativeElement.disabled)
+  this.raiting.toArray()[index].nativeElement.disabled=true
+  console.log(dish)
+    dish.raiting.push(+rate)
+    this.userService.rateFood(dish)
   }
   orderStage(){
 

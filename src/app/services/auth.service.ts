@@ -144,9 +144,9 @@ export class AuthService {
         break;
       case 'registerUser':
         this.afs
-          .collection<Customer>(Utility.firestoreName)
+          .collection(Utility.firestoreName)
           .doc(user.userId)
-          .update({
+          .set({
             customerName: name,
             customerLastName: lastName,
             customerId: user.userId,

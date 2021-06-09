@@ -27,7 +27,7 @@ export class Restaurant {
       about: string;
       ordered?: number;
       image?: string;
-      raiting?: number;
+      raiting?: number[];restaurantId:string
     }[],
     public orderedQue:{
       dishName: string;
@@ -35,7 +35,7 @@ export class Restaurant {
       customerName:string;
       customerAddres:string;
       customerLastname:string;
-      dishId:number;dishImage:string
+      dishId:number;dishImage:string;restaurantId:string
     }[],
     public inOrderProcess:{
       dishName: string;
@@ -43,7 +43,7 @@ export class Restaurant {
       customerName:string;
       customerAddres:string;
       customerLastname:string,dishId:number
-      orderProcess:string;dishImage:string
+      orderProcess:string;dishImage:string;restaurantId:string
     }[]  
   ) {}
 }

@@ -19,7 +19,7 @@ export class Customer {
       ordered?: number;
       dishId: string;
       image?: string;
-      raiting?: number;
+      raiting?: number[];restaurantId:string
     }[]
   ) {}
 }

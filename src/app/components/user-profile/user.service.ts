@@ -21,7 +21,7 @@ dishes:{categoryName: string,
   orderProgress:string,
   ordered?: number,
   image?: string,
-  raiting?: number,}[ ]
+  raiting?: number[],restaurantId:string}[ ]
   customer:Customer
   customerBehSubject = new BehaviorSubject<Customer>(null)
   constructor(private afs : AngularFirestore) { 
@@ -53,7 +53,6 @@ dishes:{categoryName: string,
     })
   }
 addToCart(dish){
-
   this.dishes.push(dish);
   // this.dishes = this.dishes.filter((v,i,a)=>a.findIndex(t=>(JSON.stringify(t.dishId) === JSON.stringify(v.dishId)))===i)
   this.afs.collection<Customer>(Utility.firestoreName).doc(this.localUser().localId).update({
@@ -137,6 +136,14 @@ calculateTotal(){
     console.log("TO BE UPDATED",foundIndex)
     this.afs.collection<Customer>(Utility.firestoreName).doc(this.localUser().localId).update({
       addedToCart:this.dishes
+    })
+  }
+
+  rateFood(dish){
+    let foundIndex = this.dishes.findIndex(x=>x.dishId===dish.dishId)
+    this.dishes[foundIndex] = dish
+    this.afs.collection<Restaurant>(Utility.firestoreName).doc(dish.restaurantId).update({
+      dishes:this.dishes
     })
   }
 }

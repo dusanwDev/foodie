@@ -1,8 +1,8 @@
 <div class="ordered-wrapper">
-  <a [routerLink]="" class="ordered" *ngFor="let order of orders">
+  <div [routerLink]="" class="ordered" *ngFor="let order of orders; let i = index">
     <div class="ordered-container">
       <div class="ordered-img-container">
-        <img [src]="order.dishImage" alt="" />
+        <img [src]="order.image" alt="" />
       </div>
       <div class="ordered-info">
         <h2>{{order.dishName}}</h2>
@@ -14,7 +14,7 @@
         <div class="price-and-order-wrapper">
           <p class="price">{{order.price}}$</p>
           <div class="input-field">
-            <select name="" id=""  #raiting ngModel (ngModelChange)="rateRestaurant($event)">
+            <select name="" id=""  #raiting ngModel (ngModelChange)="rateRestaurant($event,order,i)">
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -31,5 +31,5 @@
     <div class="proggres" [ngClass]="{'red':order.orderProcess==='Preparing','yellow':order.orderProcess==='Delivery','green':order.orderProcess==='Delivered'}">
       <h3>{{order.orderProcess}}</h3>
     </div>
-  </a>
+  </div>
 </div>
