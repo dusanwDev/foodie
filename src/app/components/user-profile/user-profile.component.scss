@@ -29,6 +29,7 @@
           border: none;
           outline: none;
           cursor: pointer;
+          display: none;
         }
         a {
           text-decoration: none;
@@ -100,7 +101,7 @@
       background-color: transparent;
       border: none;
       outline: none;
-      color: white;
+      color: white;cursor: pointer;
     }
   }
   ul {

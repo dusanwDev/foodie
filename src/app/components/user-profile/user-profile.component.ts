@@ -19,7 +19,7 @@ export class UserProfileComponent implements OnInit {
   }
   displayMenu(menu){
     if(menu.style.width===''|| menu.style.width==='0px' || menu.style.width==='0%'){
-  menu.style.width="100%";
+    menu.style.width="100%";
     }
     else{
       menu.style.width="0%"

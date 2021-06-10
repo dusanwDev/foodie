@@ -58,6 +58,13 @@
         padding: 0.3em;
         border-radius: 4px;
         border: 2px solid rgb(207, 206, 206);
+        outline: none;
+        &.ng-invalid.ng-touched{
+          border: 2px solid red;
+        }
+        &.ng-valid.ng-touched{
+          border: 2px solid green;
+        }
       }
       label {
         margin-bottom: 0.7em;
@@ -66,7 +73,7 @@
       .form-control:last-child {
         margin-left: 1em;
       }
-    }
+   
     .form-control {
       label {
         display: block;
@@ -95,8 +102,31 @@
       padding: 0.5em 1em;
       margin-top: 1rem;
       border-radius: 8px;
-      cursor: pointer;
+      pointer-events: none;
+      opacity: .6;
+    }
+    &.ng-touched.ng-valid{
+      button{
+        background-color: #ffc200;
+        opacity: 1;
+        cursor: pointer;
+
+      }
     }
   }
+  }
   @include responsiveProfile();
+}
+.save-changes-alert{
+  position: fixed;
+  top: 2em;
+  right: 3em;
+  color: white;
+  background-color: green;
+  padding: 1em;
+  display: none;
+  border-radius: 4px;
+}
+span{
+  color: red;
 }

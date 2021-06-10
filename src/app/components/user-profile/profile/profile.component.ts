@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Customer } from 'src/app/models/Customer.model';
@@ -13,6 +13,7 @@ import { UserService } from '../user.service';
 export class ProfileComponent implements OnInit {
 updateProfile:FormGroup
   constructor(private userService: UserService,private afs:AngularFirestore) { }
+  @ViewChild("changes") changesAlert : ElementRef
 customer:Customer;
   ngOnInit(): void {
     this.userService.user.subscribe(userId=>{
@@ -29,5 +30,11 @@ customer:Customer;
   }
   submit(){
   this.userService.updateCustomerProfile({name:this.updateProfile.get("name").value,lastName:this.updateProfile.get("lastname").value,addres:this.updateProfile.get("addres").value,phone:this.updateProfile.get("phone").value})
+  this.changesAlert.nativeElement.style.display="block";
+  this.updateProfile.reset()
+  console.log(this.changesAlert)
+  setTimeout(() => {
+    this.changesAlert.nativeElement.style.display="none"
+  }, 3000);
   }
 }

@@ -11,21 +11,68 @@
       <div class="form-control">
         <label for="">Name</label>
         <input type="text" formControlName="name"/>
+
       </div>
+      <span
+      *ngIf="
+        !updateProfile.get('name').valid &&
+        updateProfile.get('name').touched
+      "
+    >
+      <span *ngIf="updateProfile.get('name').errors['required']"
+        >This field is required</span
+      >
+    </span>
       <div class="form-control">
         <label for="">Last Name</label>
         <input type="text" formControlName="lastname"/>
+
       </div>
+      <span
+      *ngIf="
+        !updateProfile.get('lastname').valid &&
+        updateProfile.get('lastname').touched
+      "
+    >
+      <span *ngIf="updateProfile.get('lastname').errors['required']"
+        >This field is required</span
+      >
+    </span>
       <div class="form-control">
         <label for="">Adress</label>
         <input type="text" formControlName="addres"/>
+
       </div>
+      <span
+      *ngIf="
+        !updateProfile.get('addres').valid &&
+        updateProfile.get('addres').touched
+      "
+    >
+      <span *ngIf="updateProfile.get('addres').errors['required']"
+        >This field is required</span
+      >
+    </span>
       <div class="form-control">
         <label for="">Phone</label>
         <input type="number" formControlName="phone"/>
       </div>
 
-      <button type="submit" >Save changes</button>
+      <span style="display: block;"
+      *ngIf="
+        !updateProfile.get('phone').valid &&
+        updateProfile.get('phone').touched
+      "
+    >
+      <span *ngIf="updateProfile.get('phone').errors['required']"
+        >This field is required</span
+      >
+    </span>
+      <button type="submit" [disabled] = updateProfile.valid>Save changes</button>
     </form>
   </div>
+</div>
+
+<div class="save-changes-alert" #changes>
+  <h1>Changes Saved</h1>
 </div>

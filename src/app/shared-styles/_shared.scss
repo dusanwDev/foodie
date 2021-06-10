@@ -90,6 +90,13 @@
           margin-left: 0.3em;
         }
       }
+      .header-upper{
+        .right-header{
+          button{
+            display: inline;
+          }
+        }
+      }
     }
   }
   //   @media screen and (max-width: 300px) {
