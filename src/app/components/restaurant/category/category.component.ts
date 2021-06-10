@@ -15,17 +15,7 @@ export class CategoryComponent implements OnInit {
     private restaurantService: RestaurantService,
     private activatedRoute: ActivatedRoute,private userService:UserService,private renderer:Renderer2
   ) {}
-  dishes :{      dishId: string;
-    categoryName: string;
-    dishName: string;
-    toppings: [string];
-    price: number;
-    about: string;
-    raitingToDisplay?:number,
-    ordered?: number;
-    image?: string;
-    raiting?: number[];
-    restaurantId:string}[]= [];
+  dishes :{dishId: string; categoryName: string; dishName: string; toppings: [string]; price: number; about: string;ordered?: number;image?: string; restaurantId:string}[]= [];
   cateogryName: string;
   restaurantId:string;
   displayRestaurantFeaturesBool:boolean;
@@ -41,36 +31,22 @@ export class CategoryComponent implements OnInit {
         this.restaurantId = restaurant.restaurantId;
         this.displayRestaurantFeatures();
         this.restaurant = restaurant
-        let sum = 0
-        this.dishes =restaurant.dishes.filter(
+        
+        
+        this.dishes = restaurant.dishes.filter(
                 (dish) =>  dish.categoryName === data['categoryName']
               ) 
               if(this.dishes.length===0){
                 this.dishes =restaurant.dishes
               }
-            this.dishes.forEach(dish=>{
-              if(typeof dish.raiting !== "undefined"){
-              dish.raiting.map(raiting=>{
-                sum +=raiting
-            }) 
-            dish.raitingToDisplay  = sum / dish.raiting.length
-          }
-            }) 
+   
             
       });
     });
   }
   sortFoodBy(event) {
     switch (event) {
-      case 'raiting':
-        this.dishes = this.dishes.sort((a, b) => {
-          return b.raitingToDisplay - a.raitingToDisplay;
-        });
-        break;
-      // case 'fastest':this.restaurant.dishes.sort((a,b)=>{
 
-      // })
-      //   break;
       case 'lowestprice':
         this.dishes = this.dishes.sort((a, b) => {
           return a.price - b.price;

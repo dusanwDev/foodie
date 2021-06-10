@@ -98,9 +98,9 @@ ratedRestaurants(rate,restaurant : Restaurant){
     this.customer.ratedRestaurants.forEach((raiting)=>{
       raitingsArr.push(+raiting.raiting)
     })
-
+    let display = raitingsArr.reduce((a, b) => a + b, 0) / raitingsArr.length
     this.afs.collection<Restaurant>(Utility.firestoreName).doc(restaurant.restaurantId).update({
-      restaurantRaiting:raitingsArr
+      restaurantRaiting:raitingsArr,restaurantDisplayRaiting:display
     })
   })
   
