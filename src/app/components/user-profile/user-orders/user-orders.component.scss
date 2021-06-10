@@ -8,7 +8,20 @@
   margin: -3rem auto 0 auto;
   border-radius: 8px;
   box-shadow: 2px 2px 2px 2px rgb(216, 216, 216);
-
+  &-h2{
+    padding-left: .7em;
+    padding-top: .5em;
+  }
+.search-input{
+  padding-top: 1rem;
+  padding-left: 1rem;
+  input{
+    width: 100%;
+    padding: .2em;
+    outline: none;
+    font-size: 1.3rem;
+  }
+}
   .ordered {
     display: flex;
     justify-content: space-between;

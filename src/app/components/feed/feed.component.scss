@@ -8,6 +8,9 @@ main {
     align-items: center;
     margin-top: 1.5rem;
     position: relative;
+    input{
+      outline: none;
+    }
     ul {
       position: absolute;
       top: 2em;

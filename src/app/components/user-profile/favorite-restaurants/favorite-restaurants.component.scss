@@ -8,6 +8,16 @@
   width: 80%;
   margin: -3rem auto 0 auto;
   padding: 0.9em;
+  .search-input{
+    padding-top: 1rem;
+    padding-left: 1rem;
+    input{
+      width: 100%;
+      padding: .2em;
+      outline: none;
+      font-size: 1.3rem;
+    }
+  }
   .header {
     padding-bottom: 1rem;
     border-bottom: 2px solid rgb(228, 228, 228);

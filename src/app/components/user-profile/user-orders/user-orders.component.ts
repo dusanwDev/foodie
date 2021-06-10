@@ -18,11 +18,12 @@ export class UserOrdersComponent implements OnInit {
   dishName: string;
   toppings: [string];
   price: number;
-  about: string;}[] = []
+  about: string;
+restaurantId:string}[] = []
   @ViewChild("proggres") proggres :ElementRef 
   @ViewChildren ("raiting") raiting : QueryList<ElementRef>
   stage = "Pending"
-
+  userInput:string
   ngOnInit(): void {
 
     this.userService.user.subscribe(userid=>{

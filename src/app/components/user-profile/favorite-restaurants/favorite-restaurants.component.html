@@ -2,7 +2,8 @@
   <div class="header">
     <h2>Your favorite objects</h2>
   </div>
-  <ng-container *ngFor='let restaurant of restaurants' >
+  <div class="search-input"><input type="text" placeholder="Search" [(ngModel)]=userInput></div>
+  <ng-container *ngFor='let restaurant of restaurants | restaurantFavorite:userInput' >
   <a class="favorite-restaurant" [routerLink]="['/restaurant',restaurant.restaurantId]">
     <div class="restaurant-left">
       <div class="restaurant-img">

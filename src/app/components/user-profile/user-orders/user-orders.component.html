@@ -1,5 +1,10 @@
 <div class="ordered-wrapper">
-  <div [routerLink]="" class="ordered" *ngFor="let order of orders; let i = index">
+  <h2 class="ordered-wrapper-h2">Orders</h2>
+
+  <div class="search-input">
+  <input type="text" placeholder="Search" [(ngModel)]=userInput>
+</div>
+  <a [routerLink]="['/restaurant',order.restaurantId]" class="ordered" *ngFor="let order of orders | userOrders:userInput; let i = index ">
     <div class="ordered-container">
       <div class="ordered-img-container">
         <img [src]="order.image" alt="" />
@@ -21,5 +26,5 @@
     <div class="proggres" [ngClass]="{'red':order.orderProcess==='Preparing','yellow':order.orderProcess==='Delivery','green':order.orderProcess==='Delivered'}">
       <h3>{{order.orderProcess}}</h3>
     </div>
-  </div>
+  </a>
 </div>

@@ -42,7 +42,6 @@ export class RestaurantOrdersComponent implements OnInit {
   }
   preparingStage(selectListValue,inOrderProcessDish,index ){
     inOrderProcessDish.orderProcess=selectListValue.value
-    // this.restaurantService.orderStage.next(selectListValue.value)
      this.userService.updateOrderStatus(inOrderProcessDish)
   switch (selectListValue.value) {
 

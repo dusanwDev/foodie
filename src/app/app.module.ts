@@ -31,6 +31,8 @@ import { RestaurantFeedPipe } from './components/feed/restaurant-feed.pipe';
 import { UserService } from './components/user-profile/user.service';
 import { FeedCategoryComponent } from './components/feed/feed-category/feed-category.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
+import { RestaurantFavoritePipe } from './components/user-profile/favorite-restaurants/restaurant-favorite.pipe';
+import { UserOrdersPipe } from './components/user-profile/user-orders/user-orders.pipe';
 
 @NgModule({
   declarations: [
@@ -55,7 +57,9 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
     InputComponent,
     RestaurantFeedPipe,
     FeedCategoryComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    RestaurantFavoritePipe,
+    UserOrdersPipe
   ],
   imports: [
     BrowserModule,

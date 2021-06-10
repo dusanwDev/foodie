@@ -15,7 +15,7 @@ export class FavoriteRestaurantsComponent implements OnInit {
   constructor(private afs:AngularFirestore,private userService:UserService) { }
 
   restaurants:Restaurant[] = []
-
+  userInput: string;
   ngOnInit(): void {
     this.userService.user.subscribe(data=>{
 
