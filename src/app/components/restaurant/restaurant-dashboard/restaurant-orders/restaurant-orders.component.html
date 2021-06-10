@@ -7,7 +7,9 @@
           <th>Customer</th>
           <th>Addres</th>
           <th>Menu</th>
+          <th>Phone</th>
           <th>Pending orders</th>
+
         </tr>
       </thead>
       <tbody>
@@ -16,7 +18,7 @@
           <td>{{inOrderProcess.customerAddres}}</td>
           <td>{{inOrderProcess.dishName}}</td>
           <!-- <td><button class="status">status</button></td>  -->
-          <td>{{inOrderProcess.phone}}</td>
+          <td>0{{inOrderProcess.phone}}</td>
           <td><select name="" class="status" #selectList [id]=i (change)="preparingStage(selectList,inOrderProcess,i)">
             <option value="Pending">Pending</option>
             <option value="Preparing">Preparing</option>
