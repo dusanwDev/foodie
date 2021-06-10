@@ -145,11 +145,5 @@ calculateTotal(){
     })
   }
 
-  rateFood(dish){
-    let foundIndex = this.dishes.findIndex(x=>x.dishId===dish.dishId)
-    this.dishes[foundIndex] = dish
-    this.afs.collection<Restaurant>(Utility.firestoreName).doc(dish.restaurantId).update({
-      dishes:this.dishes
-    })
-  }
+
 }

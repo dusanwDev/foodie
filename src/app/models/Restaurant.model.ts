@@ -25,10 +25,9 @@ export class Restaurant {
       toppings: [string];
       price: number;
       about: string;
-      raitingToDisplay?:number,
+      restaurantId:string;
       ordered?: number;
       image?: string;
-      raiting?: number[];restaurantId:string
     }[],
     public orderedQue:{
       dishName: string;

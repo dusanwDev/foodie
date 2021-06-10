@@ -51,16 +51,7 @@ export class UserOrdersComponent implements OnInit {
  
   }
 
-  rateRestaurant(rate,dish,index){
-  if(typeof dish.raiting=== "undefined" ){
-    dish.raiting =[]
-  }
-  console.log("INDEX",this.raiting.toArray()[index].nativeElement.disabled)
-  this.raiting.toArray()[index].nativeElement.disabled=true
-  console.log(dish)
-    dish.raiting.push(+rate)
-    this.userService.rateFood(dish)
-  }
+
   orderStage(){
 
   }

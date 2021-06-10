@@ -6,8 +6,6 @@
     </ng-template> -->
     <h1>{{cateogryName}}</h1>
     <select name="" id="" #selectList (change)="sortFoodBy(selectList.value)">
-      <option value="raiting">Raiting</option>
-      <option value="fastest">Fastest to serve</option>
       <option value="lowestprice">Lowest Price</option>
       <option value="highestprice">Highest Price</option>
     </select>
@@ -29,7 +27,6 @@
         </div>
         <div class="price-and-order-wrapper">
           <p class="price">{{ dish.price }}$</p>
-          <p class="raiting-item"><i class="fas fa-star"></i> {{dish.raitingToDisplay}} / 5</p>
         </div>
       </div>
     </div>
