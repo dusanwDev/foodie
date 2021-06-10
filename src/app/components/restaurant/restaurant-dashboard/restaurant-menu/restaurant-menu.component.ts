@@ -18,6 +18,7 @@ export class RestaurantMenuComponent implements OnInit {
   editMode = false;
   dishId: string;
   userInput: string;
+  selectedFile: File = null;
   constructor(
     private restaurantService: RestaurantService,
     private afs: AngularFirestore,
@@ -110,7 +111,7 @@ export class RestaurantMenuComponent implements OnInit {
                 dishName: this.addDishForm.get('dishName').value,
                 price: this.addDishForm.get('price').value,
                 toppings: this.addDishForm.get('toppings').value.split(' '),
-restaurantId:this.restaurant.restaurantId,
+                restaurantId:this.restaurant.restaurantId,
                 dishId: this.dishIdEdit,
                 image: data,
               });
@@ -153,7 +154,7 @@ restaurantId:this.restaurant.restaurantId,
         dishes: this.restaurant.dishes,
       });
   }
-  selectedFile: File = null;
+
   onFileSelectedListener(event) {
     this.selectedFile = <File>event.target.files[0];
     if (this.selectedFile.type === 'image/jpeg' || 'image/png') {
@@ -166,29 +167,5 @@ restaurantId:this.restaurant.restaurantId,
     } else {
       alert('FILE IS NOT A IMAGE');
     }
-  }
-  filtered: {
-    categoryName: string;
-    dishName: string;
-    toppings: [string];
-    price: number;
-    about: string;
-    restaurantId:string;
-    ordered?: number;
-    dishId: string;
-    image?: string;
-    raiting?: number[];
-  }[] = [];
-  search() {
-    this.restaurant.dishes.filter((dish) => {
-      if (
-        dish.categoryName === this.userInput ||
-        dish.dishName === this.userInput
-      ) {
-        this.filtered.push(dish);
-      } else if (this.userInput === '') {
-        this.filtered = [];
-      }
-    });
   }
 }

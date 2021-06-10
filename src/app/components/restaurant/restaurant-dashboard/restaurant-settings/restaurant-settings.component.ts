@@ -15,6 +15,7 @@ export class RestaurantSettingsComponent implements OnInit {
   settingsForm: FormGroup;
   selectedFile: File;
   randomNumber: string;
+  selectedFileBanner: File;
 
   constructor(
     private restaurantService: RestaurantService,
@@ -78,5 +79,4 @@ workTimeDaysTo: new FormControl(null, Validators.required),
       alert('FILE IS NOT A IMAGE');
     }
   }
-  selectedFileBanner: File;
 }

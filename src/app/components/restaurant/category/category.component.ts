@@ -88,14 +88,10 @@ export class CategoryComponent implements OnInit {
     }, 4000);
     this.calculateTotal();
     this.pushToOrderQue(dish)
-    this.dishCount(dish)
 
   }
   
-  dishCount(dish?){
-  // return typeof dish==="undefined" ? 0: this.userService.dishCount(dish).length;
-   this.userService.getOrderCount(dish)
-  }
+
   calculateTotal(){
     this.userService.calculateTotal().subscribe(total=>this.total=total );
   }
