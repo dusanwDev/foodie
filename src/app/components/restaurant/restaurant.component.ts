@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { ActivatedRoute } from '@angular/router';
+import { Customer } from 'src/app/models/Customer.model';
 import { Restaurant } from 'src/app/models/Restaurant.model';
 import { Utility } from 'src/app/models/Utility.model';
 import { FeedService } from '../feed/feed.service';
@@ -38,7 +39,9 @@ export class RestaurantComponent implements OnInit {
     private userService:UserService
   ) {}
   ngOnInit(): void {
-    this.boughtItems();
+this.angularFIrestore.collection<Customer>(Utility.firestoreName).doc(this.userService.localUser().localId).valueChanges().subscribe(data=>{
+  this.itemsBought = data.addedToCart.length
+})
     this.activatedRoute.params.subscribe((dataId) => {
       this.angularFIrestore
         .collection<Restaurant>(Utility.firestoreName)
@@ -105,7 +108,6 @@ export class RestaurantComponent implements OnInit {
   }
 
   boughtItems(){
-   this.userService.countOrderedDishes().subscribe(count=>this.itemsBought = count)
-
+this.userService.countOrderBehSubject.subscribe(data=>this.itemsBought = data)
   }
 }

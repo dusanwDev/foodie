@@ -21,9 +21,11 @@ dishes:{categoryName: string,
   orderProgress:string,
   ordered?: number,
   image?: string,
-  raiting?: number[],restaurantId:string}[ ]
+  raiting?: number[],
+  restaurantId:string}[ ]
   customer:Customer
   customerBehSubject = new BehaviorSubject<Customer>(null)
+  countOrderBehSubject= new BehaviorSubject<number>(0)
   constructor(private afs : AngularFirestore) { 
     this.localUser()
     this.afs.collection<Customer>(Utility.firestoreName).doc(this.localUser().localId).valueChanges().subscribe(res=>{
@@ -34,7 +36,7 @@ dishes:{categoryName: string,
     })
   }
 
-  private localUser(){
+   localUser(){
     const user: {
       localId: string;
       idToken: string;
@@ -61,6 +63,7 @@ addToCart(dish){
   this.afs.collection<Customer>(Utility.firestoreName).doc(this.localUser().localId).update({
     addedToCart:this.dishes
   })
+  return this.dishes.length
 }
 dishCount(dish){
   let count = 0;
@@ -118,9 +121,9 @@ calculateTotal(){
   }
 
   countOrderedDishes(){
-    return this.afs.collection<Customer>(Utility.firestoreName).doc(this.localUser().localId).valueChanges().pipe(take(1),map(customer=>{
-      return customer.addedToCart.length
-    }))
+  if(typeof this.dishes !== "undefined"){
+     this.countOrderBehSubject.next(this.dishes.length)
+  }
   }
 
   updateCustomerProfile(customerData:{name:string,lastName:string,addres:string,phone:number}){

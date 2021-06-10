@@ -49,10 +49,12 @@ export class CategoryComponent implements OnInit {
                 this.dishes =restaurant.dishes
               }
             this.dishes.forEach(dish=>{
+              if(typeof dish.raiting !== "undefined"){
               dish.raiting.map(raiting=>{
                 sum +=raiting
             }) 
             dish.raitingToDisplay  = sum / dish.raiting.length
+          }
             }) 
             
       });
@@ -124,7 +126,7 @@ export class CategoryComponent implements OnInit {
       this.restaurantService.addToOrderQue(this.restaurant.orderedQue,this.restaurantId);
   
     })
-    this.userService.countOrderedDishes()
+    // this.userService.countOrderedDishes()
 
   }
   
