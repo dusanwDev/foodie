@@ -25,6 +25,7 @@ export class Restaurant {
       toppings: [string];
       price: number;
       about: string;
+      raitingToDisplay?:number,
       ordered?: number;
       image?: string;
       raiting?: number[];restaurantId:string

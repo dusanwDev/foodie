@@ -15,7 +15,17 @@ export class CategoryComponent implements OnInit {
     private restaurantService: RestaurantService,
     private activatedRoute: ActivatedRoute,private userService:UserService,private renderer:Renderer2
   ) {}
-  dishes = [];
+  dishes :{      dishId: string;
+    categoryName: string;
+    dishName: string;
+    toppings: [string];
+    price: number;
+    about: string;
+    raitingToDisplay?:number,
+    ordered?: number;
+    image?: string;
+    raiting?: number[];
+    restaurantId:string}[]= [];
   cateogryName: string;
   restaurantId:string;
   displayRestaurantFeaturesBool:boolean;
@@ -31,12 +41,20 @@ export class CategoryComponent implements OnInit {
         this.restaurantId = restaurant.restaurantId;
         this.displayRestaurantFeatures();
         this.restaurant = restaurant
+        let sum = 0
         this.dishes =restaurant.dishes.filter(
                 (dish) =>  dish.categoryName === data['categoryName']
               ) 
               if(this.dishes.length===0){
                 this.dishes =restaurant.dishes
               }
+            this.dishes.forEach(dish=>{
+              dish.raiting.map(raiting=>{
+                sum +=raiting
+            }) 
+            dish.raitingToDisplay  = sum / dish.raiting.length
+            }) 
+            
       });
     });
   }
@@ -44,7 +62,7 @@ export class CategoryComponent implements OnInit {
     switch (event) {
       case 'raiting':
         this.dishes = this.dishes.sort((a, b) => {
-          return b.raiting - a.raiting;
+          return b.raitingToDisplay - a.raitingToDisplay;
         });
         break;
       // case 'fastest':this.restaurant.dishes.sort((a,b)=>{
@@ -102,6 +120,7 @@ export class CategoryComponent implements OnInit {
         this.restaurant.orderedQue = [];
       }
       this.restaurant.orderedQue.push({customerName:customer.customerName,customerLastname:customer.customerLastName,customerAddres:customer.customerAddres,dishName:dish.dishName,price:dish.price,dishId:dish.dishId,dishImage:dish.image,restaurantId:this.restaurant.restaurantId})
+      console.log("ESKETIT",this.restaurant.orderedQue)
       this.restaurantService.addToOrderQue(this.restaurant.orderedQue,this.restaurantId);
   
     })

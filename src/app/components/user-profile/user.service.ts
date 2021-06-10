@@ -53,6 +53,9 @@ dishes:{categoryName: string,
     })
   }
 addToCart(dish){
+  if(typeof this.dishes === "undefined"){
+    this.dishes = []
+  }
   this.dishes.push(dish);
   // this.dishes = this.dishes.filter((v,i,a)=>a.findIndex(t=>(JSON.stringify(t.dishId) === JSON.stringify(v.dishId)))===i)
   this.afs.collection<Customer>(Utility.firestoreName).doc(this.localUser().localId).update({
