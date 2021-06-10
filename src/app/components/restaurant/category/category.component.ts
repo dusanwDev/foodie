@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, QueryList, Renderer2, ViewChild, ViewChildren } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { take } from 'rxjs/operators';
+import { mergeMap, take } from 'rxjs/operators';
 import { Restaurant } from 'src/app/models/Restaurant.model';
 import { UserService } from '../../user-profile/user.service';
 import { RestaurantService } from '../restaurant.service';
@@ -23,6 +23,7 @@ export class CategoryComponent implements OnInit {
   restaurant:Restaurant
   // @ViewChildren('topping') toppings:QueryList<ElementRef>;
   @ViewChildren('topping') toppings:QueryList<ElementRef>;
+  @ViewChildren('orderItem') orderItem:QueryList<ElementRef>;
   @ViewChild("addToCartAllert") addToCartAllert : ElementRef
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((data) => {
@@ -31,16 +32,10 @@ export class CategoryComponent implements OnInit {
         this.restaurantId = restaurant.restaurantId;
         this.displayRestaurantFeatures();
         this.restaurant = restaurant
-        
-        
-        this.dishes = restaurant.dishes.filter(
-                (dish) =>  dish.categoryName === data['categoryName']
-              ) 
-              if(this.dishes.length===0){
-                this.dishes =restaurant.dishes
-              }
-   
-            
+        this.dishes = restaurant.dishes.filter((dish) =>  dish.categoryName === data['categoryName']) 
+        if(this.dishes.length===0){
+          this.dishes =restaurant.dishes
+        }
       });
     });
   }
@@ -91,8 +86,20 @@ export class CategoryComponent implements OnInit {
     setTimeout(() => {
       this.renderer.setStyle(this.addToCartAllert.nativeElement,"display","none")
     }, 4000);
-    this.addToCartAllert.nativeElement
     this.calculateTotal();
+    this.pushToOrderQue(dish)
+    this.dishCount(dish)
+
+  }
+  
+  dishCount(dish?){
+  // return typeof dish==="undefined" ? 0: this.userService.dishCount(dish).length;
+   this.userService.getOrderCount(dish)
+  }
+  calculateTotal(){
+    this.userService.calculateTotal().subscribe(total=>this.total=total );
+  }
+  pushToOrderQue(dish){
     this.userService.customerBehSubject.pipe(take(1)).subscribe(customer=>{
       if(typeof this.restaurant.orderedQue === "undefined"){
         this.restaurant.orderedQue = [];
@@ -100,18 +107,7 @@ export class CategoryComponent implements OnInit {
       this.restaurant.orderedQue.push({customerName:customer.customerName,customerLastname:customer.customerLastName,customerAddres:customer.customerAddres,dishName:dish.dishName,price:dish.price,dishId:dish.dishId,dishImage:dish.image,restaurantId:this.restaurant.restaurantId})
       console.log("ESKETIT",this.restaurant.orderedQue)
       this.restaurantService.addToOrderQue(this.restaurant.orderedQue,this.restaurantId);
-  
     })
-    // this.userService.countOrderedDishes()
-
-  }
-  
-  dishCount(dish?){
-  return typeof dish==="undefined" ? 0: this.userService.dishCount(dish).length;
-  }
-  calculateTotal(){
-    this.userService.calculateTotal().subscribe(total=>this.total=total );
-
   }
 }
 

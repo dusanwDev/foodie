@@ -145,5 +145,17 @@ calculateTotal(){
     })
   }
 
+getOrderCount(dish){
+  this.dishes.forEach
+  let count = 0;
+  return this.afs.collection<Customer>(Utility.firestoreName).doc(this.localUser().localId).valueChanges().pipe(map(data=>{
+  data.addedToCart.forEach(data=>{
+    if(data.dishId === dish.dishId){
+      count++
+    }
+    return count;
+  })
+  }))
 
+}
 }

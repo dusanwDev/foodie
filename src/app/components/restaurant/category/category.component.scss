@@ -45,7 +45,21 @@ header {
       padding: 0.3em 0;
       margin-left: 0.8em;
       width: 60%;
-
+display: flex;
+align-items: center;
+justify-content: space-between;
+.order-btn{
+  button{
+    color: white;
+    background-color: #00CD04;
+    padding: .6em 1.2em;
+    font-size: 1.2rem;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+}
       .price-and-order-wrapper {
         display: flex;
         justify-content: space-between;
@@ -83,15 +97,10 @@ header {
     }
   }
   .order {
-    margin-top: 1rem;
-    height: 0;
     .order-count {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-top: 1px solid rgb(228, 228, 228);
-      border-bottom: 1px solid rgb(228, 228, 228);
-      padding: 0.6em 1.2em;
       button {
         // display: block;
         width: 30%;
@@ -107,45 +116,6 @@ header {
         position: relative;
         border: none;
         outline: none;
-      }
-    }
-
-    .toppings {
-      padding: 0.6em 1.2em;
-      .toppings-inner {
-        margin-top: 0.8em;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        .choose-up-to {
-          color: #0084bd;
-        }
-      }
-      .toppings-dropdown {
-        margin-top: 1rem;
-        background-color: #f8f8f8;
-        padding: 0.4em 0.8em;
-        .form-control {
-          margin: 0.6em 0;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          // .topping-price {
-          //   font-size: 0.875rem;
-          // }
-          .form-controll-inner {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            input {
-              background-color: #009de0;
-            }
-            p {
-              margin-left: 0.6em;
-              font-size: 1.2rem;
-            }
-          }
-        }
       }
     }
   }

@@ -1,9 +1,6 @@
 <ng-container>
   <header>
-    <!-- <h1 *ngIf="dishes.length > 0; else all">{{ dishes[0].categoryName }}</h1>
-    <ng-template #all>
-      <h1>All</h1>
-    </ng-template> -->
+
     <h1>{{cateogryName}}</h1>
     <select name="" id="" #selectList (change)="sortFoodBy(selectList.value)">
       <option value="lowestprice">Lowest Price</option>
@@ -11,11 +8,12 @@
     </select>
   </header>
   <div class="menu-item" *ngFor="let dish of dishes">
-    <div class="menu-item-container" #menuItem (click)="revealOrder(orderItem)">
+    <div class="menu-item-container" #menuItem >
       <div class="menu-item-img-container">
         <img [src]="dish.image" alt="Food Image" loading="lazy" />
       </div>
       <div class="menu-item-info">
+        <div class="menu-item-info-left">
         <h2>{{ dish.dishName }}</h2>
         <div class="ingridients">
           <!-- <p>
@@ -29,36 +27,12 @@
           <p class="price">{{ dish.price }}$</p>
         </div>
       </div>
-    </div>
-    <div class="order" #orderItem>
-      <div class="order-count" *ngIf="displayRestaurantFeaturesBool">
-        <p >Count: {{ dishCount()}}</p>
-        <button (click)=addToOrder(dish)>Add to Order</button>
+        <div class="order-btn" >
+            <button (click)=addToOrder(dish)>Add to Order</button> 
+        </div>
       </div>
-      <!-- <div class="toppings">
-        <ng-content
-          *ngFor="let dish of dishes; let i = index"
-        ></ng-content>
-        <div class="toppings-inner">
-          <p>Toppings</p>
-          <p class="choose-up-to">
-            Choose up to {{ dish.toppings.length }} Additiional items
-          </p>
-        </div>
-        <div class="toppings-dropdown">
-          <div
-            class="form-control"
-            *ngFor="let topping of dish.toppings; let length = index"
-          >
-            <div class="form-controll-inner">
-              <input type="checkbox" #topping/>
-              <p>{{ topping }}</p>
-            </div>
-            <p class="topping-price">+ RSD 190.00</p>
-          </div>
-        </div>
-      </div> -->
     </div>
+
   </div>
 </ng-container>
 

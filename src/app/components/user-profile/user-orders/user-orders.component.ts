@@ -34,7 +34,6 @@ export class UserOrdersComponent implements OnInit {
       })
     })
     this.restaurantService.orderStage.subscribe(stage=>{
-      console.log("STAGE",stage)
       switch (stage) {
         case "Preparing": this.stage = stage,this.renderer2.setStyle(this.proggres,"backgroundColor","grey")
           break;
@@ -49,10 +48,5 @@ export class UserOrdersComponent implements OnInit {
     
     })  
  
-  }
-
-
-  orderStage(){
-
   }
 }

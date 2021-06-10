@@ -10,7 +10,7 @@ import { Utility } from 'src/app/models/Utility.model';
 })
 export class RestaurantService {
   restaurantBehSubject = new BehaviorSubject<Restaurant>(null);
-orderStage = new BehaviorSubject<string>(null)
+  orderStage = new BehaviorSubject<string>(null)
 
   constructor(private afs : AngularFirestore) {}
 

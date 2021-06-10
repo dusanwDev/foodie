@@ -7,6 +7,8 @@ import {
 } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { ActivatedRoute } from '@angular/router';
+import { forkJoin, merge } from 'rxjs';
+import { mergeMap, switchMap } from 'rxjs/operators';
 import { Customer } from 'src/app/models/Customer.model';
 import { Restaurant } from 'src/app/models/Restaurant.model';
 import { Utility } from 'src/app/models/Utility.model';
@@ -39,35 +41,9 @@ export class RestaurantComponent implements OnInit {
     private userService:UserService
   ) {}
   ngOnInit(): void {
-this.angularFIrestore.collection<Customer>(Utility.firestoreName).doc(this.userService.localUser().localId).valueChanges().subscribe(data=>{
-  this.itemsBought = data.addedToCart.length
-})
-    this.activatedRoute.params.subscribe((dataId) => {
-      this.angularFIrestore
-        .collection<Restaurant>(Utility.firestoreName)
-        .doc(dataId['restaurantId'])
-        .valueChanges()
-        .subscribe((data) => {
-          this.restaurant = data;
-          this.restaurantService.restaurantBehSubject.next(this.restaurant);
-          this.displayRestaurantFeatures();
-          this.displayToDashboardLink()
-          //removing category  duplicates
-          let arr = [];
-          this.restaurant.dishes.forEach((dish) => {
-            arr.push(dish.categoryName);
-          });
-          this.categories = [...new Set(arr)];
+this.boughtItems()
+this.getRestaurant()
 
-          this.restaurant.restaurantDisplayRaiting= this.restaurant.restaurantRaiting.reduce((sum,value)=>{
-            return sum + value
-          }) / this.restaurant.restaurantRaiting.length
-
-        });
-    });
-    this.feedService.getRestaurants().subscribe(restaurants=>{
-    this.allRestaurants= restaurants;
-    })
   }
 
   displayRestaurantFeatures() {
@@ -108,6 +84,30 @@ this.angularFIrestore.collection<Customer>(Utility.firestoreName).doc(this.userS
   }
 
   boughtItems(){
-this.userService.countOrderBehSubject.subscribe(data=>this.itemsBought = data)
-  }
+    this.angularFIrestore.collection<Customer>(Utility.firestoreName).doc(this.userService.localUser().localId).valueChanges().subscribe(data=>{
+      this.itemsBought = data.addedToCart.length
+      })  
+    }
+    getRestaurant(){
+      this.activatedRoute.params.pipe(mergeMap(dataId=> this.angularFIrestore
+        .collection<Restaurant>(Utility.firestoreName)
+        .doc(dataId['restaurantId'])
+        .valueChanges()))
+        .subscribe(data=>{
+          this.restaurant = data;
+          this.restaurantService.restaurantBehSubject.next(this.restaurant);
+          this.displayRestaurantFeatures();
+          this.displayToDashboardLink()
+          //removing category  duplicates
+          let arr = [];
+          this.restaurant.dishes.forEach((dish) => {
+            arr.push(dish.categoryName);
+          });
+          this.categories = [...new Set(arr)];
+        })
+
+      this.feedService.getRestaurants().subscribe(restaurants=>{
+      this.allRestaurants= restaurants;
+      })
+    }
 }
