@@ -26,7 +26,9 @@ export class RegisterUserComponent implements OnInit {
         this.registerUserForm.get('firstName').value,
         this.registerUserForm.get('lastName').value,
         this.registerUserForm.get('email').value,
-        this.registerUserForm.get('password').value
+        this.registerUserForm.get('password').value,
+        this.registerUserForm.get('phone').value,
+        this.registerUserForm.get('addres').value
       )
       .subscribe(
         (data) => console.log(data),

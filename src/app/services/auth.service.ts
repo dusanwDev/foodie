@@ -87,7 +87,7 @@ export class AuthService {
     userFirstName: string,
     userLastName: string,
     email: string,
-    password: string
+    password: string,phone:string,addres:string
   ) {
     return this.http
       .post<AuthResponse>(
