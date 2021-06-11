@@ -195,6 +195,18 @@
       >
     </span>
     </div>
+    <div class="form-control">
+      <label for="">Restaurant Type</label><input type="number" formControlName="restaurantType" />
+      <span
+      *ngIf="
+        !settingsForm.get('restaurantType').valid && settingsForm.get('restaurantType').touched
+      "
+    >
+      <span *ngIf="settingsForm.get('restaurantType').errors['required']"
+        >This field is required</span
+      >
+    </span>
+    </div>
  
     <div class="form-control">
       <label for="">Short about</label>

@@ -30,6 +30,7 @@ export class RestaurantComponent implements OnInit {
   userInput:string;
   itemsBought = 0;
   displayToDash = false;
+  displayToUserProfile : boolean
   @ViewChild("raiting") raiting : ElementRef
   @ViewChild("favorite") favorite : ElementRef
   userId:string;
@@ -39,12 +40,17 @@ export class RestaurantComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private angularFIrestore: AngularFirestore,
     private feedService:FeedService,
-    private userService:UserService,private renderer2:Renderer2
+    private userService:UserService,
+    private renderer2:Renderer2
   ) {}
   ngOnInit(): void {
   this.boughtItems()
   this.getRestaurant()
-
+  this.userService.customerBehSubject.subscribe(data=>{
+  this.displayToUserProfile = data ? true:false
+  this.userId = this.userService.localUser().localId
+  console.log(this.displayToUserProfile )
+  })
   }
 
   displayRestaurantFeatures() {

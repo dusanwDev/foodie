@@ -18,6 +18,7 @@ export class Restaurant {
     public restaurantRaiting:number[],
     public restaurantDisplayRaiting:number,
     public deliveryPrice:number,
+    public restaurantType:string,
     public dishes:{
       dishId: string;
       categoryName: string;

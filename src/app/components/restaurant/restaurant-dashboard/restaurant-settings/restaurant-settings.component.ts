@@ -16,13 +16,13 @@ export class RestaurantSettingsComponent implements OnInit {
   selectedFile: File;
   randomNumber: string;
   selectedFileBanner: File;
+  restaurantId: string;
 
   constructor(
     private restaurantService: RestaurantService,
     private afs: AngularFirestore,
     private afsStorage: AngularFireStorage
   ) {}
-  restaurantId: string;
   ngOnInit(): void {
     this.settingsForm = new FormGroup({
       restaurantName: new FormControl(null, Validators.required),
@@ -30,12 +30,13 @@ export class RestaurantSettingsComponent implements OnInit {
       restaurantCity:new FormControl(null, Validators.required),
       restaurantImage: new FormControl(null, Validators.required),
       workTimeFrom: new FormControl(null, Validators.required),
-workTimeTo: new FormControl(null, Validators.required),
-workTimeDaysFrom: new FormControl(null, Validators.required),
-workTimeDaysTo: new FormControl(null, Validators.required),
+      workTimeTo: new FormControl(null, Validators.required),
+      workTimeDaysFrom: new FormControl(null, Validators.required),
+      workTimeDaysTo: new FormControl(null, Validators.required),
       phone: new FormControl(null, Validators.required),
       shortAbout:new FormControl(null, Validators.required),
-      deliveryPrice:new FormControl(null,Validators.required)
+      deliveryPrice:new FormControl(null,Validators.required),
+      restaurantType:new FormControl(null,Validators.required)
     });
     this.restaurantService.restaurantBehSubject.subscribe((data) => {
       this.restaurantId = data.restaurantId;
@@ -51,6 +52,7 @@ workTimeDaysTo: new FormControl(null, Validators.required),
           .collection<Restaurant>(Utility.firestoreName)
           .doc(this.restaurantId)
           .update({
+            restaurantType:this.settingsForm.get('restaurantType').value,
             restaurantName: this.settingsForm.get('restaurantName').value,
             restaurantAddres: this.settingsForm.get('restaurantAddres').value,
             restaurantImage: data,
@@ -58,15 +60,17 @@ workTimeDaysTo: new FormControl(null, Validators.required),
             workTimeTo: this.settingsForm.get('workTimeTo').value,
             workTimeDaysFrom:this.settingsForm.get("workTimeDaysFrom").value,
             workTimeDaysTo:this.settingsForm.get("workTimeDaysTo").value,
-            phone: this.settingsForm.get('phone').value,shortAbout:this.settingsForm.get("shortAbout").value.split(' ')
+            phone: this.settingsForm.get('phone').value,
+            shortAbout:this.settingsForm.get("shortAbout").value.split(' ')
             .map((word, index) => {
               if (index < 8) {
                 return word;
               }
             })
             .join(' '),
-            restaurantCity:this.settingsForm.get('restaurantCity').value,deliveryPrice:this.settingsForm.get("deliveryPrice").value
-          }).then(()=>{this.settingsForm.reset()});
+            restaurantCity:this.settingsForm.get('restaurantCity').value,
+            deliveryPrice:this.settingsForm.get("deliveryPrice").value
+          }).then(()=>{this.settingsForm.reset()})
 
       });
   }

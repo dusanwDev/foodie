@@ -18,7 +18,6 @@ export class FavoriteRestaurantsComponent implements OnInit {
   userInput: string;
   ngOnInit(): void {
     this.userService.user.subscribe(data=>{
-
       this.afs.collection<Customer>(Utility.firestoreName).doc(data).valueChanges().subscribe(userData=>{
       this.restaurants.push(...userData.favoriteRestaurants)
       })

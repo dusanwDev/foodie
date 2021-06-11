@@ -23,16 +23,21 @@
           </ng-container> 
           </ul>
         </div>
+        <div class="select" *ngIf="displayToUserProfile; else restaurantLinks">
+          <a  [routerLink]='["/user-profile",this.userId]'>Your Profile</a>
+        </div>
+        <ng-template #restaurantLinks>
         <div class="login" *ngIf="!displayToDash; else toDashboard">
           <a href="">Log In</a><a href="" class="sign-up">Sign up</a>
         </div>
         <ng-template  #toDashboard>
           <a 
-            class="to-Dashboard" class="toDashboard"
+            class="to-Dashboard toDashboard" 
             [routerLink]="['/restaurant-dashboard', restaurant.restaurantId]"
             >To dashboard </a
           >
         </ng-template>
+      </ng-template>
         <div class="user-btns">
           <button class=""><i class="fas fa-hamburger"></i></button>
         </div>
