@@ -2,6 +2,7 @@ import {
   Component,
   ElementRef,
   OnInit,
+  Renderer2,
   ViewChild,
 
 } from '@angular/core';
@@ -30,6 +31,7 @@ export class RestaurantComponent implements OnInit {
   itemsBought = 0;
   displayToDash = false;
   @ViewChild("raiting") raiting : ElementRef
+  @ViewChild("favorite") favorite : ElementRef
   userId:string;
 
   constructor(
@@ -37,7 +39,7 @@ export class RestaurantComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private angularFIrestore: AngularFirestore,
     private feedService:FeedService,
-    private userService:UserService
+    private userService:UserService,private renderer2:Renderer2
   ) {}
   ngOnInit(): void {
   this.boughtItems()
@@ -76,6 +78,10 @@ export class RestaurantComponent implements OnInit {
   }
   addToFavorite(){
     this.userService.addToFavorite(this.restaurant)
+    this.renderer2.setStyle(this.favorite.nativeElement,"display","block")
+    setTimeout(() => {
+      this.renderer2.setStyle(this.favorite.nativeElement,"display","none")
+    }, 3000);
   }
   rateRestaurant(event){
     this.raiting.nativeElement.disabled=true;
