@@ -41,27 +41,26 @@ export class RestaurantOrdersComponent implements OnInit {
   }
   preparingStage(selectListValue,inOrderProcessDish,index ){
     inOrderProcessDish.orderProcess=selectListValue.value
-     this.userService.updateOrderStatus(inOrderProcessDish)
-  switch (selectListValue.value) {
+    this.userService.updateOrderStatus(inOrderProcessDish)
+    switch (selectListValue.value) {
+    case "Preparing":
+      this.renderer.setStyle(this.pendingOrders.toArray()[index].nativeElement,"backgroundColor","red")
+      break;
+    case "Delivery":
+      this.renderer.setStyle(this.pendingOrders.toArray()[index].nativeElement,"backgroundColor","yellow")
+      break;
+    case "Delivered":
+      this.renderer.setStyle(this.pendingOrders.toArray()[index].nativeElement,"backgroundColor","green")
+      this.restaurant.inOrderProcess.splice(index,1)
+      this.restaurantService.removeFromInOrderProcess(this.restaurant.inOrderProcess,this.restaurant.restaurantId)
+      break;
 
-  case "Preparing":
-    this.renderer.setStyle(this.pendingOrders.toArray()[index].nativeElement,"backgroundColor","red")
+    default:
+      break;
+      }
+    }
 
-    break;
-  case "Delivery":
-    this.renderer.setStyle(this.pendingOrders.toArray()[index].nativeElement,"backgroundColor","yellow")
 
-    break;
-  case "Delivered":
-    this.renderer.setStyle(this.pendingOrders.toArray()[index].nativeElement,"backgroundColor","green")
-    this.restaurant.inOrderProcess.splice(index,1)
-    this.restaurantService.removeFromInOrderProcess(this.restaurant.inOrderProcess,this.restaurant.restaurantId)
-    break;
 
-  default:
-    break;
-  }
-
-  }
 
 }

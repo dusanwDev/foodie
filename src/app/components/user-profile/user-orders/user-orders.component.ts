@@ -47,6 +47,13 @@ restaurantId:string}[] = []
       }
     
     })  
- 
+
+  }
+    //1. get raiting
+  //2. get restaurant dishes
+  //3. update dish in restaurant
+
+  rateDish(dish,rateValue){
+    this.userService.rateDish(dish)
   }
 }

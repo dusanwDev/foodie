@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Restaurant } from 'src/app/models/Restaurant.model';
@@ -19,10 +19,11 @@ export class RestaurantMenuComponent implements OnInit {
   dishId: string;
   userInput: string;
   selectedFile: File = null;
+  @ViewChild("alert") alert : ElementRef
   constructor(
     private restaurantService: RestaurantService,
     private afs: AngularFirestore,
-    private afsStorage: AngularFireStorage
+    private afsStorage: AngularFireStorage,private renderer2:Renderer2
   ) {}
 
   ngOnInit(): void {
@@ -94,8 +95,13 @@ export class RestaurantMenuComponent implements OnInit {
             .update({
               dishes: this.restaurant.dishes,
             });
+            this.renderer2.setStyle(this.alert.nativeElement,"display","block")
+            setTimeout(() => {
+              this.renderer2.setStyle(this.alert.nativeElement,"display","none ")
+            }, 3000);
           this.addDishForm.reset();
         });
+
     } else {
       this.afsStorage.storage
         .ref()
@@ -127,6 +133,10 @@ export class RestaurantMenuComponent implements OnInit {
             .update({
               dishes: this.restaurant.dishes,
             });
+            this.renderer2.setStyle(this.alert.nativeElement,"display","block")
+            setTimeout(() => {
+              this.renderer2.setStyle(this.alert.nativeElement,"display","none ")
+            }, 3000);
           this.addDishForm.reset();
         });
     }

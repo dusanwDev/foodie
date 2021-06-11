@@ -65,6 +65,16 @@
     }
   }
 }
+.submited-alert{
+  background-color: green;
+  color: white;
+  padding: 1.6em;
+  position: fixed;
+  top: 1em;
+  right: 1em;
+  border-radius: 4px;
+display: none;
+}
 .menu-table {
   width: 70%;
   .search-input {

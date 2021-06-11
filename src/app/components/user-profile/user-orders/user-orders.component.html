@@ -19,14 +19,14 @@
         <div class="price-and-order-wrapper">
           <p class="price">{{order.price}}$</p>
           <div class="input-field">
-          <select name=""  id="">
-            <option value="rate">Rate</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-          </select>
+            <select name="" class="status" #selectList  (change)="rateDish(order,selectList)">
+              <option value="d">Rate</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
           <p>/ 5</p>
           <i class="fas fa-start"></i>
           </div>

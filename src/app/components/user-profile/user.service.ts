@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { BehaviorSubject } from 'rxjs';
-import { map, take } from 'rxjs/operators';
+import { BehaviorSubject, concat, forkJoin } from 'rxjs';
+import { map, mergeMap, switchMap, take, takeLast, tap } from 'rxjs/operators';
 import { Customer } from 'src/app/models/Customer.model';
 import { Restaurant } from 'src/app/models/Restaurant.model';
 import { Utility } from 'src/app/models/Utility.model';
@@ -26,6 +26,7 @@ dishes:{categoryName: string,
   customer:Customer
   customerBehSubject = new BehaviorSubject<Customer>(null)
   countOrderBehSubject= new BehaviorSubject<number>(0)
+  restaurant:Restaurant
   constructor(private afs : AngularFirestore) { 
     this.localUser()
     this.afs.collection<Customer>(Utility.firestoreName).doc(this.localUser().localId).valueChanges().subscribe(res=>{
@@ -145,17 +146,41 @@ calculateTotal(){
     })
   }
 
-getOrderCount(dish){
-  this.dishes.forEach
-  let count = 0;
-  return this.afs.collection<Customer>(Utility.firestoreName).doc(this.localUser().localId).valueChanges().pipe(map(data=>{
-  data.addedToCart.forEach(data=>{
-    if(data.dishId === dish.dishId){
-      count++
-    }
-    return count;
-  })
-  }))
+  getOrderCount(dish){
+    this.dishes.forEach
+    let count = 0;
+    return this.afs.collection<Customer>(Utility.firestoreName).doc(this.localUser().localId).valueChanges().pipe(map(data=>{
+    data.addedToCart.forEach(data=>{
+      if(data.dishId === dish.dishId){
+        count++
+      }
+      return count;
+    })
+    }))
+  }
+  rateDish(dish){
+    // let get =    this.afs.collection<Restaurant>(Utility.firestoreName).doc(dish.restaurantId).valueChanges().pipe(tap((restaurant)=>{
+      //   console.log("ALLOO",this.restaurant)
+      
+      //   this.restaurant=restaurant
+    //   let index  = restaurant.dishes.findIndex(x=>x.dishId === dish.dishId)
+    //   this.restaurant.dishes[index] = dish;
+   
+    // }))
+    // let update = this.afs.collection<Restaurant>(Utility.firestoreName).doc(dish.restaurantId).update({
+    //   dishes:this.restaurant.dishes
+    // })
+    // concat(get,update).subscribe(data=>console.log("UP",data))
+    this.afs.collection<Restaurant>(Utility.firestoreName).doc(dish.restaurantId).valueChanges().pipe(map(restaurant=>{
+      this.restaurant=restaurant
+      let index  = restaurant.dishes.findIndex(x=>x.dishId === dish.dishId)
+      this.restaurant.dishes[index] = dish;
+      console.log("ALOOOO",this.restaurant.dishes)
 
-}
+    })).subscribe(data=>{
+      this.afs.collection<Restaurant>(Utility.firestoreName).doc(dish.restaurantId).update({
+        dishes:this.restaurant.dishes
+    })
+    })
+  }
 }
