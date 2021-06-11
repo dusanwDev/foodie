@@ -9,8 +9,11 @@
   border-radius: 8px;
   box-shadow: 2px 2px 2px 2px rgb(216, 216, 216);
   &-h2{
-    padding-left: .7em;
+    margin-left: .7em;
+    margin-right: .7em;
     padding-top: .5em;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid rgb(228, 228, 228);
   }
 .search-input{
   padding-top: 1rem;
