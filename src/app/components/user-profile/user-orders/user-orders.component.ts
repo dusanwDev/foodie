@@ -42,7 +42,6 @@ restaurantId:string}[] = []
           break;
         case "Delivered": this.stage = stage,this.renderer2.setStyle(this.proggres,"backgroundColor","green")
           break;
-      
         default:
           break;
       }

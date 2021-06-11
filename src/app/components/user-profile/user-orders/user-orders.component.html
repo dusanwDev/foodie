@@ -4,7 +4,7 @@
   <div class="search-input">
   <input type="text" placeholder="Search" [(ngModel)]=userInput>
 </div>
-  <a [routerLink]="['/restaurant',order.restaurantId]" class="ordered" *ngFor="let order of orders | userOrders:userInput; let i = index ">
+  <div  class="ordered" *ngFor="let order of orders | userOrders:userInput; let i = index ">
     <div class="ordered-container">
       <div class="ordered-img-container">
         <img [src]="order.image" alt="" />
@@ -18,13 +18,25 @@
         </div>
         <div class="price-and-order-wrapper">
           <p class="price">{{order.price}}$</p>
-  
+          <div class="input-field">
+          <select name=""  id="">
+            <option value="rate">Rate</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+          <p>/ 5</p>
+          <i class="fas fa-start"></i>
+          </div>
           <!-- <p class="raiting-item"><i class="fas fa-star"></i> 4.5/10</p> -->
         </div>
       </div>
     </div>
-    <div class="proggres" [ngClass]="{'red':order.orderProcess==='Preparing','yellow':order.orderProcess==='Delivery','green':order.orderProcess==='Delivered'}">
+    <div class="proggres" [routerLink]="['/restaurant',order.restaurantId]"
+      [ngClass]="{'red':order.orderProcess==='Preparing','yellow':order.orderProcess==='Delivery','green':order.orderProcess==='Delivered'}">
       <h3>{{order.orderProcess}}</h3>
     </div>
-  </a>
+  </div>
 </div>

@@ -52,7 +52,7 @@
           </button>
         </div>
         <div class="bought-items">
-          <button (click)="displayBoughtItems(boughtItemsDisplay)"><i class="fas fa-shopping-bag"></i> <strong>{{itemsBought}} items</strong></button>
+          <button [routerLink]="['/user-profile',userId ,'user-orders']" (click)="displayBoughtItems(boughtItemsDisplay)"><i class="fas fa-shopping-bag"></i> <strong>{{itemsBought}} items</strong></button>
         </div>
       </div>
       <div class="restaurant-name">

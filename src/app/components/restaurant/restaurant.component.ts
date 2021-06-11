@@ -27,11 +27,10 @@ export class RestaurantComponent implements OnInit {
   categories: string[];
   allRestaurants:Restaurant[]
   userInput:string;
-  total = 0
   itemsBought = 0;
   displayToDash = false;
   @ViewChild("raiting") raiting : ElementRef
-
+  userId:string;
 
   constructor(
     private restaurantService: RestaurantService,
@@ -41,8 +40,8 @@ export class RestaurantComponent implements OnInit {
     private userService:UserService
   ) {}
   ngOnInit(): void {
-this.boughtItems()
-this.getRestaurant()
+  this.boughtItems()
+  this.getRestaurant()
 
   }
 
@@ -85,7 +84,8 @@ this.getRestaurant()
 
   boughtItems(){
     this.angularFIrestore.collection<Customer>(Utility.firestoreName).doc(this.userService.localUser().localId).valueChanges().subscribe(data=>{
-      this.itemsBought = data.addedToCart.length
+      this.itemsBought = data.addedToCart ? data.addedToCart.length : 0
+      this.userId = this.userService.localUser().localId
       })  
     }
     getRestaurant(){

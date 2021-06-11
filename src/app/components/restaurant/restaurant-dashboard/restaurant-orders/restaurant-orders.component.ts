@@ -27,7 +27,6 @@ export class RestaurantOrdersComponent implements OnInit {
     }
     this.restaurant.inOrderProcess.push(ordered)
     console.log("DIA",this.dialog)
-    // this.renderer.setStyle(this.dialog.nativeElement,"display","flex")
 
     this.restaurantService.approveOrder(this.restaurant.inOrderProcess,this.restaurant.restaurantId)
     this.dismissOrder(index)

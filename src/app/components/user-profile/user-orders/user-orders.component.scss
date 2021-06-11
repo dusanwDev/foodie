@@ -53,7 +53,7 @@
           display: flex;
           align-items: center;
           .input-field {
-            width: 180px;
+            width: 150px;
             height: 30px;
             @include flex(flex-end, center, row);
             select {
@@ -84,11 +84,13 @@
       }
     }
     .proggres {
+      cursor: pointer;
       &.red {
         h3 {
           background-color: red;
           padding: 0.5em 0.6em;
           border-radius: 7px;
+          color: white;
         }
       }
       &.yellow {
@@ -96,6 +98,7 @@
           background-color: yellow;
           padding: 0.5em 0.6em;
           border-radius: 7px;
+          color: white;
         }
       }
       &.green {
@@ -103,6 +106,7 @@
           background-color: green;
           padding: 0.5em 0.6em;
           border-radius: 7px;
+          color: white;
         }
       }
     }
