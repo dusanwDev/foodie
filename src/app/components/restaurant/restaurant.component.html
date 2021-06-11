@@ -7,7 +7,7 @@
     <div class="main-header-inner">
       <div class="header-upper">
         <div class="logo">
-          <h1 routerLink="/feed">Wolt</h1>
+          <h1 routerLink="/feed">Foodly</h1>
         </div>
         <div class="search-restaurant">
           <input type="text" *ngIf="displayRestaurantFeaturesBool" [(ngModel)]="userInput"/>
@@ -24,7 +24,7 @@
           </ul>
         </div>
         <div class="select" *ngIf="displayToUserProfile; else restaurantLinks">
-          <a  [routerLink]='["/user-profile",this.userId]'>Your Profile</a>
+          <a  [routerLink]='["/user-profile",userId]'>Your Profile</a>
         </div>
         <ng-template #restaurantLinks>
         <div class="login" *ngIf="!displayToDash; else toDashboard">
@@ -38,9 +38,14 @@
           >
         </ng-template>
       </ng-template>
-        <div class="user-btns">
-          <button class=""><i class="fas fa-hamburger"></i></button>
+        <div class="user-btns" *ngIf="displayToUserProfile; else displayHamburgerToResDashboard">
+          <button [routerLink]="['/user-profile',userId]"><i class="fas fa-hamburger"></i></button>
         </div>
+        <ng-template #displayHamburgerToResDashboard>
+          <div class="user-btns" >
+            <button [routerLink]="['/restaurant-dashboard',restaurant.restaurantId]"><i class="fas fa-hamburger"></i></button>
+          </div>
+        </ng-template>
       </div>
       <div class="header-lower">
         <div class="delivery-time">
@@ -129,10 +134,7 @@
       <strong>20–35 min</strong>
     </p>
   </div>
-  <div class="search">
-    <input type="text" />
-    <i class="fas fa-search"></i>
-  </div>
+ 
   <div class="categories">
     <a  [routerLink]="['category-name', 'all']">All</a>
     <a
