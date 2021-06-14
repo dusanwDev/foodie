@@ -18,9 +18,6 @@
         <div class="menu-item-info-left">
         <h2>{{ dish.dishName }}</h2>
         <div class="ingridients">
-          <!-- <p>
-            {{ dish.about }}
-          </p> -->
           <p *ngFor="let topping of dish.toppings" style="display: inline;">
             {{ topping }}
           </p>
