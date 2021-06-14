@@ -91,13 +91,11 @@ main {
     .topRated-rastaurant-inner {
       display: flex;
       flex-wrap: wrap;
-      // justify-content: center;
       width: 100%;
       .restaurant-card {
         display: inline-block;
         text-decoration: none;
         width: 33.33%;
-        // width: 404px;
         margin-top: 1em;
 
         border: 2px solid rgb(243, 243, 243);

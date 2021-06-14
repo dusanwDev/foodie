@@ -110,7 +110,6 @@ export class RestaurantComponent implements OnInit {
           this.restaurantService.restaurantBehSubject.next(this.restaurant);
           this.displayRestaurantFeatures();
           this.displayToDashboardLink()
-          //removing category  duplicates
           let arr = [];
           this.restaurant.dishes.forEach((dish) => {
             arr.push(dish.categoryName);

@@ -2,7 +2,6 @@
   display: inline-block;
   text-decoration: none;
   width: 400px;
-  // width: 404px;
   margin-top: 1em;
 
   border: 2px solid rgb(243, 243, 243);
@@ -74,9 +73,7 @@
 }
 @media screen and (max-width: 926px) {
   .restaurant-card {
-    // width: 100%;
     .header {
-      // flex-direction: column;
       flex-direction: column;
       align-items: flex-start;
       padding: 0.6em;

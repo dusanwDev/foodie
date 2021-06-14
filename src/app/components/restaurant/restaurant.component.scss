@@ -2,7 +2,6 @@
 .main-header {
   position: relative;
   height: 60vh;
-  // background-image: url("https://prod-wolt-venue-images-cdn.wolt.com/5d30dcbdbac78b444f8e2848/fa176d82131ea28516c460ce6e5f8bcc-edits/9b96041bd2e2ebfcf85b5ade767db8f1");
   background-size: cover;
   background-position: center;
   .main-header-inner {
@@ -226,8 +225,7 @@
         }
       }
       .raiting-num-inner {
-        //   font-weight: bold;
-        //   font-size: 1.2rem;
+
         margin: 0 0.9em;
         @include flex(inherit, center, row);
 
@@ -277,7 +275,6 @@
   width: 90%;
   margin: 1em auto;
   font-size: 1.2rem;
-  // @include raitingResponsiveAbove();
   .raiting-number {
     @include flex(space-between, inherit, row);
 
@@ -357,9 +354,7 @@
       border-radius: 200px;
       font-size: 1.2rem;
       line-height: 1.42;
-      // white-space: nowrap;
       overflow: hidden;
-      // text-overflow: ellipsis;
       width: 100%;
       font-weight: bolder;
     }
@@ -384,7 +379,6 @@ main {
       bottom: 0px;
       left: 0px;
       width: 100%;
-      // height: 100%;
       display: inline-block;
       li {
         font-weight: 500;
@@ -475,15 +469,7 @@ main {
     }
   }
 }
-// .bought-items-display {
-//   width: 400px;
-//   position: fixed;
-//   top: 0;
-//   right: 0;
-//   bottom: 0;
-//   background-color: white;
-//   z-index: 99999999999999999999;
-// }
+
 .sum {
   background-color: #46474d;
   color: white;
@@ -620,9 +606,6 @@ main {
         .menu-item-container {
           flex-direction: column;
 
-          // .menu-item-img-container {
-          //   width: 100%;
-          // }
         }
         .order {
           .order-count {

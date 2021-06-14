@@ -20,7 +20,6 @@ export class RegisterRestaurantComponent implements OnInit {
       restaurantPassword: new FormControl(
         null,
         Validators.required
-        // this.passwordValidator.bind(this),
       ),
     });
   }

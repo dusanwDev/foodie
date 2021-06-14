@@ -41,10 +41,7 @@ export class RestaurantMenuComponent implements OnInit {
         Validators.required,
         Validators.pattern('^[a-z A-Z]+$'),
       ]),
-      // existingCategory: new FormControl(
-      //   { value: null, disabled: false },
-      //   Validators.required
-      // ),
+
       price: new FormControl(null, Validators.required),
       about: new FormControl(null, Validators.required),
       image: new FormControl(null, Validators.required),
@@ -62,7 +59,7 @@ export class RestaurantMenuComponent implements OnInit {
             toppings: [''],
             ordered: 0,
             dishId: '',
-            image: '',restaurantId:""
+            image: '',restaurantId:"",raiting:[]
           },
         ];
         this.restaurant.dishes.pop();
@@ -145,15 +142,12 @@ export class RestaurantMenuComponent implements OnInit {
   edit(dishes) {
     this.addDishForm.get('dishName').setValue(dishes.dishName);
     this.addDishForm.get('toppings').setValue(dishes.toppings);
-    // this.addDishForm
-    //   .get('existingCategory')
-    //   .setValue(dishes.existingCategory ?? '');
+
     this.addDishForm.get('price').setValue(dishes.price);
     this.addDishForm.get('about').setValue(dishes.about);
     this.addDishForm.get('newCategory').setValue(dishes.categoryName);
     this.editMode = true;
     this.dishIdEdit = dishes.dishId;
-    // document.querySelector<HTMLInputElement>('.dishName').disabled=true;
   }
   remove(index) {
     this.restaurant.dishes.splice(index, 1);

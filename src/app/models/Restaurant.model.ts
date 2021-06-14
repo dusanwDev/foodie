@@ -28,7 +28,7 @@ export class Restaurant {
       about: string;
       restaurantId:string;
       ordered?: number;
-      image?: string;raiting:number[]
+      image?: string;raiting?:number[]
     }[],
     public orderedQue:{
       dishName: string;
