@@ -5,6 +5,8 @@
     <select name="" id="" #selectList (change)="sortFoodBy(selectList.value)">
       <option value="lowestprice">Lowest Price</option>
       <option value="highestprice">Highest Price</option>
+      <option value="lowestRaiting">Lowest Raiting</option>
+      <option value="highestRaiting">Highest Raiting</option>
     </select>
   </header>
   <div class="menu-item" *ngFor="let dish of dishes">
@@ -24,7 +26,7 @@
           </p>
         </div>
         <div class="price-and-order-wrapper">
-          <p class="price">{{ dish.price }}$</p>
+          <p class="price">{{ dish.price }} RSD | {{dish.raitingToDisplay}}/ 5</p>
         </div>
       </div>
         <div class="order-btn" >

@@ -106,7 +106,6 @@ ratedRestaurants(rate,restaurant : Restaurant){
   })
   
 }
-// itemsCount = new BehaviorSubject<number>();
 calculateTotal(){
   let total = 0;
   let count = 0;
@@ -140,7 +139,6 @@ calculateTotal(){
     console.log(inOrderProcessDish.dishId)
     let foundIndex = this.dishes.findIndex(x=>x.dishId === inOrderProcessDish.dishId)
     this.dishes[foundIndex] = inOrderProcessDish;
-    console.log("TO BE UPDATED",foundIndex)
     this.afs.collection<Customer>(Utility.firestoreName).doc(this.localUser().localId).update({
       addedToCart:this.dishes
     })
@@ -159,28 +157,13 @@ calculateTotal(){
     }))
   }
   rateDish(dish){
-    // let get =    this.afs.collection<Restaurant>(Utility.firestoreName).doc(dish.restaurantId).valueChanges().pipe(tap((restaurant)=>{
-      //   console.log("ALLOO",this.restaurant)
-      
-      //   this.restaurant=restaurant
-    //   let index  = restaurant.dishes.findIndex(x=>x.dishId === dish.dishId)
-    //   this.restaurant.dishes[index] = dish;
-   
-    // }))
-    // let update = this.afs.collection<Restaurant>(Utility.firestoreName).doc(dish.restaurantId).update({
-    //   dishes:this.restaurant.dishes
-    // })
-    // concat(get,update).subscribe(data=>console.log("UP",data))
-    this.afs.collection<Restaurant>(Utility.firestoreName).doc(dish.restaurantId).valueChanges().pipe(map(restaurant=>{
-      this.restaurant=restaurant
-      let index  = restaurant.dishes.findIndex(x=>x.dishId === dish.dishId)
+    this.afs.collection<Restaurant>(Utility.firestoreName).doc(dish.restaurantId).valueChanges().pipe(take(1)).subscribe(data=>{
+        this.restaurant=data
+      let index  = data.dishes.findIndex(x=>x.dishId === dish.dishId)
       this.restaurant.dishes[index] = dish;
-      console.log("ALOOOO",this.restaurant.dishes)
-
-    })).subscribe(data=>{
       this.afs.collection<Restaurant>(Utility.firestoreName).doc(dish.restaurantId).update({
         dishes:this.restaurant.dishes
-    })
+      })
     })
   }
 }

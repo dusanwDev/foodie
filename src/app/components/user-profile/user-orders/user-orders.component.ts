@@ -19,7 +19,7 @@ export class UserOrdersComponent implements OnInit {
   toppings: [string];
   price: number;
   about: string;
-restaurantId:string}[] = []
+  restaurantId:string}[] = []
   @ViewChild("proggres") proggres :ElementRef 
   @ViewChildren ("raiting") raiting : QueryList<ElementRef>
   stage = "Pending"
@@ -30,8 +30,9 @@ restaurantId:string}[] = []
       this.afs.collection<Customer>(Utility.firestoreName).doc(userid).valueChanges().subscribe(data=>{
         if(typeof data.addedToCart !== "undefined"){
         this.orders.push(...data.addedToCart)
+        console.log("ORD",this.orders)
         this.orders = this.orders.filter((v,i,a)=>a.findIndex(t=>(JSON.stringify(t.dishId) === JSON.stringify(v.dishId)))===i)
-      }
+      } 
       })
     })
     this.restaurantService.orderStage.subscribe(stage=>{
@@ -48,12 +49,14 @@ restaurantId:string}[] = []
     
     })  
 
-  }
+  } 
     //1. get raiting
   //2. get restaurant dishes
   //3. update dish in restaurant
 
   rateDish(dish,rateValue){
+    dish.raiting = dish.raiting ? dish.raiting : [] 
+    dish.raiting.push(+rateValue.value)
     this.userService.rateDish(dish)
   }
 }

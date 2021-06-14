@@ -15,16 +15,16 @@ export class CategoryComponent implements OnInit {
     private restaurantService: RestaurantService,
     private activatedRoute: ActivatedRoute,private userService:UserService,private renderer:Renderer2
   ) {}
-  dishes :{dishId: string; categoryName: string; dishName: string; toppings: [string]; price: number; about: string;ordered?: number;image?: string; restaurantId:string}[]= [];
+  dishes :{dishId: string; categoryName: string; dishName: string; toppings: [string]; price: number; about: string; restaurantId:string;ordered?: number;image?: string;raiting?:number[];raitingToDisplay?:number}[]= [];
   cateogryName: string;
   restaurantId:string;
   displayRestaurantFeaturesBool:boolean;
   total = 0
   restaurant:Restaurant
-  // @ViewChildren('topping') toppings:QueryList<ElementRef>;
   @ViewChildren('topping') toppings:QueryList<ElementRef>;
   @ViewChildren('orderItem') orderItem:QueryList<ElementRef>;
-  @ViewChild("addToCartAllert") addToCartAllert : ElementRef
+  @ViewChild("addToCartAllert") addToCartAllert : ElementRef;
+
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((data) => {
       this.cateogryName = data['categoryName'].charAt(0).toUpperCase() +  data['categoryName'].slice(1);;
@@ -36,6 +36,12 @@ export class CategoryComponent implements OnInit {
         if(this.dishes.length===0){
           this.dishes =restaurant.dishes
         }
+        this.dishes.map(dish=>{
+          if(typeof dish.raiting !== "undefined"){
+          dish.raitingToDisplay = dish.raiting?.reduce((acc,curr)=>acc+curr,0) / dish.raiting.length
+          console.log("To Display",dish.raitingToDisplay)
+          }
+        })
       });
     });
   }
@@ -52,7 +58,17 @@ export class CategoryComponent implements OnInit {
           return b.price - a.price;
         });
         break;
-
+      case 'lowestRaiting':
+        this.dishes = this.dishes.sort((a, b) => {
+          return a.raitingToDisplay - b.raitingToDisplay;
+        });
+        break;
+      case 'highestRaiting':
+        this.dishes = this.dishes.sort((a, b) => {
+          return b.raitingToDisplay - a.raitingToDisplay;
+        });
+        break;
+      
       default:
         break;
     }
