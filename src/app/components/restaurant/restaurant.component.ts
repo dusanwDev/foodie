@@ -1,4 +1,3 @@
-import { Route } from '@angular/compiler/src/core';
 import {
   Component,
   ElementRef,
@@ -8,9 +7,7 @@ import {
 
 } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { ActivatedRoute, Event, NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router } from '@angular/router';
-import { forkJoin, merge } from 'rxjs';
-import { mergeMap, switchMap } from 'rxjs/operators';
+import { ActivatedRoute } from '@angular/router';
 import { Customer } from 'src/app/models/Customer.model';
 import { Restaurant } from 'src/app/models/Restaurant.model';
 import { Utility } from 'src/app/models/Utility.model';
@@ -54,7 +51,7 @@ loading:boolean
   this.userId = this.userService.localUser().localId
   })
   this.restaurant= this.activatedRoute.snapshot.data['restaurant']
-this.enableRestaurantFeatures(this.restaurant)
+  this.enableRestaurantFeatures(this.restaurant)
   }
 
   displayRestaurantFeatures() {

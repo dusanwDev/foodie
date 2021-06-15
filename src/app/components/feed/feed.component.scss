@@ -2,6 +2,7 @@ main {
   width: 90%;
   margin: 0 auto;
   header {
+  
     margin-bottom: 1rem;
     display: flex;
     justify-content: space-between;
@@ -31,7 +32,6 @@ main {
       z-index: 99999999999999999;
       background-color: white;
       li {
-        box-shadow: 5px 5px 15px 8px rgb(235, 235, 235);
         list-style: none;
         a {
           display: inline-block;
@@ -40,6 +40,8 @@ main {
           border-bottom: 2px solid rgb(219, 219, 219);
           padding: 0.5em 0.5em;
           color: black;
+          box-shadow: 5px 5px 15px 8px rgb(235, 235, 235);
+
           h2 {
             margin-bottom: 0.2em;
           }
@@ -165,18 +167,14 @@ main {
 @media screen and (max-width: 1000px) {
   main {
     header {
-      .search {
-        width: 600px;
-        margin: 0 auto;
-        input {
-          width: 100%;
-        }
-      }
+ 
+    div{
+      width: 33.3%;
+    }
     }
   }
 }
 @media screen and (max-width: 800px) {
-
   .topRated-restaurants {
     .topRated-rastaurant-inner {
       flex-direction: column;
@@ -211,7 +209,7 @@ main {
         a {
           display: none;
         }
-width: 0%;
+        width: 0%;
       }
       .search {
         i {
