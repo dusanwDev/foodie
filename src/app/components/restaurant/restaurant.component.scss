@@ -116,10 +116,9 @@
         text-align: right;
         a {
           text-decoration: none;
-          font-size: 1.2rem;
+          font-size: 1.7rem;
           color: white;
           font-weight: bolder;
-          border: 2px solid white;
           padding: 0.4em 0.8em;
         }
         button {
@@ -317,7 +316,6 @@
   }
   .open-info-responsive {
     margin: 0.6em 0;
-    @include flex(space-between, center, row);
 
     i {
       margin-right: 0.3em;
@@ -603,9 +601,10 @@ main {
     margin-top: 1rem;
     .menu {
       .menu-item {
-        .menu-item-container {
-          flex-direction: column;
 
+        .menu-item-container {
+          flex-wrap:wrap;
+          // flex-direction: column;
         }
         .order {
           .order-count {

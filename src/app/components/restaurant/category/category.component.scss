@@ -18,7 +18,6 @@ header {
 .menu-item {
   cursor: pointer;
   overflow: hidden;
-
   transition: all 0.8s;
   .ingridients {
     margin: 0.5em 0;
@@ -116,6 +115,8 @@ justify-content: space-between;
 
 @media screen and (max-width: 500px) {
   .menu-item {
+    padding-bottom: 1em;
+    border-bottom: 3px solid grey;
     .menu-item-container {
       flex-direction: column;
       .menu-item-img-container {

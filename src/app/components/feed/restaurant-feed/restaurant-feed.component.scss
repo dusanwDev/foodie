@@ -1,7 +1,6 @@
 .restaurant-card {
   display: inline-block;
   text-decoration: none;
-  width: 400px;
   margin-top: 1em;
 
   border: 2px solid rgb(243, 243, 243);
@@ -68,7 +67,8 @@
 
 @media screen and (min-width: 1440px) {
   .restaurant-card {
-    width: 400px;
+    width: 430px;
+
   }
 }
 @media screen and (max-width: 926px) {
