@@ -48,6 +48,7 @@ loading:boolean
   console.log("COMPONENT")
   this.userService.customerBehSubject.subscribe(data=>{
   this.displayToUserProfile = data ? true:false
+  console.log(data)
   this.userId = this.userService.localUser().localId
   })
   this.restaurant= this.activatedRoute.snapshot.data['restaurant']
@@ -102,22 +103,6 @@ loading:boolean
       })  
     }
     enableRestaurantFeatures(restaurant:Restaurant){
-      // this.activatedRoute.params.pipe(mergeMap(dataId=> this.angularFIrestore
-      //   .collection<Restaurant>(Utility.firestoreName)
-      //   .doc(dataId['restaurantId'])
-      //   .valueChanges()))
-      //   .subscribe(data=>{
-      //     this.restaurant = data;
-      //     this.restaurantService.restaurantBehSubject.next(this.restaurant);
-      //     this.displayRestaurantFeatures();
-      //     this.displayToDashboardLink()
-      //     let arr = [];
-      //     this.restaurant.dishes.forEach((dish) => {
-      //       arr.push(dish.categoryName);
-      //     });
-      //     this.categories = [...new Set(arr)];
-      //   })
-      console.log("RESTAURANT",restaurant)
           this.restaurantService.restaurantBehSubject.next(this.restaurant);
           this.displayRestaurantFeatures();
           this.displayToDashboardLink()

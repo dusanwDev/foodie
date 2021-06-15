@@ -33,7 +33,9 @@ dishes:{categoryName: string,
       this.restaurants = res.favoriteRestaurants ? res.favoriteRestaurants : [];
       this.dishes = res.addedToCart ? res.addedToCart : [];
       this.customer = res
+      if(res.customerId){
       this.customerBehSubject.next(this.customer)
+    }
     })
   }
 

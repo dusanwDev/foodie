@@ -21,6 +21,7 @@ export class CategoryComponent implements OnInit {
   displayRestaurantFeaturesBool:boolean;
   total = 0
   restaurant:Restaurant
+  displayBuyButton:boolean
   @ViewChildren('topping') toppings:QueryList<ElementRef>;
   @ViewChildren('orderItem') orderItem:QueryList<ElementRef>;
   @ViewChild("addToCartAllert") addToCartAllert : ElementRef;
@@ -33,17 +34,15 @@ export class CategoryComponent implements OnInit {
         this.displayRestaurantFeatures();
         this.restaurant = restaurant
         this.dishes = restaurant.dishes.filter((dish) =>  dish.categoryName === data['categoryName']) 
-        if(this.dishes.length===0){
-          this.dishes =restaurant.dishes
-        }
+        //avarage raiting
         this.dishes.map(dish=>{
           if(typeof dish.raiting !== "undefined"){
           dish.raitingToDisplay = dish.raiting?.reduce((acc,curr)=>acc+curr,0) / dish.raiting.length
-          console.log("To Display",dish.raitingToDisplay)
           }
         })
       });
     });
+    this.userService.customerBehSubject.subscribe(data=>this.displayBuyButton = data ? true : false)
   }
   sortFoodBy(event) {
     switch (event) {

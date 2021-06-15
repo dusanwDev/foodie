@@ -18,7 +18,6 @@ export class AppComponent   {
     }
 
     checkRouterEvent(routerEvent:Event){
-      console.log(routerEvent)
       if(routerEvent instanceof NavigationStart){
         this.loading = true
       }

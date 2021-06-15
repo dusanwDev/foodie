@@ -25,7 +25,7 @@
           <p class="price">{{ dish.price }} RSD | <span *ngIf="dish.raitingToDisplay">{{dish.raitingToDisplay}} / 5</span> </p>
         </div>
       </div>
-        <div class="order-btn" >
+        <div class="order-btn" *ngIf="displayBuyButton" >
             <button (click)=addToOrder(dish)>Add to Order</button> 
         </div>
       </div>
