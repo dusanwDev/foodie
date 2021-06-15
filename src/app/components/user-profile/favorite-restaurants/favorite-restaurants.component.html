@@ -20,7 +20,7 @@
     </div>
     <div class="delivery-time">
       <h3>Delivery Time</h3>
-      <p class="delivery-time-minutes">65'</p>
+      <p class="delivery-time-minutes">{{restaurant.avarageDeliveryTime}}'</p>
       <p>{{restaurant.restaurantType}}</p>
     </div>
     <a [routerLink]="['/restaurant',restaurant.restaurantId]"> Order </a>

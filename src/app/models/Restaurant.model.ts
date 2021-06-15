@@ -19,6 +19,7 @@ export class Restaurant {
     public restaurantDisplayRaiting:number,
     public deliveryPrice:number,
     public restaurantType:string,
+    public avarageDeliveryTime:number,
     public dishes:{
       dishId: string;
       categoryName: string;

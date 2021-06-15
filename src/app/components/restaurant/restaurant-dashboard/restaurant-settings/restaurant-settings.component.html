@@ -195,8 +195,21 @@
       >
     </span>
     </div>
+
     <div class="form-control">
-      <label for="">Restaurant Type</label><input type="number" formControlName="restaurantType" />
+      <label for="">Delivery TIme</label><input type="number" formControlName="avarageDeliveryTime" />
+      <span
+      *ngIf="
+        !settingsForm.get('avarageDeliveryTime').valid && settingsForm.get('avarageDeliveryTime').touched
+      "
+    >
+      <span *ngIf="settingsForm.get('avarageDeliveryTime').errors['required']"
+        >This field is required</span
+      >
+    </span>
+    </div>
+    <div class="form-control">
+      <label for="">Restaurant Type</label><input type="text" formControlName="restaurantType" />
       <span
       *ngIf="
         !settingsForm.get('restaurantType').valid && settingsForm.get('restaurantType').touched

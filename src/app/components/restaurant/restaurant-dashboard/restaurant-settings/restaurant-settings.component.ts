@@ -36,6 +36,7 @@ export class RestaurantSettingsComponent implements OnInit {
       phone: new FormControl(null, Validators.required),
       shortAbout:new FormControl(null, Validators.required),
       deliveryPrice:new FormControl(null,Validators.required),
+      avarageDeliveryTime:new FormControl(null,Validators.required),
       restaurantType:new FormControl(null,Validators.required)
     });
     this.restaurantService.restaurantBehSubject.subscribe((data) => {
@@ -60,6 +61,7 @@ export class RestaurantSettingsComponent implements OnInit {
             workTimeTo: this.settingsForm.get('workTimeTo').value,
             workTimeDaysFrom:this.settingsForm.get("workTimeDaysFrom").value,
             workTimeDaysTo:this.settingsForm.get("workTimeDaysTo").value,
+            avarageDeliveryTime:this.settingsForm.get("avarageDeliveryTime").value,
             phone: this.settingsForm.get('phone').value,
             shortAbout:this.settingsForm.get("shortAbout").value.split(' ')
             .map((word, index) => {
