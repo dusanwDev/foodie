@@ -557,6 +557,9 @@ main {
   }
 }
 @media screen and (max-width: 600px) {
+  .added-to-favorite{
+    padding: 1em;
+  }
   .select{
     display: none;
   }

@@ -182,3 +182,11 @@ justify-content: space-between;
     margin-top: 0.6rem;
   }
 }
+
+@media screen and (max-width:800px) {
+  .add-to-cart-allert{
+    padding: 1em;
+    top: .2em;
+    right: .2em;
+  }
+}

@@ -176,15 +176,19 @@ main {
   }
 }
 @media screen and (max-width: 800px) {
+
   .topRated-restaurants {
     .topRated-rastaurant-inner {
       flex-direction: column;
       align-items: center;
     }}
   main {
+    width: 90%;
+    margin: 0 auto;
     header {
       flex-direction: column;
       .foodly-header{
+        width: 100%;
         margin-bottom: 1rem;
         a {
           display: inline-block;
@@ -200,18 +204,21 @@ main {
       ul {
         width: 100%;
       }
+      h1{
+        width: auto;
+      }
       .select {
         a {
           display: none;
         }
-
+width: 0%;
       }
       .search {
         i {
           display: none;
         }
      
-          width: 400px;
+          width: 100%;
           position: relative;
           form{
             display: flex;
@@ -225,17 +232,17 @@ main {
           }
       }
     }
-    .topRated-restaurants {
-      overflow-x: scroll;
-      &::-webkit-scrollbar {
-        display: none;
-      }
+    // .topRated-restaurants {
+    //   overflow-x: scroll;
+    //   &::-webkit-scrollbar {
+    //     display: none;
+    //   }
 
-      /* Hide scrollbar for IE, Edge and Firefox */
-      & {
-        -ms-overflow-style: none; /* IE and Edge */
-        scrollbar-width: none; /* Firefox */
-      }
-    }
+    //   /* Hide scrollbar for IE, Edge and Firefox */
+    //   & {
+    //     -ms-overflow-style: none; /* IE and Edge */
+    //     scrollbar-width: none; /* Firefox */
+    //   }
+    // }
   }
 }
