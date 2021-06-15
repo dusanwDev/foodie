@@ -2,11 +2,34 @@
   <header>
     <h1>Foodly</h1>
     <div class="search">
-      <input type="text" placeholder="Search your restaurant" [(ngModel)]="userInput"/>
+      
+      <form action="" (ngSubmit)="submit()" [formGroup]="feedForm">
+        <input type="text" placeholder="Search your restaurant" formControlName="search" [(ngModel)]="userInput"/>
       <i class="fas fa-search"></i>
+      <select name="" id="" formControlName="city">
+        <option value="">Restaurant City</option>
+        <option *ngFor="let restaurant of allRestaurants" [value]="restaurant.restaurantCity">{{restaurant.restaurantCity}}</option>
+      </select>
+      <select name="" id="" formControlName="raiting">
+        <option value="">Raiting</option>
+        <!-- <option *ngFor="let restaurant of allRestaurants" [value]="restaurant.restaurantDisplayRaiting">{{restaurant.restaurantDisplayRaiting}}</option> -->
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
 
+        <!-- <option value="">Highest Rated</option>
+        <option value="">Lowest Rated</option> -->
+      </select>
+      <select name="" id="" formControlName="type">
+        <option value="">Restaurant Type</option>
+        <option *ngFor="let restaurant of allRestaurants" [value]="restaurant.restaurantType">{{restaurant.restaurantType}}</option>
+      </select>
+      <button>Search</button>
+    </form>
     </div>
-    <ul >
+    <ul>
       <ng-container *ngFor="let restaurant of allRestaurants | restaurantFeedPipe:userInput; let i = index">
       <li *ngIf= "i <= 6">
         <a [routerLink]="['/restaurant',restaurant.restaurantId]"><div class="drowpdown-img"><img [src]=restaurant.restaurantImage alt=""></div><div class="restaurantInfo">
@@ -27,42 +50,11 @@
   </header>
   <div class="topRated-restaurants">
     <header>
-      <h1>Top 5 restaurants</h1>
+      <h1>Retaurants</h1>
     </header>
-    <div class="topRated-rastaurant-inner">
-      <app-restaurant-feed [restaurants]=allRestaurants></app-restaurant-feed>
+    <div class="topRated-rastaurant-inner" *ngIf="allRestaurants" >
+      <app-restaurant-feed [restaurants]="allRestaurants | feedPipe: feedForm.value"></app-restaurant-feed>
     </div>
   </div>
-  <div class="topRated-restaurants">
-    <header>
-      <h1>Top 10 Dishes</h1>
-    </header>
-    <div class="topRated-rastaurant-inner">
-      <app-restaurant-feed></app-restaurant-feed>
-    </div>
-  </div>
-  <div class="topRated-restaurants">
-    <header>
-      <h1>Top 10 Pizzas</h1>
-    </header>
-    <div class="topRated-rastaurant-inner">
-      <app-restaurant-feed></app-restaurant-feed>
-    </div>
-  </div>
-  <div class="topRated-restaurants">
-    <header>
-      <h1>Top 10 Burgers</h1>
-    </header>
-    <div class="topRated-rastaurant-inner">
-      <app-restaurant-feed></app-restaurant-feed>
-    </div>
-  </div>
-  <div class="topRated-restaurants">
-    <header>
-      <h1>Top 10 Deserts</h1>
-    </header>
-    <div class="topRated-rastaurant-inner">
-      <app-restaurant-feed></app-restaurant-feed>
-    </div>
-  </div>
+
 </main>

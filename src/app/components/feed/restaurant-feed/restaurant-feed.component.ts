@@ -11,6 +11,7 @@ export class RestaurantFeedComponent implements OnInit {
   constructor() { }
 @Input() restaurants  : Restaurant[]
   ngOnInit(): void {
+    console.log("EsKETIT",this.restaurants)
   }
 
 }

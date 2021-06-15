@@ -33,6 +33,7 @@ import { FeedCategoryComponent } from './components/feed/feed-category/feed-cate
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { RestaurantFavoritePipe } from './components/user-profile/favorite-restaurants/restaurant-favorite.pipe';
 import { UserOrdersPipe } from './components/user-profile/user-orders/user-orders.pipe';
+import { FeedPipePipe } from './components/feed/feed-pipe.pipe';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { UserOrdersPipe } from './components/user-profile/user-orders/user-order
     FeedCategoryComponent,
     CheckoutComponent,
     RestaurantFavoritePipe,
-    UserOrdersPipe
+    UserOrdersPipe,
+    FeedPipePipe
   ],
   imports: [
     BrowserModule,

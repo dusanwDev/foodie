@@ -22,7 +22,7 @@
           </p>
         </div>
         <div class="price-and-order-wrapper">
-          <p class="price">{{ dish.price }} RSD | {{dish.raitingToDisplay}}/ 5</p>
+          <p class="price">{{ dish.price }} RSD | <span *ngIf="dish.raitingToDisplay">{{dish.raitingToDisplay}} / 5</span> </p>
         </div>
       </div>
         <div class="order-btn" >
