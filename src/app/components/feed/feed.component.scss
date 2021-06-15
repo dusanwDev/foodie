@@ -12,7 +12,7 @@ main {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      button{
+      a{
         display: none;
       }
     }
@@ -90,11 +90,9 @@ main {
       text-align: right;
       a {
         text-decoration: none;
-        font-size: 1.2rem;
-        color: blue;
+        font-size: 1.7rem;
+        color: black;
         font-weight: bolder;
-        border: 2px solid blue;
-        padding: 0.4em 0.8em;
       }
       button {
         display: none;
@@ -188,12 +186,13 @@ main {
       flex-direction: column;
       .foodly-header{
         margin-bottom: 1rem;
-        button {
+        a {
           display: inline-block;
           font-size: 1.4rem;
           background-color: transparent;
           border: none;
           cursor: pointer;
+          color: black;
           outline: none;
         }
       }

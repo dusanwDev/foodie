@@ -2,7 +2,7 @@
   <header>
     <div class="foodly-header">
     <h1>Foodly</h1>
-    <button><i class="fas fa-bars"></i></button>
+    <a [routerLink]='["/user-profile",getUserId().localId]'> <i class="fas fa-user"></i></a>
 
     </div>
     <div class="search">
@@ -47,7 +47,7 @@
       <!-- <select name="" id="">
         <option value=""></option>
       </select> -->
-      <a  [routerLink]='["/user-profile",getUserId().localId]'>Your Profile</a>
+      <a  [routerLink]='["/user-profile",getUserId().localId]'><i class="fas fa-user"></i></a>
       <!-- <button><i class="fas fa-bars"></i></button> -->
     </div>
   </header>
