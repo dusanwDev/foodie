@@ -21,10 +21,10 @@ allRestaurants:Restaurant[]
     })
   this.getUserId()
   this.feedForm= new FormGroup({
-    city:new FormControl(null),
-    raiting:new FormControl(null),
-    type:new FormControl(null),
-    search:new FormControl(null)
+    city:new FormControl(""),
+    raiting:new FormControl(""),
+    type:new FormControl(""),
+    search:new FormControl("")
   })
   }
 

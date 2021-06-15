@@ -1,13 +1,17 @@
 <main>
   <header>
+    <div class="foodly-header">
     <h1>Foodly</h1>
+    <button><i class="fas fa-bars"></i></button>
+
+    </div>
     <div class="search">
       
       <form action="" (ngSubmit)="submit()" [formGroup]="feedForm">
         <input type="text" placeholder="Search your restaurant" formControlName="search" [(ngModel)]="userInput"/>
       <i class="fas fa-search"></i>
       <select name="" id="" formControlName="city">
-        <option value="">Restaurant City</option>
+        <option value="">City</option>
         <option *ngFor="let restaurant of allRestaurants" [value]="restaurant.restaurantCity">{{restaurant.restaurantCity}}</option>
       </select>
       <select name="" id="" formControlName="raiting">
@@ -23,10 +27,9 @@
         <option value="">Lowest Rated</option> -->
       </select>
       <select name="" id="" formControlName="type">
-        <option value="">Restaurant Type</option>
+        <option value="">Food Type</option>
         <option *ngFor="let restaurant of allRestaurants" [value]="restaurant.restaurantType">{{restaurant.restaurantType}}</option>
       </select>
-      <button>Search</button>
     </form>
     </div>
     <ul>
@@ -45,7 +48,7 @@
         <option value=""></option>
       </select> -->
       <a  [routerLink]='["/user-profile",getUserId().localId]'>Your Profile</a>
-      <button><i class="fas fa-bars"></i></button>
+      <!-- <button><i class="fas fa-bars"></i></button> -->
     </div>
   </header>
   <div class="topRated-restaurants">
