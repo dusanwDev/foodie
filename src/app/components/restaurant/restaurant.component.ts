@@ -1,3 +1,4 @@
+import { Route } from '@angular/compiler/src/core';
 import {
   Component,
   ElementRef,
@@ -7,7 +8,7 @@ import {
 
 } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Event, NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router } from '@angular/router';
 import { forkJoin, merge } from 'rxjs';
 import { mergeMap, switchMap } from 'rxjs/operators';
 import { Customer } from 'src/app/models/Customer.model';
@@ -34,23 +35,26 @@ export class RestaurantComponent implements OnInit {
   @ViewChild("raiting") raiting : ElementRef
   @ViewChild("favorite") favorite : ElementRef
   userId:string;
-
+loading:boolean
   constructor(
     private restaurantService: RestaurantService,
     private activatedRoute: ActivatedRoute,
     private angularFIrestore: AngularFirestore,
     private feedService:FeedService,
     private userService:UserService,
-    private renderer2:Renderer2
-  ) {}
+    private renderer2:Renderer2,
+  ) {
+  }
+
   ngOnInit(): void {
   this.boughtItems()
-  this.getRestaurant()
+  console.log("COMPONENT")
   this.userService.customerBehSubject.subscribe(data=>{
   this.displayToUserProfile = data ? true:false
   this.userId = this.userService.localUser().localId
-  console.log(this.displayToUserProfile )
   })
+  this.restaurant= this.activatedRoute.snapshot.data['restaurant']
+this.enableRestaurantFeatures(this.restaurant)
   }
 
   displayRestaurantFeatures() {
@@ -100,13 +104,23 @@ export class RestaurantComponent implements OnInit {
       this.userId = this.userService.localUser().localId
       })  
     }
-    getRestaurant(){
-      this.activatedRoute.params.pipe(mergeMap(dataId=> this.angularFIrestore
-        .collection<Restaurant>(Utility.firestoreName)
-        .doc(dataId['restaurantId'])
-        .valueChanges()))
-        .subscribe(data=>{
-          this.restaurant = data;
+    enableRestaurantFeatures(restaurant:Restaurant){
+      // this.activatedRoute.params.pipe(mergeMap(dataId=> this.angularFIrestore
+      //   .collection<Restaurant>(Utility.firestoreName)
+      //   .doc(dataId['restaurantId'])
+      //   .valueChanges()))
+      //   .subscribe(data=>{
+      //     this.restaurant = data;
+      //     this.restaurantService.restaurantBehSubject.next(this.restaurant);
+      //     this.displayRestaurantFeatures();
+      //     this.displayToDashboardLink()
+      //     let arr = [];
+      //     this.restaurant.dishes.forEach((dish) => {
+      //       arr.push(dish.categoryName);
+      //     });
+      //     this.categories = [...new Set(arr)];
+      //   })
+      console.log("RESTAURANT",restaurant)
           this.restaurantService.restaurantBehSubject.next(this.restaurant);
           this.displayRestaurantFeatures();
           this.displayToDashboardLink()
@@ -115,10 +129,10 @@ export class RestaurantComponent implements OnInit {
             arr.push(dish.categoryName);
           });
           this.categories = [...new Set(arr)];
-        })
-
       this.feedService.getRestaurants().subscribe(restaurants=>{
       this.allRestaurants= restaurants;
       })
     }
+
+
 }

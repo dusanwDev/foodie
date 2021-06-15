@@ -34,6 +34,8 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
 import { RestaurantFavoritePipe } from './components/user-profile/favorite-restaurants/restaurant-favorite.pipe';
 import { UserOrdersPipe } from './components/user-profile/user-orders/user-orders.pipe';
 import { FeedPipePipe } from './components/feed/feed-pipe.pipe';
+import { LoaderComponent } from './components/loader/loader.component';
+import { RestaurantResolver } from './components/restaurant/restaurant.resolver';
 
 @NgModule({
   declarations: [
@@ -61,7 +63,8 @@ import { FeedPipePipe } from './components/feed/feed-pipe.pipe';
     CheckoutComponent,
     RestaurantFavoritePipe,
     UserOrdersPipe,
-    FeedPipePipe
+    FeedPipePipe,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
@@ -72,7 +75,7 @@ import { FeedPipePipe } from './components/feed/feed-pipe.pipe';
     ReactiveFormsModule,
     FormsModule,
   ],
-  providers: [],
+  providers: [RestaurantResolver],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

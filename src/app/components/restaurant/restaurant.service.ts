@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { BehaviorSubject } from 'rxjs';
+import { take } from 'rxjs/operators';
 import { Customer } from 'src/app/models/Customer.model';
 import { Restaurant } from 'src/app/models/Restaurant.model';
 import { Utility } from 'src/app/models/Utility.model';
@@ -39,5 +40,8 @@ export class RestaurantService {
     this.afs.collection<Restaurant>(Utility.firestoreName).doc(restaurantId).update({
       inOrderProcess:inOrderProcess
     })
+  }
+  getRestaurant(restaurantId:string){
+ return this.afs.collection<Restaurant>(Utility.firestoreName).doc(restaurantId).valueChanges().pipe(take(1))
   }
 }

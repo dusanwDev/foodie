@@ -12,6 +12,7 @@ import { RestaurantOrdersComponent } from './components/restaurant/restaurant-da
 import { RestaurantSettingsComponent } from './components/restaurant/restaurant-dashboard/restaurant-settings/restaurant-settings.component';
 import { RestaurantGuard } from './components/restaurant/restaurant-guard.guard';
 import { RestaurantComponent } from './components/restaurant/restaurant.component';
+import { RestaurantResolver } from './components/restaurant/restaurant.resolver';
 import { FavoriteRestaurantsComponent } from './components/user-profile/favorite-restaurants/favorite-restaurants.component';
 import { ProfileComponent } from './components/user-profile/profile/profile.component';
 import { UserGuard } from './components/user-profile/user-guard.guard';
@@ -27,8 +28,9 @@ const routes: Routes = [
   },
   {
     path: 'restaurant/:restaurantId',
+    resolve:{restaurant : RestaurantResolver },
     children: [
-      { path: 'category-name/:categoryName', component: CategoryComponent },
+      { path: 'category-name/:categoryName', component: CategoryComponent,  },
     ],
     component: RestaurantComponent,
   },
