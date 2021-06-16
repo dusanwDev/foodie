@@ -12,7 +12,10 @@
       <i class="fas fa-search"></i>
       <select name="" id="" formControlName="city">
         <option value="">City</option>
-        <option *ngFor="let restaurant of allRestaurants" [value]="restaurant.restaurantCity">{{restaurant.restaurantCity}}</option>
+        <ng-container *ngFor="let restaurant of allRestaurants" >
+          <option *ngIf=restaurant.restaurantCity [value]="restaurant.restaurantCity" >{{restaurant.restaurantCity}}</option>
+
+        </ng-container>
       </select>
       <select name="" id="" formControlName="raiting">
         <option value="">Raiting</option>
@@ -28,7 +31,9 @@
       </select>
       <select name="" id="" formControlName="type">
         <option value="">Food Type</option>
-        <option *ngFor="let restaurant of allRestaurants" [value]="restaurant.restaurantType">{{restaurant.restaurantType}}</option>
+        <ng-container *ngFor="let restaurant of allRestaurants" >
+          <option *ngIf=restaurant.restaurantType  [value]="restaurant.restaurantType">{{restaurant.restaurantType}}</option>
+        </ng-container>
       </select>
     </form>
     </div>

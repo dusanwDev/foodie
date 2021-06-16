@@ -26,7 +26,6 @@ export class RestaurantOrdersComponent implements OnInit {
       this.restaurant.inOrderProcess = []
     }
     this.restaurant.inOrderProcess.push(ordered)
-    console.log("DIA",this.dialog)
 
     this.restaurantService.approveOrder(this.restaurant.inOrderProcess,this.restaurant.restaurantId)
     this.dismissOrder(index)

@@ -25,7 +25,7 @@ export class LoginRestaurantComponent implements OnInit {
         'loginRestaurant'
       )
       .subscribe(
-        (data) => console.log(data),
+        (data) => {},
         (err) => (this.erorMessage = err)
       );
   }

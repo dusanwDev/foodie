@@ -32,7 +32,6 @@ customer:Customer;
   this.userService.updateCustomerProfile({name:this.updateProfile.get("name").value,lastName:this.updateProfile.get("lastname").value,addres:this.updateProfile.get("addres").value,phone:this.updateProfile.get("phone").value})
   this.changesAlert.nativeElement.style.display="block";
   this.updateProfile.reset()
-  console.log(this.changesAlert)
   setTimeout(() => {
     this.changesAlert.nativeElement.style.display="none"
   }, 3000);

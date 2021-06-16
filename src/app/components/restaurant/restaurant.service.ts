@@ -21,7 +21,6 @@ export class RestaurantService {
     })
   }
   addToOrderQue(orderedQue,restaurantId:string){
-    console.log("QQ",orderedQue)
   this.afs.collection<Restaurant>(Utility.firestoreName).doc(restaurantId).update({
     orderedQue:orderedQue
   })

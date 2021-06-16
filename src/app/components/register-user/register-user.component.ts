@@ -31,7 +31,7 @@ export class RegisterUserComponent implements OnInit {
         this.registerUserForm.get('addres').value
       )
       .subscribe(
-        (data) => console.log(data),
+        (data) => {},
         (err) => (this.errorMessage = err)
       );
   }

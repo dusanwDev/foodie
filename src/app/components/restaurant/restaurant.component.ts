@@ -45,10 +45,8 @@ loading:boolean
 
   ngOnInit(): void {
   this.boughtItems()
-  console.log("COMPONENT")
   this.userService.customerBehSubject.subscribe(data=>{
   this.displayToUserProfile = data ? true:false
-  console.log(data)
   this.userId = this.userService.localUser().localId
   })
   this.restaurant= this.activatedRoute.snapshot.data['restaurant']

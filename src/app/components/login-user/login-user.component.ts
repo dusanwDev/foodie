@@ -23,6 +23,6 @@ export class LoginUserComponent implements OnInit {
         this.loginUser.get('password').value,
         'loginUser'
       )
-      .subscribe((data) => console.log(data));
+      .subscribe((data) => {});
   }
 }

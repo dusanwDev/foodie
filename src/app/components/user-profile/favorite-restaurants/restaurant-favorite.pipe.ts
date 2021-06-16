@@ -8,7 +8,6 @@ export class RestaurantFavoritePipe implements PipeTransform {
 
   transform( restaurants: Restaurant[],userInput:string): unknown {
     let reg = new RegExp(`^${userInput}`, 'gi');
-    console.log("USERINPUT",userInput)
     return userInput
       ? restaurants.filter((item) => {
           return item.restaurantName.match(reg);

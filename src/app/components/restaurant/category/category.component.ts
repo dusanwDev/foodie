@@ -28,12 +28,15 @@ export class CategoryComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((data) => {
+      //first letter uppercase
       this.cateogryName = data['categoryName'].charAt(0).toUpperCase() +  data['categoryName'].slice(1);;
       this.restaurantService.restaurantBehSubject.subscribe((restaurant) => {
         this.restaurantId = restaurant.restaurantId;
         this.displayRestaurantFeatures();
         this.restaurant = restaurant
-        this.dishes = restaurant.dishes.filter((dish) =>  dish.categoryName === data['categoryName']) 
+        this.dishes = restaurant.dishes.filter((dish) =>  dish.categoryName === data['categoryName']).length===0 ? restaurant.dishes :  restaurant.dishes.filter((dish) =>  dish.categoryName === data['categoryName'])
+        
+        console.log('Dishes',this.dishes)
         //avarage raiting
         this.dishes.map(dish=>{
           if(typeof dish.raiting !== "undefined"){
@@ -116,7 +119,6 @@ export class CategoryComponent implements OnInit {
         this.restaurant.orderedQue = [];
       }
       this.restaurant.orderedQue.push({customerName:customer.customerName,customerLastname:customer.customerLastName,customerAddres:customer.customerAddres,dishName:dish.dishName,price:dish.price,dishId:dish.dishId,image:dish.image,restaurantId:this.restaurant.restaurantId,phone:customer.customerPhone,categoryName:dish.categoryName})
-      console.log("ESKETIT",this.restaurant.orderedQue)
       this.restaurantService.addToOrderQue(this.restaurant.orderedQue,this.restaurantId);
     })
   }

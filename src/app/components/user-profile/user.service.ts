@@ -137,7 +137,6 @@ calculateTotal(){
   }
 
   updateOrderStatus(inOrderProcessDish){
-    console.log(inOrderProcessDish.dishId)
     let foundIndex = this.dishes.findIndex(x=>x.dishId === inOrderProcessDish.dishId)
     this.dishes[foundIndex] = inOrderProcessDish;
     this.afs.collection<Customer>(Utility.firestoreName).doc(this.localUser().localId).update({

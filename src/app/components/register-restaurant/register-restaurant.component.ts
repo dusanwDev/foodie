@@ -31,7 +31,7 @@ export class RegisterRestaurantComponent implements OnInit {
         this.registerRestaurant.get('restaurantPassword').value
       )
       .subscribe(
-        (data) => console.log(data),
+        (data) => {},
         (err) => {
           this.errorMessage = err;
         }
