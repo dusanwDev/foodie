@@ -21,7 +21,7 @@
     <span
     *ngIf="
       !logInRestaurant.get('password').valid &&
-      logInRestaurant.get('password').valid
+      logInRestaurant.get('password').touched
     "
   >
     <span *ngIf="logInRestaurant.get('password').errors['required']">
@@ -29,7 +29,10 @@
     </span>
   </span>
   </div>
+<div class="dont-have-acount" >
+  <p>Dont have a acount? <a routerLink="/restaurant-register">Create one</a></p>
 
+</div>
   <button type="submit" [disabled]="!logInRestaurant.valid">Log In</button>
 </form>
 </div>

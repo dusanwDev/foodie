@@ -3,10 +3,34 @@
 <form [formGroup]="loginUser" (ngSubmit)="submit()">
   <div class="form-control">
     <label for="">Email</label><input type="email" formControlName="email" />
+    <span
+    *ngIf="
+      !loginUser.get('email').valid &&
+      loginUser.get('email').touched
+    "
+  >
+    <span *ngIf="loginUser.get('email').errors['required']">
+      <p>This field is required</p>
+    </span>
+  </span>
   </div>
   <div class="form-control">
     <label for="">Password</label
     ><input type="password" formControlName="password" />
+    <span
+    *ngIf="
+      !loginUser.get('password').valid &&
+      loginUser.get('password').touched
+    "
+  >
+    <span *ngIf="loginUser.get('password').errors['required']">
+      <p>This field is required</p>
+    </span>
+  </span>
+  </div>
+  <div class="dont-have-acount" >
+    <p>Dont have a acount? <a routerLink="/user-register">Create one</a></p>
+
   </div>
   <button [disabled]=!loginUser.valid type="submit">Log in</button>
 </form>

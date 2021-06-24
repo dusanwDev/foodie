@@ -49,6 +49,10 @@ form{
         border: 3px solid red;
 
       }
+      &.ng-valid.ng-touched{
+        border: 3px solid green;
+
+      }
     }
   }
   button{
