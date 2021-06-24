@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { ErrorComponent } from './components/error/error.component';
 import { FeedComponent } from './components/feed/feed.component';
+import { HomeComponent } from './components/home/home.component';
 import { LoginRestaurantComponent } from './components/login-restaurant/login-restaurant.component';
 import { LoginUserComponent } from './components/login-user/login-user.component';
 import { RegisterRestaurantComponent } from './components/register-restaurant/register-restaurant.component';
@@ -20,6 +22,8 @@ import { UserOrdersComponent } from './components/user-profile/user-orders/user-
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  {path:'home',component:HomeComponent},
   { path: 'feed', component: FeedComponent },
   {
     path: 'restaurant/:restaurantId',
@@ -76,6 +80,12 @@ const routes: Routes = [
   {
     path: 'user-login',
     component: LoginUserComponent,
+  },
+  { path: 'error', component: ErrorComponent },
+  {
+    path: '**',
+    pathMatch: 'full',
+    redirectTo: 'error',
   },
 ];
 

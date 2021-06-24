@@ -36,6 +36,8 @@ import { UserOrdersPipe } from './components/user-profile/user-orders/user-order
 import { FeedPipePipe } from './components/feed/feed-pipe.pipe';
 import { LoaderComponent } from './components/loader/loader.component';
 import { RestaurantResolver } from './components/restaurant/restaurant.resolver';
+import { HomeComponent } from './components/home/home.component';
+import { ErrorComponent } from './components/error/error.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +66,9 @@ import { RestaurantResolver } from './components/restaurant/restaurant.resolver'
     RestaurantFavoritePipe,
     UserOrdersPipe,
     FeedPipePipe,
-    LoaderComponent
+    LoaderComponent,
+    HomeComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,

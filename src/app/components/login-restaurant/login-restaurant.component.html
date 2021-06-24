@@ -1,8 +1,9 @@
+<div class="background-user-register">
+  <div class="opacity"></div>
 <form [formGroup]="logInRestaurant" (ngSubmit)="submit()">
   <div class="form-control">
     <label for="">Email</label><input type="text" formControlName="email" />
-  </div>
-  <span
+    <span
     *ngIf="
       !logInRestaurant.get('email').valid &&
       logInRestaurant.get('email').touched
@@ -12,11 +13,12 @@
       <p>This field is required</p>
     </span>
   </span>
+  </div>
+
   <div class="form-control">
     <label for="">Password</label
     ><input type="password" formControlName="password" />
-  </div>
-  <span
+    <span
     *ngIf="
       !logInRestaurant.get('password').valid &&
       logInRestaurant.get('password').valid
@@ -26,5 +28,8 @@
       <p>This field is required</p>
     </span>
   </span>
+  </div>
+
   <button type="submit" [disabled]="!logInRestaurant.valid">Log In</button>
 </form>
+</div>

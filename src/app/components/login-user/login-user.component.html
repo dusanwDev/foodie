@@ -1,3 +1,5 @@
+<div class="background-user-register">
+  <div class="opacity"></div>
 <form [formGroup]="loginUser" (ngSubmit)="submit()">
   <div class="form-control">
     <label for="">Email</label><input type="email" formControlName="email" />
@@ -6,5 +8,6 @@
     <label for="">Password</label
     ><input type="password" formControlName="password" />
   </div>
-  <button type="submit">Log in</button>
+  <button [disabled]=!loginUser.valid type="submit">Log in</button>
 </form>
+</div>

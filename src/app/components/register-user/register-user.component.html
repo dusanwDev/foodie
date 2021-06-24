@@ -1,26 +1,95 @@
+<div class="background-user-register">
+<div class="opacity"></div>
 <form [formGroup]="registerUserForm" (ngSubmit)="submit()">
   <div class="form-control">
     <label for="">First Name</label>
     <input type="text" formControlName="firstName" />
+    <span
+    *ngIf="
+      !registerUserForm.get('firstName').valid &&
+      registerUserForm.get('firstName').touched
+    "
+  >
+    <span *ngIf="registerUserForm.get('firstName').errors['required']">
+      <p>This field is required</p>
+    </span>
+  </span>
   </div>
+
   <div class="form-control">
     <label for="">Last Name</label>
     <input type="text" formControlName="lastName" />
+    <span
+    *ngIf="
+      !registerUserForm.get('lastName').valid &&
+      registerUserForm.get('lastName').touched
+    "
+  >
+    <span *ngIf="registerUserForm.get('lastName').errors['required']">
+      <p>This field is required</p>
+    </span>
+  </span>
   </div>
+
   <div class="form-control">
     <label for="">Email</label> <input type="email" formControlName="email" />
+    <span
+    *ngIf="
+      !registerUserForm.get('email').valid &&
+      registerUserForm.get('email').touched
+    "
+  >
+    <span *ngIf="registerUserForm.get('email').errors['required']">
+      <p>This field is required</p>
+    </span>
+  </span>
   </div>
+
   <div class="form-control">
     <label for="">Password</label>
     <input type="password" formControlName="password" />
+    <span
+    *ngIf="
+      !registerUserForm.get('password').valid &&
+      registerUserForm.get('password').touched
+    "
+  >
+    <span *ngIf="registerUserForm.get('password').errors['required']">
+      <p>This field is required</p>
+    </span>
+  </span>
   </div>
+
   <div class="form-control">
     <label for="">Phone</label>
     <input type="number" formControlName="phone" />
+    <span
+    *ngIf="
+      !registerUserForm.get('phone').valid &&
+      registerUserForm.get('phone').touched
+    "
+  >
+    <span *ngIf="registerUserForm.get('phone').errors['required']">
+      <p>This field is required</p>
+    </span>
+  </span>
   </div>
+
   <div class="form-control">
     <label for="">Addres</label>
     <input type="text" formControlName="addres" />
+    <span
+    *ngIf="
+      !registerUserForm.get('addres').valid &&
+      registerUserForm.get('addres').touched
+    "
+  >
+    <span *ngIf="registerUserForm.get('addres').errors['required']">
+      <p>This field is required</p>
+    </span>
+  </span>
   </div>
-  <button type="submit">Submit</button>
+
+  <button type="submit" [disabled]=!registerUserForm.valid>Submit</button>
 </form>
+</div>
